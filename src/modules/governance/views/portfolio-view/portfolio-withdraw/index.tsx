@@ -12,6 +12,9 @@ import { Text } from 'components/custom/typography';
 import { useKnownTokens } from 'components/providers/knownTokensProvider';
 import { TokenIcon, TokenIconNames } from 'components/token-icon';
 import { useDAO } from 'modules/governance/components/dao-provider';
+import { UseLeftTime } from 'hooks/useLeftTime';
+import { getFormattedDuration } from 'utils';
+import getUnixTime from 'date-fns/getUnixTime';
 
 type FormType = {
   amount: string;
@@ -134,6 +137,20 @@ const PortfolioWithdraw: FC = () => {
                 {formatToken(bondBalance) ?? '-'}
               </Text>
               <TokenIcon name={projectToken.icon as TokenIconNames} />
+            </div>
+          </div>
+          <div className="flex flow-row row-gap-4">
+            <Text type="small" weight="semibold" color="secondary">
+              Lock duration
+            </Text>
+            <div className="flex flow-col col-gap-8 align-center">
+              <UseLeftTime end={(userLockedUntil ?? getUnixTime(new Date())) * 1_000} delay={1_000}>
+                {leftTime => (
+                  <Text type="p1" weight="bold" color="primary">
+                    {getFormattedDuration(leftTime / 1_000)?.trim() || '0s'}
+                  </Text>
+                )}
+              </UseLeftTime>
             </div>
           </div>
         </div>
