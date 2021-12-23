@@ -230,7 +230,7 @@ const PortfolioDelegate: FC = () => {
                   </Text>
                   <div className="flex flow-col col-gap-8 align-center">
                     <Text type="p1" weight="bold" color="primary">
-                      {formatToken(bondBalance) ?? '-'}
+                      {formatToken(stakedBalance) ?? '-'}
                     </Text>
                     <TokenIcon name={projectToken.icon as TokenIconNames} />
                   </div>

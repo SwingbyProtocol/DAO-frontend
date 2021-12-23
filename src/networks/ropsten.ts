@@ -35,7 +35,7 @@ export const RopstenConfig: NetworkConfig = {
     trezorAppUrl: 'https://app.barnbridge.com/',
   },
   api: {
-    baseUrl: 'https://dev-v2.api.barnbridge.com',
+    baseUrl: 'https://dao-ropsten.swingby.network',
   },
   dao: {
     activationThreshold: 400_000,
