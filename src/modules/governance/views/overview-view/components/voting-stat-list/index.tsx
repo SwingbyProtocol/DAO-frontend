@@ -82,6 +82,23 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
 
       <div className="card p-24">
         <Grid flow="row" gap={48}>
+          <Text type="lb2" weight="semibold" color="blue">
+            Staking APR
+          </Text>
+          <Grid flow="row" gap={4}>
+            <UseLeftTime end={(daoCtx.daoReward.pullFeature?.endTs ?? 0) * 1000} delay={5_000}>
+              {() => (
+                <Text type="h2" weight="bold" color="primary">
+                  {formatToken(daoCtx.daoReward.apr)} %
+                </Text>
+              )}
+            </UseLeftTime>
+          </Grid>
+        </Grid>
+      </div>
+
+      <div className="card p-24">
+        <Grid flow="row" gap={48}>
           <Hint
             text={
               <Grid flow="row" gap={8} align="start">
@@ -137,23 +154,6 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
             <Text type="p1" color="secondary">
               average time
             </Text>
-          </Grid>
-        </Grid>
-      </div>
-
-      <div className="card p-24">
-        <Grid flow="row" gap={48}>
-          <Text type="lb2" weight="semibold" color="blue">
-            Staking APR
-          </Text>
-          <Grid flow="row" gap={4}>
-            <UseLeftTime end={(daoCtx.daoReward.pullFeature?.endTs ?? 0) * 1000} delay={5_000}>
-              {() => (
-                <Text type="h2" weight="bold" color="primary">
-                  {formatToken(daoCtx.daoReward.apr)} %
-                </Text>
-              )}
-            </UseLeftTime>
           </Grid>
         </Grid>
       </div>
