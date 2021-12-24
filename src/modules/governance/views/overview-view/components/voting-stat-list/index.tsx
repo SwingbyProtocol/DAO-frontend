@@ -143,29 +143,17 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
 
       <div className="card p-24">
         <Grid flow="row" gap={48}>
-          <Hint
-            text={
-              <Text type="p2">
-                This number shows the $SWINGBY token rewards distributed so far out of the total of{' '}
-                {formatToken(daoCtx.daoReward.pullFeature?.totalAmount)} that are going to be available for the DAO
-                Staking.
-              </Text>
-            }>
-            <Text type="lb2" weight="semibold" color="blue">
-              Staking rewards
-            </Text>
-          </Hint>
+          <Text type="lb2" weight="semibold" color="blue">
+            Staking APR
+          </Text>
           <Grid flow="row" gap={4}>
             <UseLeftTime end={(daoCtx.daoReward.pullFeature?.endTs ?? 0) * 1000} delay={5_000}>
               {() => (
                 <Text type="h2" weight="bold" color="primary">
-                  {formatToken(daoCtx.daoReward.bondRewards)}
+                  {formatToken(daoCtx.daoReward.apr)} %
                 </Text>
               )}
             </UseLeftTime>
-            <Text type="p1" color="secondary">
-              out of {formatToken(daoCtx.daoReward.pullFeature?.totalAmount)}
-            </Text>
           </Grid>
         </Grid>
       </div>

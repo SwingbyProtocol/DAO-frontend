@@ -5,6 +5,7 @@ import Web3Contract, { createAbiItem } from 'web3/web3Contract';
 const DaoRewardABI: AbiItem[] = [
   // call
   createAbiItem('pullFeature', [], ['address', 'uint256', 'uint256', 'uint256']),
+  createAbiItem('apr', [], ['uint256']),
   // send
   createAbiItem('claim', [], ['uint256']),
 ];
@@ -26,6 +27,8 @@ class DaoRewardContract extends Web3Contract {
     totalDuration: number;
     totalAmount: BigNumber;
   };
+  // apr
+  apr?: number;
   // user data
   toClaim?: BigNumber;
 
@@ -50,7 +53,9 @@ class DaoRewardContract extends Web3Contract {
   }
 
   async loadCommonData(): Promise<void> {
-    const [pullFeature] = await this.batch([{ method: 'pullFeature' }]);
+    const [pullFeature, apr] = await this.batch([
+      { method: 'pullFeature' },
+      { method: 'apr' }]);
 
     this.pullFeature = {
       source: pullFeature[0],
@@ -59,6 +64,7 @@ class DaoRewardContract extends Web3Contract {
       totalDuration: Number(pullFeature[3]),
       totalAmount: new BigNumber(pullFeature[4]).unscaleBy(18)!, /// TODO: re-check
     };
+    this.apr = Number(apr);
     this.emit(Web3Contract.UPDATE_DATA);
   }
 
