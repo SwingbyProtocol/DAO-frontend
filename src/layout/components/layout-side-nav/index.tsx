@@ -125,7 +125,7 @@ const LayoutSideNav: React.FC = () => {
           )}
         </nav>
         <div className={s.bottom}>
-          <a rel="noopener noreferrer" target="_blank" href="https://docs.barnbridge.com/" className={s.button}>
+          {/* <a rel="noopener noreferrer" target="_blank" href="https://docs.barnbridge.com/" className={s.button}>
             <Tooltip title={displayTooltip && 'Docs'} placement="right">
               <Icon name="menu-docs" size={40} />
             </Tooltip>
@@ -134,7 +134,7 @@ const LayoutSideNav: React.FC = () => {
                 Docs
               </Text>
             </div>
-          </a>
+          </a> */}
           <ToggleThemeButton displayTooltip={displayTooltip} />
         </div>
       </aside>
