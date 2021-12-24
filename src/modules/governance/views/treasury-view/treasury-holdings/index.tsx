@@ -169,7 +169,6 @@ const TreasuryHoldings: FC = () => {
           ?.getBalanceOf(config.contracts.dao?.governance)
           ?.unscaleBy(treasuryToken.decimals);
         const balanceAmountUSD = getAmountInUSD(balanceAmount, treasuryToken.symbol);
-
         return {
           ...treasuryToken,
           balanceAmount,

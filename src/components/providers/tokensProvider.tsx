@@ -7,17 +7,9 @@ import { createAbiItem } from 'web3/web3Contract';
 import { useNetwork } from 'components/providers/networkProvider';
 import { TokenIconNames } from 'components/token-icon';
 import { useReload } from 'hooks/useReload';
-// import { ArbitrumNetwork } from 'networks/arbitrum';
-// import { ArbitrumTestnetNetwork } from 'networks/arbitrum-testnet';
-// import { AvalancheNetwork } from 'networks/avalanche';
-// import { AvalancheTestnetNetwork } from 'networks/avalanche-testnet';
-// import { BinanceNetwork } from 'networks/binance';
-// import { BinanceTestnetNetwork } from 'networks/binance-testnet';
-// import { KovanNetwork } from 'networks/kovan';
+
 import { MainnetNetwork } from 'networks/mainnet';
 import { RopstenNetwork } from 'networks/ropsten';
-// import { PolygonNetwork } from 'networks/polygon';
-// import { TestnetNetwork } from 'networks/testnet';
 
 import {
   MainnetHttpsWeb3Provider,
@@ -41,7 +33,7 @@ export enum Tokens {
   STK_AAVE = 'stkAAVE',
   WMATIC = 'WMATIC',
   WAVAX = 'WAVAX',
-  BOND = 'BOND',
+  SWINGBY = 'SWINGBY',
   UNIV2 = 'UNI-V2',
   BTC = 'BTC',
   USD = 'USD',
@@ -160,10 +152,10 @@ const WAVAX: BaseTokenType = {
   icon: 'wavax',
 };
 
-const BOND: BaseTokenType = {
+const SWINGBY: BaseTokenType = {
   // address: '0x0391d2021f89dc339f60fff84546ea23e337750f',
-  symbol: Tokens.BOND,
-  name: 'BarnBridge Governance Token',
+  symbol: Tokens.SWINGBY,
+  name: 'SWINGBY Token',
   decimals: 18,
   icon: 'bond',
 };
@@ -240,8 +232,8 @@ const DPI: BaseTokenType = {
 export const ProjectToken: BaseTokenType & {
   address: string;
 } = {
-  ...BOND,
-  address: '0x0391d2021f89dc339f60fff84546ea23e337750f',
+  ...SWINGBY,
+  address: '0x02ce048c863b76ed7397f18da654475e123503ac',
 };
 
 export enum Assets {
@@ -382,68 +374,70 @@ async function getPriceFor(symbol: string, network: Web3Network = MainnetNetwork
         return getChainlinkFeedPrice('0xf4030086522a5beea4988f8ca5b36dbc97bee88c', MainnetHttpsWeb3Provider);
       case 'ETH':
       case 'WETH':
-        // Chainlink: ETH/USD
-        return getChainlinkFeedPrice('0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419', MainnetHttpsWeb3Provider);
-      case 'USDC':
-        // Chainlink: USDC/USD
-        return getChainlinkFeedPrice('0x8fffffd4afb6115b954bd326cbe7b4ba576818f6', MainnetHttpsWeb3Provider);
-      case 'USDT':
-        // Chainlink: USDT/USD
-        return getChainlinkFeedPrice('0x3e7d1eab13ad0104d2750b8863b489d65364e32d', MainnetHttpsWeb3Provider);
-      case 'SUSD':
-        // Chainlink: sUSD/USD
-        return getChainlinkFeedPrice('0xad35bd71b9afe6e4bdc266b345c198eadef9ad94', MainnetHttpsWeb3Provider);
-      case 'DAI':
-        // Chainlink: DAI/USD
-        return getChainlinkFeedPrice('0xaed0c38402a5d19df6e4c03f4e2dced6e29c1ee9', MainnetHttpsWeb3Provider);
-      case 'AAVE':
-      case 'STKAAVE':
-        // Chainlink: AAVE/USD
-        return getChainlinkFeedPrice('0x547a514d5e3769680ce22b2361c10ea13619e8a9', MainnetHttpsWeb3Provider);
-      case 'MATIC':
-      case 'WMATIC':
-        // Chainlink: MATIC/USD
-        return getChainlinkFeedPrice('0x7bac85a8a13a4bcd8abb3eb7d6b4d632c5a57676', MainnetHttpsWeb3Provider);
-      case 'AVAX':
-      case 'WAVAX':
-        // Chainlink: AVAX/USD
-        return getChainlinkFeedPrice('0xff3eeb22b5e3de6e705b44749c2559d704923fd7', MainnetHttpsWeb3Provider);
-      case 'LINK':
-        // Chainlink: LINK/USD
-        return getChainlinkFeedPrice('0x2c1d072e956affc0d435cb7ac38ef18d24d9127c', MainnetHttpsWeb3Provider);
-      case 'UNI':
-        // Chainlink: UNI/USD
-        return getChainlinkFeedPrice('0x553303d460ee0afb37edff9be42922d8ff63220e', MainnetHttpsWeb3Provider);
-      case 'FEI':
-        // Chainlink: FEI/USD
-        return getChainlinkFeedPrice('0x31e0a88fecb6ec0a411dbe0e9e76391498296ee9', MainnetHttpsWeb3Provider);
-      case 'BNB':
-        // Chainlink: BNB/USD
-        return getChainlinkFeedPrice('0x14e613ac84a31f709eadbdf89c6cc390fdc9540a', MainnetHttpsWeb3Provider);
-      case 'DPI':
-        // Chainlink: DPI/USD
-        return getChainlinkFeedPrice('0x68f1b8317c19ff02fb68a8476c1d3f9fc5139c0a', MainnetHttpsWeb3Provider);
-      case 'GUSD':
-        // Coingecko API: GUSD/USD
-        return getGeckoPrice('gemini-dollar');
-      case 'RAI':
-        // Coingecko API: RAI/USD
-        return getGeckoPrice('rai');
-      case 'CAKE':
-        // Coingecko API: CAKE/USD
-        return getGeckoPrice('pancakeswap-token');
-      case 'XSUSHI':
-        // Coingecko API: XSUSHI/USD
-        return getGeckoPrice('xsushi');
-      case 'SUSHI':
-        // Coingecko API: SUSHI/USD
-        return getChainlinkFeedPrice('0x7213536a36094cd8a768a5e45203ec286cba2d74', MainnetHttpsWeb3Provider);
-      case 'BOND':
-        // UNISWAP V2: BOND/USDC
-        return getBondPrice('0x6591c4bcd6d7a1eb4e537da8b78676c1576ba244');
-      case 'UNI-V2':
-        // UNISWAP V2: BOND/USDC
-        return getUniV2Price('0x6591c4bcd6d7a1eb4e537da8b78676c1576ba244');
+      case 'SWINGBY':
+        return getGeckoPrice('swingby');
+      //   // Chainlink: ETH/USD
+      //   return getChainlinkFeedPrice('0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419', MainnetHttpsWeb3Provider);
+      // case 'USDC':
+      //   // Chainlink: USDC/USD
+      //   return getChainlinkFeedPrice('0x8fffffd4afb6115b954bd326cbe7b4ba576818f6', MainnetHttpsWeb3Provider);
+      // case 'USDT':
+      //   // Chainlink: USDT/USD
+      //   return getChainlinkFeedPrice('0x3e7d1eab13ad0104d2750b8863b489d65364e32d', MainnetHttpsWeb3Provider);
+      // case 'SUSD':
+      //   // Chainlink: sUSD/USD
+      //   return getChainlinkFeedPrice('0xad35bd71b9afe6e4bdc266b345c198eadef9ad94', MainnetHttpsWeb3Provider);
+      // case 'DAI':
+      //   // Chainlink: DAI/USD
+      //   return getChainlinkFeedPrice('0xaed0c38402a5d19df6e4c03f4e2dced6e29c1ee9', MainnetHttpsWeb3Provider);
+      // case 'AAVE':
+      // case 'STKAAVE':
+      //   // Chainlink: AAVE/USD
+      //   return getChainlinkFeedPrice('0x547a514d5e3769680ce22b2361c10ea13619e8a9', MainnetHttpsWeb3Provider);
+      // case 'MATIC':
+      // case 'WMATIC':
+      //   // Chainlink: MATIC/USD
+      //   return getChainlinkFeedPrice('0x7bac85a8a13a4bcd8abb3eb7d6b4d632c5a57676', MainnetHttpsWeb3Provider);
+      // case 'AVAX':
+      // case 'WAVAX':
+      //   // Chainlink: AVAX/USD
+      //   return getChainlinkFeedPrice('0xff3eeb22b5e3de6e705b44749c2559d704923fd7', MainnetHttpsWeb3Provider);
+      // case 'LINK':
+      //   // Chainlink: LINK/USD
+      //   return getChainlinkFeedPrice('0x2c1d072e956affc0d435cb7ac38ef18d24d9127c', MainnetHttpsWeb3Provider);
+      // case 'UNI':
+      //   // Chainlink: UNI/USD
+      //   return getChainlinkFeedPrice('0x553303d460ee0afb37edff9be42922d8ff63220e', MainnetHttpsWeb3Provider);
+      // case 'FEI':
+      //   // Chainlink: FEI/USD
+      //   return getChainlinkFeedPrice('0x31e0a88fecb6ec0a411dbe0e9e76391498296ee9', MainnetHttpsWeb3Provider);
+      // case 'BNB':
+      //   // Chainlink: BNB/USD
+      //   return getChainlinkFeedPrice('0x14e613ac84a31f709eadbdf89c6cc390fdc9540a', MainnetHttpsWeb3Provider);
+      // case 'DPI':
+      //   // Chainlink: DPI/USD
+      //   return getChainlinkFeedPrice('0x68f1b8317c19ff02fb68a8476c1d3f9fc5139c0a', MainnetHttpsWeb3Provider);
+      // case 'GUSD':
+      //   // Coingecko API: GUSD/USD
+      //   return getGeckoPrice('gemini-dollar');
+      // case 'RAI':
+      //   // Coingecko API: RAI/USD
+      //   return getGeckoPrice('rai');
+      // case 'CAKE':
+      //   // Coingecko API: CAKE/USD
+      //   return getGeckoPrice('pancakeswap-token');
+      // case 'XSUSHI':
+      //   // Coingecko API: XSUSHI/USD
+      //   return getGeckoPrice('xsushi');
+      // case 'SUSHI':
+      //   // Coingecko API: SUSHI/USD
+      //   return getChainlinkFeedPrice('0x7213536a36094cd8a768a5e45203ec286cba2d74', MainnetHttpsWeb3Provider);
+      // case 'BOND':
+      //   // UNISWAP V2: BOND/USDC
+      //   return getBondPrice('0x6591c4bcd6d7a1eb4e537da8b78676c1576ba244');
+      // case 'UNI-V2':
+      //   // UNISWAP V2: BOND/USDC
+      //   return getUniV2Price('0x6591c4bcd6d7a1eb4e537da8b78676c1576ba244');
       default:
         return undefined;
     }
@@ -465,7 +459,7 @@ const ALL_TOKENS: BaseTokenType[] = [
   STK_AAVE,
   MATIC,
   WAVAX,
-  BOND,
+  SWINGBY,
   UNIV2,
   XSUSHI,
   SUSHI,
@@ -525,7 +519,7 @@ const TokensProvider: FC = props => {
         const usdcPrice = usdcToken.price;
 
         // convert USDC -> USD
-        [Tokens.BOND, Tokens.UNIV2].forEach(symbol => {
+        [Tokens.SWINGBY, Tokens.UNIV2].forEach(symbol => {
           const token = tokensRef.current.get(symbol);
 
           if (token) {
