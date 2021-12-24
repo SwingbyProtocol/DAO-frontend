@@ -1,0 +1,40 @@
+{
+  "files": {
+    "static/js/0.d9c07115.chunk.js": "/static/js/0.d9c07115.chunk.js",
+    "main.css": "/static/css/main.5e396027.chunk.css",
+    "main.js": "/static/js/main.badc8947.chunk.js",
+    "runtime-main.js": "/static/js/runtime-main.867c0005.js",
+    "static/js/3.b37d2145.chunk.js": "/static/js/3.b37d2145.chunk.js",
+    "static/js/4.7ef8cfcb.chunk.js": "/static/js/4.7ef8cfcb.chunk.js",
+    "static/js/5.41ddbfc0.chunk.js": "/static/js/5.41ddbfc0.chunk.js",
+    "static/js/6.d6c79140.chunk.js": "/static/js/6.d6c79140.chunk.js",
+    "static/css/7.84173d64.chunk.css": "/static/css/7.84173d64.chunk.css",
+    "static/js/7.acb8916c.chunk.js": "/static/js/7.acb8916c.chunk.js",
+    "static/js/8.ff2e017c.chunk.js": "/static/js/8.ff2e017c.chunk.js",
+    "static/js/9.5b09c0c9.chunk.js": "/static/js/9.5b09c0c9.chunk.js",
+    "static/js/10.ca2ff6e2.chunk.js": "/static/js/10.ca2ff6e2.chunk.js",
+    "static/js/11.bc927ee1.chunk.js": "/static/js/11.bc927ee1.chunk.js",
+    "index.html": "/index.html",
+    "static/media/index.scss": "/static/media/Montserrat-SemiBold.fa8441f3.ttf",
+    "static/media/coinbase-logo.a0ef4d40.svg": "/static/media/coinbase-logo.a0ef4d40.svg",
+    "static/media/icons-sprite.b5ebf55d.svg": "/static/media/icons-sprite.b5ebf55d.svg",
+    "static/media/ledger-logo-dark.702f73f1.svg": "/static/media/ledger-logo-dark.702f73f1.svg",
+    "static/media/ledger-logo.5d3ead06.svg": "/static/media/ledger-logo.5d3ead06.svg",
+    "static/media/metamask-logo-dark.54270af6.svg": "/static/media/metamask-logo-dark.54270af6.svg",
+    "static/media/metamask-logo.bfd66b2a.svg": "/static/media/metamask-logo.bfd66b2a.svg",
+    "static/media/portis-logo.759c7e8c.svg": "/static/media/portis-logo.759c7e8c.svg",
+    "static/media/static-sprite.899858de.svg": "/static/media/static-sprite.899858de.svg",
+    "static/media/token-icons-sprite-static.f96351c9.svg": "/static/media/token-icons-sprite-static.f96351c9.svg",
+    "static/media/trezor-logo-dark.1cfb8ddb.svg": "/static/media/trezor-logo-dark.1cfb8ddb.svg",
+    "static/media/trezor-logo.aa8e796d.svg": "/static/media/trezor-logo.aa8e796d.svg",
+    "static/media/walletconnect-logo.af2f1a97.svg": "/static/media/walletconnect-logo.af2f1a97.svg",
+    "static/media/zero-notifications-dark.dcc42aed.svg": "/static/media/zero-notifications-dark.dcc42aed.svg",
+    "static/media/zero-notifications.3df14b57.svg": "/static/media/zero-notifications.3df14b57.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.867c0005.js",
+    "static/js/3.b37d2145.chunk.js",
+    "static/css/main.5e396027.chunk.css",
+    "static/js/main.badc8947.chunk.js"
+  ]
+}
