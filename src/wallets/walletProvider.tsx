@@ -13,12 +13,11 @@ import { useNetwork } from 'components/providers/networkProvider';
 import ConnectWalletModal from 'wallets/components/connect-wallet-modal';
 import InstallMetaMaskModal from 'wallets/components/install-metamask-modal';
 import UnsupportedChainModal from 'wallets/components/unsupported-chain-modal';
-import CoinbaseWalletConfig from 'wallets/connectors/coinbase';
-import GnosisSafeConfig from 'wallets/connectors/gnosis-safe';
-import LedgerWalletConfig from 'wallets/connectors/ledger';
+//import CoinbaseWalletConfig from 'wallets/connectors/coinbase';
+//import GnosisSafeConfig from 'wallets/connectors/gnosis-safe';
+//import LedgerWalletConfig from 'wallets/connectors/ledger';
 import MetamaskWalletConfig from 'wallets/connectors/metamask';
-import PortisWalletConfig from 'wallets/connectors/portis';
-import TrezorWalletConfig from 'wallets/connectors/trezor';
+//import TrezorWalletConfig from 'wallets/connectors/trezor';
 import WalletConnectConfig from 'wallets/connectors/wallet-connect';
 
 import { InvariantContext } from 'utils/context';
@@ -27,10 +26,6 @@ import { BaseWalletConfig } from 'wallets/types';
 
 export const WalletConnectors: BaseWalletConfig[] = [
   MetamaskWalletConfig,
-  LedgerWalletConfig,
-  PortisWalletConfig,
-  TrezorWalletConfig,
-  CoinbaseWalletConfig,
   WalletConnectConfig,
 ];
 
@@ -170,11 +165,11 @@ const Web3WalletProvider: FC = props => {
     })();
   }, []);
 
-  useEffect(() => {
-    if (safeApps.connected) {
-      connect(GnosisSafeConfig).catch(Error);
-    }
-  }, [safeApps.connected]);
+  // useEffect(() => {
+  //   if (safeApps.connected) {
+  //     connect(GnosisSafeConfig).catch(Error);
+  //   }
+  // }, [safeApps.connected]);
 
   const value: WalletContextType = {
     initialized,

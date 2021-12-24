@@ -30,7 +30,7 @@ export const RopstenConfig: NetworkConfig = {
   wallets: {
     portisId: 'b0b0f776-bbf6-458c-a175-6483e0c452b7',
     walletConnectBridge: 'https://bridge.walletconnect.org',
-    coinbaseAppName: 'barnbridge',
+    coinbaseAppName: 'swingbydao',
     trezorEmail: 'bogdan@barnbridge.com',
     trezorAppUrl: 'https://app.barnbridge.com/',
   },
