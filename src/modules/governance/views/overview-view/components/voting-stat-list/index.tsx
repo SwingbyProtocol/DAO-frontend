@@ -42,7 +42,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
           <Hint
             text={
               <Text type="p2">
-                This number shows the amount of $BOND (and their USD value) currently staked in the DAO.
+                This number shows the amount of $SWINGBY (and their USD value) currently staked in the DAO.
               </Text>
             }>
             <Text type="lb2" weight="semibold" color="blue">
@@ -57,7 +57,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
               <Text type="p1" color="secondary">
                 {projectToken.symbol}
               </Text>
-              <Tooltip
+              {/* <Tooltip
                 title={
                   <>
                     The BarnBridge Governance contracts are covered by: <br />- Bridge Mutual,{' '}
@@ -71,7 +71,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
                   </>
                 }>
                 <Icon name="insured" color="green" size={32} />
-              </Tooltip>
+              </Tooltip> */}
             </Grid>
             <Text type="p1" color="secondary">
               {formatUSD(getAmountInUSD(daoCtx.bondStaked, projectToken.symbol))}
@@ -86,8 +86,8 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
             text={
               <Grid flow="row" gap={8} align="start">
                 <Text type="p2">
-                  This number shows the amount of vBOND currently minted. This number may differ from the amount of
-                  $BOND staked because of the multiplier mechanic
+                  This number shows the amount of vSWINGBY currently minted. This number may differ from the amount of
+                  $SWINGBY staked because of the multiplier mechanic
                 </Text>
                 <ExternalLink
                   href="https://integrations.barnbridge.com/specs/dao-specifications#multiplier-and-voting-power"
@@ -98,7 +98,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
               </Grid>
             }>
             <Text type="lb2" weight="semibold" color="blue">
-              VSWINGBY
+              vSWINGBY
             </Text>
           </Hint>
           <Grid flow="row" gap={4}>
@@ -115,7 +115,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
             text={
               <Grid flow="row" gap={8} align="start">
                 <Text type="p2">
-                  This counter shows the average amount of time $BOND stakers locked their deposits in order to take
+                  This counter shows the average amount of time $SWINGBY stakers locked their deposits in order to take
                   advantage of the voting power bonus.
                 </Text>
                 <ExternalLink
@@ -146,7 +146,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
           <Hint
             text={
               <Text type="p2">
-                This number shows the $BOND token rewards distributed so far out of the total of{' '}
+                This number shows the $SWINGBY token rewards distributed so far out of the total of{' '}
                 {formatToken(daoCtx.daoReward.pullFeature?.totalAmount)} that are going to be available for the DAO
                 Staking.
               </Text>
@@ -175,7 +175,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
           <Hint
             text={
               <Grid flow="row" gap={8} align="start">
-                <Text type="p2">This number shows the amount of vBOND that is delegated to other addresses.</Text>
+                <Text type="p2">This number shows the amount of vSWINGBY that is delegated to other addresses.</Text>
                 <ExternalLink
                   href="https://integrations.barnbridge.com/specs/dao-specifications#users-can-delegate-vbond-to-other-users"
                   className="link-blue"
@@ -205,7 +205,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
           <Hint
             text={
               <Text type="p2">
-                This card shows the number of holders of $BOND and compares it to the number of stakers and voters in
+                This card shows the number of holders of $SWINGBY and compares it to the number of stakers and voters in
                 the DAO.
               </Text>
             }>
