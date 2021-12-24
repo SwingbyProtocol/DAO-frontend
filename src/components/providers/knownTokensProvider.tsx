@@ -121,6 +121,19 @@ async function getGusdPrice(): Promise<BigNumber | undefined> {
   return BigNumber.from(result['gemini-dollar'].usd);
 }
 
+async function getUSDPrice(): Promise<BigNumber | undefined> {
+  const query = queryfy({
+    ids: ['usdc'],
+    vs_currencies: 'usd',
+  });
+
+  const url = new URL(`/api/v3/simple/price?${query}`, 'https://api.coingecko.com');
+  const result = await fetch(String(url)).then(response => response.json());
+
+  return BigNumber.from(result['usdc'].usd);
+}
+
+
 async function getRaiPrice(): Promise<BigNumber | undefined> {
   const query = queryfy({
     ids: ['rai'],
@@ -209,7 +222,7 @@ const KnownTokensProvider: FC = props => {
         decimals: 18,
         icon: 'bond',
         priceFeed: config.feeds.swingby, // BOND -> USDC
-        pricePath: [KnownTokens.USDC],
+        pricePath: [KnownTokens.SWINGBY],
         contract: swingbyContract,
       },
       {
@@ -435,32 +448,33 @@ const KnownTokensProvider: FC = props => {
     return latestAnswer.unscaleBy(decimals)!;
   }, []);
 
-  const getBondPrice = useCallback(async (): Promise<BigNumber> => {
-    const usdcToken = getTokenBySymbol(KnownTokens.USDC);
+  const getSWINGBYPrice = useCallback(async (): Promise<BigNumber> => {
+    //const usdcToken = getTokenBySymbol(KnownTokens.USDC);
     const bondToken = getTokenBySymbol(KnownTokens.SWINGBY);
 
-    if (!usdcToken || !bondToken || !bondToken.priceFeed) {
+    if (!bondToken || !bondToken.price) {
       return Promise.reject();
     }
 
-    const priceFeedContract = new Erc20Contract(BOND_PRICE_FEED_ABI, bondToken.priceFeed);
-    priceFeedContract.setCallProvider(web3.activeProvider);
-    const [decimals, [reserve0, reserve1], token0] = await priceFeedContract.batch([
-      { method: 'decimals', transform: Number },
-      {
-        method: 'getReserves',
-        transform: ({ 0: reserve0, 1: reserve1 }) => [BigNumber.parse(reserve0), BigNumber.parse(reserve1)],
-      },
-      { method: 'token0', transform: value => value.toLowerCase() },
-    ]);
+    // const priceFeedContract = new Erc20Contract(BOND_PRICE_FEED_ABI, bondToken.priceFeed);
+    // priceFeedContract.setCallProvider(web3.activeProvider);
+    // const [decimals, [reserve0, reserve1], token0] = await priceFeedContract.batch([
+    //   { method: 'decimals', transform: Number },
+    //   {
+    //     method: 'getReserves',
+    //     transform: ({ 0: reserve0, 1: reserve1 }) => [BigNumber.parse(reserve0), BigNumber.parse(reserve1)],
+    //   },
+    //   { method: 'token0', transform: value => value.toLowerCase() },
+    // ]);
 
-    const bond = token0 === bondToken.address.toLowerCase() ? reserve0 : reserve1;
-    const usdc = token0 === bondToken.address.toLowerCase() ? reserve1 : reserve0;
+    // const bond = token0 === bondToken.address.toLowerCase() ? reserve0 : reserve1;
+    // const usdc = token0 === bondToken.address.toLowerCase() ? reserve1 : reserve0;
 
-    const bondReserve = bond.unscaleBy(decimals)!;
-    const usdcReserve = usdc.unscaleBy(usdcToken.decimals)!;
+    // const bondReserve = bond.unscaleBy(decimals)!;
+    // const usdcReserve = usdc.unscaleBy(usdcToken.decimals)!;
 
-    return usdcReserve.dividedBy(bondReserve);
+    // return usdcReserve.dividedBy(bondReserve);
+    return bondToken.price
   }, [getTokenBySymbol]);
 
   const getUniV2Price = useCallback(async (): Promise<BigNumber> => {
@@ -616,8 +630,11 @@ const KnownTokensProvider: FC = props => {
       await Promise.allSettled(
         tokens.map(async token => {
           switch (token.symbol) {
+            case KnownTokens.USDC:
+              token.price = await getUSDPrice();
+              break;
             case KnownTokens.SWINGBY:
-              token.price = await getBondPrice();
+              token.price = await getSWINGBYPrice();
               break;
             case KnownTokens.UNIV2:
               token.price = await getUniV2Price();
@@ -668,7 +685,7 @@ const KnownTokensProvider: FC = props => {
       });
       reload();
     })();
-  }, [getBondPrice, getFeedPrice, getJATokenPrice, getJTokenPrice, getTokenBySymbol, getUniV2Price, reload, tokens]);
+  }, [getSWINGBYPrice, getFeedPrice, getJATokenPrice, getJTokenPrice, getTokenBySymbol, getUniV2Price, reload, tokens]);
 
   useEffect(() => {
     if (projectToken?.contract) {

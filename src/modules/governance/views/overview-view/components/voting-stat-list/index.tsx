@@ -16,6 +16,7 @@ import { useDAO } from 'modules/governance/components/dao-provider';
 import { getFormattedDuration } from 'utils';
 
 import s from './s.module.scss';
+import { useTokens } from 'components/providers/tokensProvider';
 
 export type VotingStatListProps = {
   className?: string;
@@ -26,7 +27,8 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
 
   const daoAPI = useDaoAPI();
   const daoCtx = useDAO();
-  const { projectToken, convertTokenInUSD } = useKnownTokens();
+  const { getAmountInUSD } = useTokens();
+  const { projectToken } = useKnownTokens();
   const [overview, setOverview] = React.useState<APIOverviewData | undefined>();
 
   React.useEffect(() => {
@@ -72,7 +74,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
               </Tooltip>
             </Grid>
             <Text type="p1" color="secondary">
-              {formatUSD(convertTokenInUSD(daoCtx.daoBarn.bondStaked, projectToken.symbol))}
+              {formatUSD(getAmountInUSD(daoCtx.bondStaked, projectToken.symbol))}
             </Text>
           </Grid>
         </Grid>
