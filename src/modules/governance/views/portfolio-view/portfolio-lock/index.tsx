@@ -115,8 +115,7 @@ const PortfolioLock: FC = () => {
 
   const { formState, watch } = form;
   const lockEndDate = watch('lockEndDate');
-
-  const canSubmit = formState.isDirty && !isSubmitting;
+  const canSubmit = formState.isDirty && formState.isValid && !isSubmitting;
 
   async function doLock(lockUntil: Date | undefined, gasPrice?: number) {
     setSubmitting(true);
@@ -211,7 +210,7 @@ const PortfolioLock: FC = () => {
         </FormItem>
         <Alert message="All locked balances will be unavailable for withdrawal until the lock timer ends. All future deposits will be locked for the same time." />
         <div className="flex flow-col col-gap-12 align-center justify-end">
-          <button type="submit" className="button-primary" disabled={!canSubmit}>
+          <button type="submit" className="button-primary align-self-start" disabled={!canSubmit}>
             {isSubmitting && <Spinner className="mr-4" />}
             Lock
           </button>

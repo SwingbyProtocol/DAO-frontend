@@ -43,11 +43,13 @@ const PortfolioDeposit: FC = () => {
       amount: {
         rules: {
           required: true,
-          min: 0,
+          min: 0.01,
+          max: bondBalance,
         },
         messages: {
           required: 'Value is required.',
-          min: 'Should be a positive value.',
+          min: 'min top up amount must be >= 0.01',
+          max: "Balance insufficent"
         },
       },
     },
