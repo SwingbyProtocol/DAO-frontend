@@ -1,31 +1,31 @@
 {
   "files": {
     "main.css": "/static/css/main.5e396027.chunk.css",
-    "main.js": "/static/js/main.d23d18a6.chunk.js",
-    "runtime-main.js": "/static/js/runtime-main.0f7bf746.js",
-    "static/js/2.240a3738.chunk.js": "/static/js/2.240a3738.chunk.js",
-    "static/js/3.93a827a2.chunk.js": "/static/js/3.93a827a2.chunk.js",
+    "main.js": "/static/js/main.7df47c87.chunk.js",
+    "runtime-main.js": "/static/js/runtime-main.b54ef812.js",
+    "static/js/2.8f62dfbc.chunk.js": "/static/js/2.8f62dfbc.chunk.js",
+    "static/js/3.9638f731.chunk.js": "/static/js/3.9638f731.chunk.js",
     "static/js/4.e8aea96e.chunk.js": "/static/js/4.e8aea96e.chunk.js",
     "static/css/5.84173d64.chunk.css": "/static/css/5.84173d64.chunk.css",
-    "static/js/5.c23883f3.chunk.js": "/static/js/5.c23883f3.chunk.js",
+    "static/js/5.cc840ab8.chunk.js": "/static/js/5.cc840ab8.chunk.js",
     "static/js/6.ae10d079.chunk.js": "/static/js/6.ae10d079.chunk.js",
     "index.html": "/index.html",
     "static/media/index.scss": "/static/media/Montserrat-SemiBold.fa8441f3.ttf",
-    "static/media/icons-sprite.b5ebf55d.svg": "/static/media/icons-sprite.b5ebf55d.svg",
+    "static/media/icons-sprite.4262df7a.svg": "/static/media/icons-sprite.4262df7a.svg",
     "static/media/ledger-logo-dark.702f73f1.svg": "/static/media/ledger-logo-dark.702f73f1.svg",
     "static/media/ledger-logo.5d3ead06.svg": "/static/media/ledger-logo.5d3ead06.svg",
     "static/media/metamask-logo-dark.54270af6.svg": "/static/media/metamask-logo-dark.54270af6.svg",
     "static/media/metamask-logo.bfd66b2a.svg": "/static/media/metamask-logo.bfd66b2a.svg",
     "static/media/static-sprite.899858de.svg": "/static/media/static-sprite.899858de.svg",
-    "static/media/token-icons-sprite-static.f96351c9.svg": "/static/media/token-icons-sprite-static.f96351c9.svg",
+    "static/media/token-icons-sprite-static.2a52c8f8.svg": "/static/media/token-icons-sprite-static.2a52c8f8.svg",
     "static/media/walletconnect-logo.af2f1a97.svg": "/static/media/walletconnect-logo.af2f1a97.svg",
     "static/media/zero-notifications-dark.dcc42aed.svg": "/static/media/zero-notifications-dark.dcc42aed.svg",
     "static/media/zero-notifications.3df14b57.svg": "/static/media/zero-notifications.3df14b57.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.0f7bf746.js",
-    "static/js/2.240a3738.chunk.js",
+    "static/js/runtime-main.b54ef812.js",
+    "static/js/2.8f62dfbc.chunk.js",
     "static/css/main.5e396027.chunk.css",
-    "static/js/main.d23d18a6.chunk.js"
+    "static/js/main.7df47c87.chunk.js"
   ]
 }

@@ -42,8 +42,11 @@ const LayoutSideNav: React.FC = () => {
             <Icon name="close" />
           </button>
           <Link to="/" className={s.logo}>
-            <OldIcon name="bond-square-token" />
-            <OldIcon name="barnbridge" width="113" color="primary" className={s.logoLabel} />
+            <OldIcon name="bond-square-token" color="primary"/>
+            {/* <OldIcon name="swingby" width="113" color="primary" className={s.logoLabel} /> */}
+            <Text type="h3" weight="bold" className={s.logoLabel} color="primary">
+              Swingby DAO
+            </Text>
           </Link>
         </div>
         <nav className={s.top}>
