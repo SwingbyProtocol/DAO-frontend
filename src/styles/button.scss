@@ -30,36 +30,36 @@
 
 .button-primary {
   background: #3153ec;
-  box-shadow: 0 8px 16px rgba(255, 67, 57, 0.16);
+  box-shadow: 0 8px 16px rgba(70, 57, 255, 0.16);
   border-radius: 4px;
   color: #fff;
 
   &:hover {
-    background: #ff6961;
+    background: #6166ff;
     color: #fff;
-    box-shadow: 0 8px 16px rgba(255, 105, 97, 0.24);
+    box-shadow: 0 8px 16px rgba(131, 97, 255, 0.24);
   }
 
   &:active {
-    background: #cc362e;
-    box-shadow: 0 4px 8px rgba(204, 54, 46, 0.16);
+    background: #2e4ecc;
+    box-shadow: 0 4px 8px rgba(46, 46, 204, 0.16);
     color: #fff;
   }
 }
 
 .button-secondary {
-  background: rgba(255, 67, 57, 0.1);
+  background: rgba(60, 57, 255, 0.1);
   border-radius: 4px;
   color: #2261e9;
 
   &:hover {
-    background: rgba(255, 105, 97, 0.1);
-    color: #ff6961;
+    background: rgba(110, 97, 255, 0.1);
+    color: #6166ff;
   }
 
   &:active {
-    background: rgba(204, 54, 46, 0.08);
-    color: #cc362e;
+    background: rgba(62, 46, 204, 0.08);
+    color: #2e4ecc;
   }
 }
 
@@ -70,13 +70,13 @@
   color: #2261e9;
 
   &:hover {
-    background: rgba(255, 105, 97, 0.1);
+    background: rgba(105, 97, 255, 0.1);
     border: 1px solid #2a67e9;
     color: #2a67e9;
   }
 
   &:active {
-    background: rgba(204, 54, 46, 0.04);
+    background: rgba(49, 46, 204, 0.04);
     border: 1px solid #2a67e9;
     color: #2a67e9;
   }

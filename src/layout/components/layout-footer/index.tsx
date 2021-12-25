@@ -17,11 +17,14 @@ const LayoutFooter: React.FC = () => {
         <div className={s.footerTopLeft}>
           <RouterLink to="/" className={s.logo}>
             <OldIcon name="bond-square-token" className="mr-12" />
-            <OldIcon name="barnbridge" width="113" color="primary" />
+            {/* <OldIcon name="barnbridge" width="113" color="primary" /> */}
+            <Text type="h3" weight="bold" className={s.logoLabel} color="primary">
+              Swingby DAO
+            </Text>
           </RouterLink>
-          <Text type="small" weight="semibold" color="secondary" className="mb-24">
+          {/* { <Text type="small" weight="semibold" color="secondary" className="mb-24">
             A fluctuations derivatives protocol for hedging yield sensitivity and market price.
-          </Text>
+          </Text> */}
           <div className={s.socialLinks}>
             <ExternalLink href={links.twitter} variation="ghost-alt" icon="twitter" iconPosition="only" />
             <ExternalLink href={links.discord} variation="ghost-alt" icon="discord" iconPosition="only" />
@@ -30,53 +33,6 @@ const LayoutFooter: React.FC = () => {
         </div>
         <div className={s.footerTopRight}>
           <section className={s.navSection}>
-            <Text type="lb2" weight="bold" tag="h3" className="mb-16 color-icon">
-              DAO
-            </Text>
-            <ul>
-              <li>
-                <Link variation="text-alt" to="/yield-farming">
-                  Yield Farming
-                </Link>
-              </li>
-              <li>
-                <Link variation="text-alt" to="/governance">
-                  Governance
-                </Link>
-              </li>
-              <li>
-                <ExternalLink variation="text-alt" href={links.forum}>
-                  Forum
-                </ExternalLink>
-              </li>
-              <li>
-                <ExternalLink variation="text-alt" href={links.signal}>
-                  Signal
-                </ExternalLink>
-              </li>
-            </ul>
-          </section>
-          <section className={s.navSection}>
-            <Text type="lb2" weight="bold" tag="h3" className="mb-16 color-icon">
-              SMART Products
-            </Text>
-            <ul>
-              <li>
-                <Link variation="text-alt" to="/smart-alpha">
-                  SMART Alpha
-                </Link>
-              </li>
-              <li>
-                <Link variation="text-alt" to="/smart-exposure">
-                  SMART Exposure
-                </Link>
-              </li>
-            </ul>
-          </section>
-          <section className={s.navSection}>
-            <Text type="lb2" weight="bold" tag="h3" className="mb-16 color-icon">
-              INFO
-            </Text>
             <ul>
               <li>
                 <ExternalLink variation="text-alt" href={links.website}>
@@ -84,13 +40,22 @@ const LayoutFooter: React.FC = () => {
                 </ExternalLink>
               </li>
               <li>
-                <ExternalLink variation="text-alt" href={links.whitepaper}>
-                  Whitepaper
+                <ExternalLink variation="text-alt" href={links.blog}>
+                  Blog
+                </ExternalLink>
+              </li>
+            </ul>
+          </section>
+          <section className={s.navSection}>
+            <ul>
+              <li>
+                <ExternalLink variation="text-alt" href="https://skybridge.info">
+                  skybridge.info
                 </ExternalLink>
               </li>
               <li>
-                <ExternalLink variation="text-alt" href={links.docs}>
-                  Docs
+                <ExternalLink variation="text-alt" href="https://bridge.swingby.network/">
+                  ERC20 - BEP20 Token bridge
                 </ExternalLink>
               </li>
             </ul>
@@ -101,14 +66,14 @@ const LayoutFooter: React.FC = () => {
         <Text type="small" weight="semibold" className={s.copyright}>
           Swingby DAO © 2021
         </Text>
-        <div className={s.footerBottomLinks}>
+        {/* <div className={s.footerBottomLinks}>
           <ExternalLink variation="text-alt" href={links.uniswapSwap}>
             Uniswap v2 USDC/BOND market
           </ExternalLink>
           <ExternalLink variation="text-alt" href={links.uniswapLiquidity}>
             Uniswap v2 USDC/BOND add liquidity
           </ExternalLink>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

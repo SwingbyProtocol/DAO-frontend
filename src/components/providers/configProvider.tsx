@@ -11,8 +11,7 @@ export type ConfigContextType = NetworkConfig & {
     website: string;
     discord: string;
     twitter: string;
-    whitepaper: string;
-    docs: string;
+    blog: string;
     github: string;
     forum: string;
     signal: string;
@@ -35,12 +34,11 @@ const ConfigProvider: FC = props => {
   const value: ConfigContextType = {
     ...activeNetwork.config,
     links: {
-      website: 'http://www.barnbridge.com',
-      discord: 'https://discord.com/invite/FfEhsVk',
-      twitter: 'https://twitter.com/barn_bridge',
-      whitepaper: 'https://github.com/BarnBridge/BarnBridge-Whitepaper',
-      docs: 'https://docs.barnbridge.com/',
-      github: 'https://github.com/BarnBridge',
+      website: 'https://swingby.network',
+      discord: 'https://discord.com/invite/q3cAjpV',
+      blog: 'https://swingby.medium.com/',
+      twitter: 'https://twitter.com/swingbyprotocol',
+      github: 'https://github.com/swingbyprotocol',
       forum: 'https://forum.barnbridge.com',
       signal: 'https://signal.barnbridge.com',
       uniswapLiquidity: `https://app.uniswap.org/#/add/v2/${config.tokens?.swingby}/${config.tokens?.usdc}`,
