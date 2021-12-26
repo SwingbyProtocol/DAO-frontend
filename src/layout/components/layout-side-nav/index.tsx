@@ -44,7 +44,7 @@ const LayoutSideNav: React.FC = () => {
           <Link to="/" className={s.logo}>
             <OldIcon name="bond-square-token" color="primary"/>
             {/* <OldIcon name="swingby" width="113" color="primary" className={s.logoLabel} /> */}
-            <Text type="h3" weight="bold" className={s.logoLabel} color="primary">
+            <Text type="p1" weight="bold" className={s.logoLabel} color="primary">
               Swingby DAO
             </Text>
           </Link>

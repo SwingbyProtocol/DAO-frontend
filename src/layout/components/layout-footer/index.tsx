@@ -18,7 +18,7 @@ const LayoutFooter: React.FC = () => {
           <RouterLink to="/" className={s.logo}>
             <OldIcon name="bond-square-token" className="mr-12" />
             {/* <OldIcon name="barnbridge" width="113" color="primary" /> */}
-            <Text type="h3" weight="bold" className={s.logoLabel} color="primary">
+            <Text type="p1" weight="bold" className={s.logoLabel} color="primary">
               Swingby DAO
             </Text>
           </RouterLink>

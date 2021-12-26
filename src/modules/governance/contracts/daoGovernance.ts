@@ -1,3 +1,4 @@
+import { method } from 'lodash/fp';
 import { AbiItem } from 'web3-utils';
 import Web3Contract, { AbiTuple, createAbiItem } from 'web3/web3Contract';
 
@@ -28,6 +29,8 @@ const DaoGovernanceABI: AbiItem[] = [
   createAbiItem('getReceipt', ['uint256', 'address'], [new AbiTuple(['bool', 'uint256', 'bool'])]),
   createAbiItem('abrogationProposals', ['uint256'], ['address', 'uint256', 'string', 'uint256', 'uint256']),
   createAbiItem('getAbrogationProposalReceipt', ['uint256', 'address'], [new AbiTuple(['bool', 'uint256', 'bool'])]),
+  createAbiItem('minQuorum', [], ['uint256']),
+  createAbiItem('acceptanceThreshold', [], ['uint256']),
   // send
   createAbiItem('activate', [], []),
   createAbiItem('propose', ['address[]', 'uint256[]', 'string[]', 'bytes[]', 'string', 'string'], ['uint256']),
@@ -45,16 +48,24 @@ class DaoGovernanceContract extends Web3Contract {
   constructor(address: string) {
     super(DaoGovernanceABI, address, 'DAO Governance');
 
-    this.on(Web3Contract.UPDATE_ACCOUNT, () => {});
+    this.on(Web3Contract.UPDATE_ACCOUNT, () => { });
   }
 
   // common data
   isActive?: boolean;
+  acceptanceThreshold?: number;
+  minQuorum?: number;
 
   async loadCommonData(): Promise<void> {
-    const [isActive] = await this.batch([{ method: 'isActive' }]);
+    const [isActive, minQuorum, acceptanceThreshold] = await this.batch([
+      { method: 'isActive' },
+      { method: 'minQuorum' },
+      { method: 'acceptanceThreshold' },
+    ]);
 
     this.isActive = Boolean(isActive);
+    this.minQuorum = Number(minQuorum);
+    this.acceptanceThreshold = Number(acceptanceThreshold);
     this.emit(Web3Contract.UPDATE_DATA);
   }
 

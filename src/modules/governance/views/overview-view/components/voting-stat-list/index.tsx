@@ -190,28 +190,38 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
 
       <div className="card p-24">
         <Grid flow="row" gap={48}>
-          <Hint
+          {/* <Hint
             text={
               <Text type="p2">
                 This card shows the number of holders of $SWINGBY and compares it to the number of stakers and voters in
                 the DAO.
               </Text>
             }>
-            <Text type="lb2" weight="semibold" color="blue">
-              Addresses
-            </Text>
-          </Hint>
+
+          </Hint> */}
+          <Text type="lb2" weight="semibold" color="blue">
+            Info
+          </Text>
           <Grid flow="row" gap={4}>
             <Grid flow="col" gap={4} align="end">
               <Text type="h2" weight="bold" color="primary">
-                {overview?.holdersStakingExcluded}
+                {overview?.barnUsers}
               </Text>
               <Text type="p1" color="secondary">
-                holders
+                stakers
+              </Text>
+              <Text type="h2" weight="bold" color="primary">
+                {overview?.voters}
+              </Text>
+              <Text type="p1" color="secondary">
+                voters
               </Text>
             </Grid>
             <Text type="p1" color="secondary">
-              {overview?.barnUsers} stakers & {overview?.voters} voters
+              Quorum = {daoCtx.daoGovernance.minQuorum}%
+            </Text>
+            <Text type="p1" color="secondary">
+              Acceptance = {daoCtx.daoGovernance.acceptanceThreshold}%
             </Text>
           </Grid>
         </Grid>
