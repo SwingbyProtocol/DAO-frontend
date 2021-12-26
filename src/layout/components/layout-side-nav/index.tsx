@@ -42,7 +42,7 @@ const LayoutSideNav: React.FC = () => {
             <Icon name="close" />
           </button>
           <Link to="/" className={s.logo}>
-            <OldIcon name="bond-square-token" color="primary"/>
+            <OldIcon name="bond-square-token" color="primary" />
             {/* <OldIcon name="swingby" width="113" color="primary" className={s.logoLabel} /> */}
             <Text type="p1" weight="bold" className={s.logoLabel} color="primary">
               Swingby DAO
@@ -86,14 +86,27 @@ const LayoutSideNav: React.FC = () => {
                 <Icon name="menu-dao" size={40} />
               </Tooltip>
               <div className={s.btnContent}>
-                <Text type="lb2" weight="bold" className={s.btnLabel} color="blue">
-                  DAO
-                </Text>
+                {/* <Text type="lb2" weight="bold" className={s.btnLabel} color="blue">
+                  Governance
+                </Text> */}
                 <Text type="lb1" weight="semibold" className={s.btnText}>
                   Governance
                 </Text>
               </div>
             </NavLink>
+          )}
+
+          {features.dao && (
+            <a rel="noopener noreferrer" target="_blank" href="https://farm.swingby.network" className={s.button}>
+              <Tooltip title={displayTooltip && 'Yield Farming'} placement="right">
+                <Icon name="menu-sy" size={40} />
+              </Tooltip>
+              <div className={s.btnContent}>
+                <Text type="lb1" weight="semibold" className={s.btnLabel} color="primary">
+                  Yield Farming
+                </Text>
+              </div>
+            </a>
           )}
 
           {features.smartAlpha && (
@@ -126,7 +139,9 @@ const LayoutSideNav: React.FC = () => {
               </div>
             </NavLink>
           )}
+
         </nav>
+
         <div className={s.bottom}>
           {/* <a rel="noopener noreferrer" target="_blank" href="https://docs.barnbridge.com/" className={s.button}>
             <Tooltip title={displayTooltip && 'Docs'} placement="right">

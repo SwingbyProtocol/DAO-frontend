@@ -418,14 +418,14 @@
     <g display="none" style="display: var(--icon-display__hover, none)">
       <defs>
         <linearGradient id="icon__menu-sa/gradient0" x1="20" x2="20" y1="0" y2="40" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#FF6961"/>
-          <stop offset="1" stop-color="#FF4339"/>
+          <stop stop-color="#7288EA"/>
+          <stop offset="1" stop-color="#7288EA"/>
         </linearGradient>
-        <mask id="icon__menu-sa/mask0" width="40" height="40" x="0" y="0" maskUnits="userSpaceOnUse"
+        <!-- <mask id="icon__menu-sa/mask0" width="40" height="40" x="0" y="0" maskUnits="userSpaceOnUse"
               style="mask-type:alpha">
           <rect width="40" height="40" fill="url(#icon__menu-sa/gradient0)" rx="12"/>
-        </mask>
-        <filter id="icon__menu-sa/filter0" width="40" height="46" x="0" y="-4" color-interpolation-filters="sRGB"
+        </mask> -->
+        <!-- <filter id="icon__menu-sa/filter0" width="40" height="46" x="0" y="-4" color-interpolation-filters="sRGB"
                 filterUnits="userSpaceOnUse">
           <feFlood flood-opacity="0" result="BackgroundImageFix"/>
           <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
@@ -447,7 +447,7 @@
           <feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/>
           <feColorMatrix values="0 0 0 0 0.301961 0 0 0 0 0.0784314 0 0 0 0 0.0666667 0 0 0 0.16 0"/>
           <feBlend in2="effect2_innerShadow_9892:253112" result="effect3_innerShadow_9892:253112"/>
-        </filter>
+        </filter> -->
         <filter id="icon__menu-sa/filter1" width="36.801" height="41.6" x="-2.4" y="3.2"
                 color-interpolation-filters="sRGB"
                 filterUnits="userSpaceOnUse">
@@ -483,7 +483,7 @@
         <g filter="url(#icon__menu-sa/filter0)">
           <rect width="40" height="40" fill="url(#icon__menu-sa/gradient0)" rx="12"/>
         </g>
-        <g filter="url(#icon__menu-sa/filter1)">
+        <g filter="url(#icon__menu-sa/filter0)">
           <path fill="#fff" fill-rule="evenodd"
                 d="M24.155 10.433 30.4 7.2l-1.357 6.868-1.548-1.152c-.36.39-7.93 8.59-17.895 9.371 0 0 9.51-2.493 16.06-10.734l-1.505-1.12Zm5.29 6.942V30.37a2.435 2.435 0 0 1-2.438 2.43h-2.258V18.547a40.879 40.879 0 0 0 2.968-2.462l1.728 1.29Zm-7.103 2.831a32.967 32.967 0 0 1-4.696 2.483V32.8h4.696V20.206Zm-7.103 3.38a24.464 24.464 0 0 1-4.696 1.026v5.758a2.435 2.435 0 0 0 2.438 2.43h2.258v-9.213Z"
                 clip-rule="evenodd"/>
