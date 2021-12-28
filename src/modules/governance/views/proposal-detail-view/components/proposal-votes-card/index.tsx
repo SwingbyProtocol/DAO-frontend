@@ -31,6 +31,8 @@ const ProposalVotesCard: React.FC = () => {
 
   const [state, setState] = React.useState<ProposalVotesCardState>(InitialState);
 
+  const isVoteable = proposalCtx.votingPower?.isGreaterThan(0)
+
   function handleShowVotersModal() {
     setState(prevState => ({
       ...prevState,
@@ -166,10 +168,10 @@ const ProposalVotesCard: React.FC = () => {
             <Grid flow="row" gap={24}>
               {!proposalCtx.receipt?.hasVoted ? (
                 <Grid gap={24} colsTemplate="1fr 1fr">
-                  <Button type="primary" onClick={handleVoteForModal}>
+                  <Button type="primary" onClick={handleVoteForModal} disabled={!isVoteable}>
                     Vote for
                   </Button>
-                  <Button type="default" onClick={handleVoteAgainstModal}>
+                  <Button type="primary" onClick={handleVoteAgainstModal} disabled={!isVoteable}>
                     Vote against
                   </Button>
                 </Grid>
