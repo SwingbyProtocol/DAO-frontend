@@ -2244,8 +2244,8 @@ html {
 }
 .ant-btn-primary {
   color: #fff;
-  background: #ff4339;
-  border-color: #ff4339;
+  background: #3c39ff;
+  border-color: #4d39ff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 }
@@ -2264,8 +2264,8 @@ html {
 .ant-btn-primary:hover,
 .ant-btn-primary:focus {
   color: #fff;
-  background: #ff6e61;
-  border-color: #ff6e61;
+  background: #6961ff;
+  border-color: #6461ff;
 }
 .ant-btn-primary:hover > a:only-child,
 .ant-btn-primary:focus > a:only-child {
@@ -2283,8 +2283,8 @@ html {
 }
 .ant-btn-primary:active {
   color: #fff;
-  background: #d92825;
-  border-color: #d92825;
+  background: #4025d9;
+  border-color: #4025d9;
 }
 .ant-btn-primary:active > a:only-child {
   color: currentColor;
@@ -6087,7 +6087,7 @@ textarea.ant-picker-input > input {
 .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
 .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
   color: #fff;
-  background: #ff4339;
+  background: #3c39ff;
 }
 .ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before,
 .ant-picker-cell-in-view.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single)::before {

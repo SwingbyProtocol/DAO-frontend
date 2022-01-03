@@ -96,7 +96,7 @@ export function formatToken(
     }
   }
 
-  const { tokenName, compact = false, decimals = 4, minDecimals, scale = 0, hasLess = false } = options ?? {};
+  const { tokenName, compact = false, decimals = 2, minDecimals, scale = 0, hasLess = false } = options ?? {};
 
   if (scale > 0) {
     val = val.unscaleBy(scale)!;

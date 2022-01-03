@@ -93,15 +93,15 @@ const PortfolioDeposit: FC = () => {
   const projectTokenContract = projectToken.contract as Erc20Contract;
   const bondBalance = projectTokenContract.balance?.unscaleBy(projectToken.decimals);
   const barnAllowance = projectTokenContract.getAllowanceOf(config.contracts.dao?.barn!);
-  const isLocked = (userLockedUntil ?? 0) > Date.now();
-
+  const isLocked = (userLockedUntil ? new Date(userLockedUntil * 1_000) : 0) > Date.now();
+  const minLockDate = (isLocked && userLockedUntil) ? new Date(userLockedUntil * 1_000 + 60_000) : Date.now();
   const form = useForm<FormType>({
     validationScheme: {
       lockEndDate: {
         rules: {
           required: true,
           min: (value: Date | undefined) => {
-            return addMinutes(Date.now(), 1).valueOf() < (value?.valueOf() ?? 0);
+            return minLockDate.valueOf() < (value?.valueOf() ?? 0);
           },
           max: (value: Date | undefined) => {
             return addYears(Date.now(), 1).valueOf() > (value?.valueOf() ?? 0);
@@ -109,7 +109,7 @@ const PortfolioDeposit: FC = () => {
         },
         messages: {
           required: 'Required',
-          min: 'Should be more than 1 minute',
+          min: 'Should be more than 1 minute from current timelock date',
           max: 'Should be less than 1 year',
         },
       },
@@ -117,12 +117,20 @@ const PortfolioDeposit: FC = () => {
         rules: {
           required: true,
           min: 0.01,
-          max: bondBalance,
+          max: bondBalance?.toNumber(),
         },
         messages: {
           required: 'Value is required.',
           min: 'min top up amount must be >= 0.01',
           max: "Balance insufficent",
+        },
+      },
+      dataType: {
+        rules: {
+          required: true,
+        },
+        messages: {
+          required: 'Value is required.',
         },
       },
       p2pkey: {
@@ -131,26 +139,16 @@ const PortfolioDeposit: FC = () => {
         },
         messages: {},
       },
-      dataType: {
-        rules: {
-          required: false,
-        },
-        messages: {},
-      },
     },
     onSubmit: () => {
-      if (isLocked) {
-        setConfirmModalVisible(false);
-        return;
-      }
       setConfirmModalVisible(true);
     },
   });
   async function loadTimelock(type: number) {
     if (!wallet.account) return;
-    console.log(wallet.account, type);
+    // console.log(wallet.account, type);
     const timelockData = await daoCtx.daoBarn.checkTimeLock(wallet.account, type);
-    console.log(timelockData);
+    // console.log(timelockData);
     form.updateValue('dataType', type);
     form.updateValue('p2pKey', timelockData.data.slice(2));
   }
@@ -161,7 +159,7 @@ const PortfolioDeposit: FC = () => {
       await projectTokenContract.loadBalance();
       await daoCtx.daoBarn.loadUserData();
       const { userLockedUntil } = daoCtx.daoBarn;
-      let lockEndDate = userLockedUntil ? new Date(userLockedUntil * 1_000) : undefined;
+      let lockEndDate = userLockedUntil ? new Date(userLockedUntil * 1_000 + 61_000) : undefined; // add 61sec as default
 
       if (lockEndDate && lockEndDate.valueOf() <= Date.now()) {
         lockEndDate = undefined;
@@ -169,7 +167,7 @@ const PortfolioDeposit: FC = () => {
       form.reset({
         lockEndDate,
         p2pKey: '',
-        dataType: 1,
+        dataType: undefined,
       });
     } catch { }
 
@@ -348,7 +346,7 @@ const PortfolioDeposit: FC = () => {
         </FormItem>
         <FormItem
           name="dataType"
-          label="DataType (optional)"
+          label="DataType"
           labelProps={{ hint: 'What DataType for your node. 1 => BTC_ETH network, 2 => BTC_BSC network' }}
           className="flex-grow">
           {({ field }) => (

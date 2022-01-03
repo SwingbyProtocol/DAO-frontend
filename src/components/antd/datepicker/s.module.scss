@@ -25,8 +25,8 @@
   }
 
   &:global(.ant-picker-focused) {
-    border: 1px solid var(--theme-red-color);
-    box-shadow: 0 0 0 3px rgba(255, 67, 57, 0.16);
+    border: 1px solid var(--theme-blue-color);
+    box-shadow: 0 0 0 3px rgba(57, 64, 255, 0.16);
   }
 
   :global(.ant-picker-input) {
@@ -84,12 +84,12 @@
 
     :global(.ant-picker-time-panel-cell-selected) {
       :global(.ant-picker-time-panel-cell-inner) {
-        background: var(--theme-red-color);
+        background: var(--theme-blue-color);
       }
     }
 
     :global(.ant-picker-time-panel-cell-inner):hover {
-      background: var(--theme-red-color);
+      background: var(--theme-blue-color);
     }
 
     :global(.ant-picker-cell.ant-picker-cell-today.ant-picker-cell-selected) {

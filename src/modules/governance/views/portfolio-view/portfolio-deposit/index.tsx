@@ -44,7 +44,7 @@ const PortfolioDeposit: FC = () => {
         rules: {
           required: true,
           min: 0.01,
-          max: bondBalance,
+          max: bondBalance?.toNumber(),
         },
         messages: {
           required: 'Value is required.',

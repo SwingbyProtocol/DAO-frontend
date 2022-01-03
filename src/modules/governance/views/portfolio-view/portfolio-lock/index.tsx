@@ -64,6 +64,8 @@ const PortfolioLock: FC = () => {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
 
   const { balance: stakedBalance, userLockedUntil } = daoCtx.daoBarn;
+  const isLocked = (userLockedUntil ? new Date(userLockedUntil * 1_000) : 0) > Date.now();
+  const minLockDate = (isLocked && userLockedUntil) ? new Date(userLockedUntil * 1_000 + 60_000) : Date.now();
 
   const form = useForm<FormType>({
     validationScheme: {
@@ -71,7 +73,7 @@ const PortfolioLock: FC = () => {
         rules: {
           required: true,
           min: (value: Date | undefined) => {
-            return addMinutes(Date.now(), 1).valueOf() < (value?.valueOf() ?? 0);
+            return minLockDate.valueOf() < (value?.valueOf() ?? 0);
           },
           max: (value: Date | undefined) => {
             return addYears(Date.now(), 1).valueOf() > (value?.valueOf() ?? 0);
@@ -79,7 +81,7 @@ const PortfolioLock: FC = () => {
         },
         messages: {
           required: 'Required',
-          min: 'Should be more than 1 minute',
+          min: 'Should be more than 1 minute from current timelock date',
           max: 'Should be less than 1 year',
         },
       },
@@ -95,7 +97,7 @@ const PortfolioLock: FC = () => {
     try {
       await daoCtx.daoBarn.loadUserData();
       const { userLockedUntil } = daoCtx.daoBarn;
-      let lockEndDate = userLockedUntil ? new Date(userLockedUntil * 1_000) : undefined;
+      let lockEndDate = userLockedUntil ? new Date(userLockedUntil * 1_000 + 61_000) : undefined;
 
       if (lockEndDate && lockEndDate.valueOf() <= Date.now()) {
         lockEndDate = undefined;
@@ -104,7 +106,7 @@ const PortfolioLock: FC = () => {
       form.reset({
         lockEndDate,
       });
-    } catch {}
+    } catch { }
 
     setLoading(false);
   }
@@ -115,7 +117,7 @@ const PortfolioLock: FC = () => {
 
   const { formState, watch } = form;
   const lockEndDate = watch('lockEndDate');
-  const canSubmit = formState.isDirty && formState.isValid && !isSubmitting;
+  const canSubmit = formState.isValid && !isSubmitting;
 
   async function doLock(lockUntil: Date | undefined, gasPrice?: number) {
     setSubmitting(true);
