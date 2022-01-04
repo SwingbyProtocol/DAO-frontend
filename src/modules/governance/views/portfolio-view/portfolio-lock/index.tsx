@@ -50,6 +50,9 @@ function getLockEndDate(startDate: Date, duration: string): Date | undefined {
       return undefined;
   }
 }
+function dateTo10Sec(date: Date | undefined): number {
+  return date ? Math.floor(date.getTime() / 10000) : 0
+}
 
 type FormType = {
   lockEndDate: Date | undefined;
@@ -115,8 +118,7 @@ const PortfolioLock: FC = () => {
     loadData().catch(Error);
   }, []);
 
-  const { formState, watch } = form;
-  const lockEndDate = watch('lockEndDate');
+  const { formState } = form;
   const canSubmit = formState.isValid && !isSubmitting;
 
   async function doLock(lockUntil: Date | undefined, gasPrice?: number) {
@@ -144,7 +146,7 @@ const PortfolioLock: FC = () => {
 
   async function handleConfirm(gasPrice?: number) {
     setConfirmModalVisible(false);
-    await doLock(lockEndDate, gasPrice);
+    await doLock(form.getValues('lockEndDate'), gasPrice);
   }
 
   if (isLoading) {
@@ -196,8 +198,8 @@ const PortfolioLock: FC = () => {
                     type="button"
                     className={classnames(
                       'flex justify-center ph-24 pv-16',
-                      field.value?.valueOf() === getLockEndDate(new Date(), item)?.valueOf()
-                        ? 'button-primary'
+                      dateTo10Sec(field.value) === dateTo10Sec(getLockEndDate(new Date(), item))
+                        ? 'button-ghost-monochrome selected'
                         : 'button-ghost-monochrome',
                     )}
                     onClick={() => {
@@ -230,7 +232,7 @@ const PortfolioLock: FC = () => {
                   {formatToken(stakedBalance)} {projectToken.symbol}
                 </span>{' '}
                 for{' '}
-                <span className="primary-color">{getFormattedDuration(Date.now(), lockEndDate?.valueOf() ?? 0)}</span>.
+                <span className="primary-color">{getFormattedDuration(Date.now(), form.getValues('lockEndDate')?.valueOf() ?? 0)}</span>.
                 You cannot undo this or partially lock your balance. Locked tokens will be unavailable for withdrawal
                 until the lock timer ends. All future deposits you make will be locked for the same time.
               </Text>

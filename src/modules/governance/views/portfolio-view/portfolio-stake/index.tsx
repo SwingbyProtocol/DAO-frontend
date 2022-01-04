@@ -71,6 +71,10 @@ function getLockEndDate(startDate: Date, duration: string): Date | undefined {
   }
 }
 
+function dateTo10Sec(date: Date | undefined): number {
+  return date ? Math.floor(date.getTime() / 10000) : 0
+}
+
 type FormType = {
   amount: string;
   lockEndDate: Date | undefined;
@@ -133,7 +137,7 @@ const PortfolioDeposit: FC = () => {
           required: 'Value is required.',
         },
       },
-      p2pkey: {
+      p2pKey: {
         rules: {
           required: false,
         },
@@ -167,7 +171,7 @@ const PortfolioDeposit: FC = () => {
       form.reset({
         lockEndDate,
         p2pKey: '',
-        dataType: undefined,
+        dataType: 0,
       });
     } catch { }
 
@@ -182,9 +186,6 @@ const PortfolioDeposit: FC = () => {
   const amount = watch('amount');
   const bnAmount = BigNumber.from(amount);
   const nextStakeBalance = stakedBalance?.plus(amount);
-  const lockEndDate = watch('lockEndDate');
-  const p2pKey = watch('p2pKey');
-  const dataType = watch('dataType');
 
   const isEnabled = useMemo(() => barnAllowance?.gt(BigNumber.ZERO) ?? false, [barnAllowance]);
   const canSubmit = isEnabled && formState.isDirty && formState.isValid && !isSubmitting;
@@ -250,7 +251,7 @@ const PortfolioDeposit: FC = () => {
       return;
     }
     setConfirmModalVisible(false);
-    await doDepositAndLock(bnAmount, lockEndDate, dataType, p2pKey, gasPrice);
+    await doDepositAndLock(bnAmount, form.getValues('lockEndDate'), form.getValues('dataType'), form.getValues('p2pKey'), gasPrice);
   }
 
   if (isLoading) {
@@ -330,8 +331,8 @@ const PortfolioDeposit: FC = () => {
                     type="button"
                     className={classnames(
                       'flex justify-center ph-24 pv-16',
-                      field.value?.valueOf() === getLockEndDate(new Date(), item)?.valueOf()
-                        ? 'button-primary'
+                      dateTo10Sec(field.value) === dateTo10Sec(getLockEndDate(new Date(), item))
+                        ? 'button-ghost-monochrome selected'
                         : 'button-ghost-monochrome',
                     )}
                     onClick={() => {
@@ -356,10 +357,14 @@ const PortfolioDeposit: FC = () => {
                   <button
                     key={item}
                     type="button"
-                    className={classnames('flex justify-center ph-24 pv-16 button-ghost-monochrome')}
+                    className={classnames(
+                      'flex justify-center ph-24 pv-16',
+                      (getNetworkID(item) === field.value)
+                        ? 'button-ghost-monochrome selected'
+                        : 'button-ghost-monochrome',
+                    )}
                     onClick={() => {
                       loadTimelock(getNetworkID(item));
-                      form.updateValue('dataType', getNetworkID(item));
                     }}>
                     {item}
                   </button>
@@ -370,8 +375,10 @@ const PortfolioDeposit: FC = () => {
                 dimension="large"
                 className="flex-grow"
                 disabled={isSubmitting}
-                value={dataType}
-                onChange={field.onChange}
+                value={field.value}
+                onChange={(event) => {
+                  form.updateValue('dataType', event.target.value)
+                }}
               />
             </>
           )}
@@ -387,8 +394,10 @@ const PortfolioDeposit: FC = () => {
               dimension="large"
               className="flex-grow"
               disabled={isSubmitting}
-              value={p2pKey}
-              onChange={field.onChange}
+              value={field.value}
+              onChange={(event) => {
+                form.updateValue('p2pKey', event.target.value)
+              }}
             />
           )}
         </FormItem>
@@ -421,7 +430,7 @@ const PortfolioDeposit: FC = () => {
                   {formatToken(nextStakeBalance)} {projectToken.symbol}
                 </span>{' '}
                 for{' '}
-                <span className="primary-color">{getFormattedDuration(Date.now(), lockEndDate?.valueOf() ?? 0)}</span>.
+                <span className="primary-color">{getFormattedDuration(Date.now(), form.getValues('lockEndDate')?.valueOf() ?? 0)}</span>.
                 You cannot undo this or partially lock your balance. Locked tokens will be unavailable for withdrawal
                 until the lock timer ends. All future deposits you make will be locked for the same time.
               </Text>
