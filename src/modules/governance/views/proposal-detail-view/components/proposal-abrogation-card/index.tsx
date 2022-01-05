@@ -57,7 +57,7 @@ const ProposalAbrogationCard: React.FC = () => {
               <ul>
                 <li>
                   <Text type="p1" color="primary">
-                    Acceptance criteria: 50% of staked BOND
+                    Acceptance criteria: 50% of staked SWINGBY
                   </Text>
                 </li>
                 <li>

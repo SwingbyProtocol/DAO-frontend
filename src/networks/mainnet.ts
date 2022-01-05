@@ -19,25 +19,25 @@ export const MAINNET_CHAIN_ID = 1;
 export const MainnetConfig: NetworkConfig = {
   title: isDevelopmentMode ? 'Swingby DAO' : 'Swingby DAO',
   features: {
-    yieldFarming: true,
+    yieldFarming: false,
     dao: true,
-    smartYield: true,
-    smartYieldReward: true,
-    smartExposure: true,
-    smartAlpha: true,
+    smartYield: false,
+    smartYieldReward: false,
+    smartExposure: false,
+    smartAlpha: false,
     gasFees: true,
     addBondToken: true,
-    smartAlphaKPIOptions: true,
+    smartAlphaKPIOptions: false,
   },
   wallets: {
     portisId: 'b0b0f776-bbf6-458c-a175-6483e0c452b7',
     walletConnectBridge: 'https://bridge.walletconnect.org',
-    coinbaseAppName: 'barnbridge',
+    coinbaseAppName: 'swingbydao',
     trezorEmail: 'bogdan@barnbridge.com',
     trezorAppUrl: 'https://app.barnbridge.com/',
   },
   api: {
-    baseUrl: isDevelopmentMode ? 'https://alpha-v2.api.barnbridge.com' : 'https://api-v2.barnbridge.com',
+    baseUrl: 'https://dao-api.swingby.network',
   },
   dao: {
     activationThreshold: 400_000,
@@ -45,7 +45,7 @@ export const MainnetConfig: NetworkConfig = {
   tokens: {
     wbtc: '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599',
     weth: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
-    swingby: '0x0391D2021f89DC339F60Fff84546EA23E337750f',
+    swingby: '0x8287C7b963b405b7B8D467DB9d79eEC40625b13A',
     univ2: '0x6591c4BcD6D7A1eb4E537DA8B78676C1576Ba244',
     usdc: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
     usdt: '0xdac17f958d2ee523a2206206994597c13d831ec7',
@@ -89,9 +89,9 @@ export const MainnetConfig: NetworkConfig = {
       swingby: '0x3FdFb07472ea4771E1aD66FD3b87b265Cd4ec112',
     },
     dao: {
-      governance: '0x4cAE362D7F227e3d306f70ce4878E245563F3069',
-      barn: '0x10e138877df69Ca44Fdc68655f86c88CDe142D7F',
-      reward: '0x9d0CF50547D848cC4b6A12BeDCF7696e9b334a22',
+      governance: '0xd311f3ba15e4a4ecc27ec6f5e7630b544cf2286b',
+      barn: '0xb4200c8c44b05a342a9f7fd0d27647c4bf9533e7',
+      reward: '0xac01adc15878fae7d9b580d6fb695aa735738856',
     },
     se: {
       ePoolPeriphery: '0x33c8d6f8271675eda1a0e72558d4904c96c7a888',

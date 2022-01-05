@@ -182,10 +182,10 @@ const WalletLockChart: React.FC<WalletLockChartProps> = props => {
               </Text>
               <ul>
                 <li>
-                  <Text type="p2">lock 1000 ${projectToken.symbol} for 1 year → get back 2000 vBOND</Text>
+                  <Text type="p2">lock 1000 ${projectToken.symbol} for 1 year → get back 2000 vSWINGBY</Text>
                 </li>
                 <li>
-                  <Text type="p2">lock 1000 ${projectToken.symbol} for 6 months → get back 1500 vBOND</Text>
+                  <Text type="p2">lock 1000 ${projectToken.symbol} for 6 months → get back 1500 vSWINGBY</Text>
                 </li>
               </ul>
               <ExternalLink href="#">Learn more</ExternalLink>

@@ -142,15 +142,15 @@ const VotingHeader: React.FC = () => {
                     text={
                       <>
                         <Text type="p2">
-                          The multiplier mechanic allows users to lock $BOND for a period up to 1 year and get a bonus
-                          of up to 2x vBOND. The bonus is linear, as per the following example:
+                          The multiplier mechanic allows users to lock $SWINGBY for a period up to 1 year and get a bonus
+                          of up to 2x SWINGBY. The bonus is linear, as per the following example:
                         </Text>
                         <ul>
                           <li>
-                            <Text type="p2">lock 1000 $BOND for 1 year → get back 2000 vBOND</Text>
+                            <Text type="p2">lock 1000 $SWINGBY for 1 year → get back 2000 vSWINGBY</Text>
                           </li>
                           <li>
-                            <Text type="p2">lock 1000 $BOND for 6 months → get back 1500 vBOND</Text>
+                            <Text type="p2">lock 1000 $SWINGBY for 6 months → get back 1500 vSWINGBY</Text>
                           </li>
                         </ul>
                         <ExternalLink
