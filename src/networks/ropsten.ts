@@ -90,6 +90,7 @@ export const RopstenConfig: NetworkConfig = {
       governance: '0xb7EAB16427009dae4e063cb723c6a1450C874996',
       barn: '0x9170f8d749dCF64467793325512a5e34B2B189Eb',
       reward: '0xbCED010B27DC675c46F2526D21e4f1b01EAc669F',
+      node: '0x9a1b2761e54d8f016c4e8ae12a3b2d2de3df24d0',
     },
     se: {
       ePoolPeriphery: '0x5fa08f7817844e38ee8f54a24b65f6dc1ae23785',

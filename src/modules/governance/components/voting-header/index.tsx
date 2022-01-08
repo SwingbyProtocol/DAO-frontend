@@ -26,11 +26,13 @@ import s from './s.module.scss';
 
 type VotingHeaderState = {
   claiming: boolean;
+  claimingNode: boolean;
   showDetailedView: boolean;
 };
 
 const InitialState: VotingHeaderState = {
   claiming: false,
+  claimingNode: false,
   showDetailedView: false,
 };
 
@@ -41,6 +43,7 @@ const VotingHeader: React.FC = () => {
   const [state, setState] = useMergeState<VotingHeaderState>(InitialState);
 
   const { toClaim } = daoCtx.daoReward;
+  const { toClaim: toClaimNode } = daoCtx.nodeReward;
   const bondBalance = (projectToken.contract as Erc20Contract).balance?.unscaleBy(projectToken.decimals);
   const { votingPower, userLockedUntil, balance: myStakedBalance } = daoCtx.daoBarn;
   const [multiplier, setMultiplier] = useState(1);
@@ -69,6 +72,20 @@ const VotingHeader: React.FC = () => {
         setState({ claiming: false });
       });
   }
+
+  function handleClaimNode() {
+    setState({ claimingNode: true });
+
+    daoCtx.nodeReward
+      .claim()
+      .catch(Error)
+      .then(() => {
+        // daoCtx.daoReward.reload(); /// TODO: check
+        (projectToken.contract as Erc20Contract).loadBalance().catch(Error);
+        setState({ claimingNode: false });
+      });
+  }
+
 
   return (
     <div className={cn(s.component, 'pv-24 ph-64 sm-ph-16')}>
@@ -105,9 +122,31 @@ const VotingHeader: React.FC = () => {
                 })}
               </Text>
             </Tooltip>
-            <TokenIcon name={projectToken.icon} />
+            {/* <TokenIcon name={projectToken.icon} /> */}
             <Button type="light" disabled={toClaim?.isZero()} onClick={handleClaim}>
               {!state.claiming ? 'Claim' : <Spin spinning />}
+            </Button>
+          </Grid>
+
+        </Grid>
+        <Grid flow="row" gap={4}>
+          <Text type="p2" color="secondary">
+            Node bonus
+          </Text>
+          <Grid flow="col" gap={16} align="center">
+            <Tooltip
+              title={formatToken(toClaimNode ?? 0, {
+                decimals: projectToken.decimals,
+              })}>
+              <Text type="h3" weight="bold" color="primary">
+                +{formatToken(toClaimNode ?? 0, {
+                  hasLess: true,
+                })}
+              </Text>
+            </Tooltip>
+            {/* <TokenIcon name={projectToken.icon} /> */}
+            <Button type="light" disabled={toClaim?.isZero()} onClick={handleClaimNode}>
+              {!state.claimingNode ? 'Claim' : <Spin spinning />}
             </Button>
           </Grid>
         </Grid>

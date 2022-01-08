@@ -10,6 +10,7 @@ import { APIProposalStateId } from 'modules/governance/api';
 import DaoBarnContract from 'modules/governance/contracts/daoBarn';
 import DaoGovernanceContract from 'modules/governance/contracts/daoGovernance';
 import DaoRewardContract from 'modules/governance/contracts/daoReward';
+import NodeRewardContract from 'modules/governance/contracts/nodeReward';
 import { useWallet } from 'wallets/walletProvider';
 
 import { InvariantContext } from 'utils/context';
@@ -34,6 +35,7 @@ type DAOContextType = DAOProviderState & {
   daoBarn: DaoBarnContract;
   daoGovernance: DaoGovernanceContract;
   daoReward: DaoRewardContract;
+  nodeReward: NodeRewardContract;
   actions: {
     activate: () => Promise<void>;
     hasActiveProposal: () => Promise<boolean>;
@@ -62,6 +64,9 @@ const DAOProvider: React.FC = props => {
   const daoReward = useContract<DaoRewardContract>(config.contracts.dao?.reward!, () => {
     return new DaoRewardContract(config.contracts.dao?.reward!);
   });
+  const nodeReward = useContract<NodeRewardContract>(config.contracts.dao?.node!, () => {
+    return new NodeRewardContract(config.contracts.dao?.node!);
+  });
   const { projectToken } = useKnownTokens();
 
   const [state, setState] = useMergeState<DAOProviderState>(InitialState);
@@ -70,6 +75,7 @@ const DAOProvider: React.FC = props => {
     daoGovernance.loadCommonData();
     daoReward.loadCommonData();
     daoBarn.loadCommonData();
+    nodeReward.loadCommonData();
   }, []);
 
   React.useEffect(() => {
@@ -81,6 +87,7 @@ const DAOProvider: React.FC = props => {
       daoGovernance.loadUserData();
       daoReward.loadUserData();
       daoBarn.loadUserData();
+      nodeReward.loadUserData();
       bondContract.loadAllowance(config.contracts.dao?.barn!).catch(Error);
     }
   }, [walletCtx.account]);
@@ -156,6 +163,7 @@ const DAOProvider: React.FC = props => {
         daoBarn,
         daoReward,
         daoGovernance,
+        nodeReward,
         actions: {
           activate,
           hasThreshold,

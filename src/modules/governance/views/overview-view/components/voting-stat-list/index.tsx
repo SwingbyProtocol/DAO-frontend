@@ -30,7 +30,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
   const { getAmountInUSD } = useTokens();
   const { projectToken } = useKnownTokens();
   const [overview, setOverview] = React.useState<APIOverviewData | undefined>();
-
+  const totalAPR = (daoCtx.daoReward.apr && daoCtx.nodeReward.apr) ? daoCtx.daoReward.apr + daoCtx.nodeReward.apr : 0;
   React.useEffect(() => {
     daoAPI.fetchOverviewData().then(setOverview);
   }, []);
@@ -83,16 +83,19 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
       <div className="card p-24">
         <Grid flow="row" gap={48}>
           <Text type="lb2" weight="semibold" color="blue">
-            Staking APR
+            Staking APR (Node bonus)
           </Text>
           <Grid flow="row" gap={4}>
             <UseLeftTime end={(daoCtx.daoReward.pullFeature?.endTs ?? 0) * 1000} delay={5_000}>
               {() => (
                 <Text type="h2" weight="bold" color="primary">
-                  {formatToken(daoCtx.daoReward.apr)} %
+                  {formatToken(daoCtx.daoReward.apr)} % ( +{formatToken(daoCtx.nodeReward.apr)} % )
                 </Text>
               )}
             </UseLeftTime>
+            <Text type="p1" color="secondary">
+              Total APR for Node = {formatToken(totalAPR)}%
+            </Text>
           </Grid>
         </Grid>
       </div>
