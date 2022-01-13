@@ -27,13 +27,13 @@ export function useNetwork(): NetworkType {
 const networks: Web3Network[] = (() => {
   if (isDevelopmentMode) {
     return [
-      RopstenNetwork,
-      MainnetNetwork
+      MainnetNetwork,
+      RopstenNetwork
     ]
   }
 
   if (isProductionMode) {
-    return [RopstenNetwork, MainnetNetwork];
+    return [MainnetNetwork, RopstenNetwork];
   }
 
   return [];
