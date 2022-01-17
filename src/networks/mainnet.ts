@@ -89,7 +89,7 @@ export const MainnetConfig: NetworkConfig = {
       swingby: '0x3FdFb07472ea4771E1aD66FD3b87b265Cd4ec112',
     },
     dao: {
-      governance: '0xd311f3ba15e4a4ecc27ec6f5e7630b544cf2286b',
+      governance: '0x6f1e586C62F7d8A1B7394F1a81a75AA68E109365',
       barn: '0xb4200c8c44b05a342a9f7fd0d27647c4bf9533e7',
       reward: '0xac01adc15878fae7d9b580d6fb695aa735738856',
       node: '0x22F6de9B90783fA94AFB08D34FcFdA0CEB07988B',
