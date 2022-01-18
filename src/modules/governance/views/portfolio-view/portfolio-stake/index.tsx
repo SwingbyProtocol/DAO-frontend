@@ -99,6 +99,8 @@ const PortfolioDeposit: FC = () => {
   const barnAllowance = projectTokenContract.getAllowanceOf(config.contracts.dao?.barn!);
   const isLocked = (userLockedUntil ? new Date(userLockedUntil * 1_000) : 0) > Date.now();
   const minLockDate = (isLocked && userLockedUntil) ? new Date(userLockedUntil * 1_000 + 60_000) : Date.now();
+  const isFullDeposit = (stakedBalance && stakedBalance.isLessThan(175000))
+  const minDeposit = (stakedBalance && isFullDeposit) ? 175000 - stakedBalance.toNumber() : 0.01
   const form = useForm<FormType>({
     validationScheme: {
       lockEndDate: {
@@ -120,12 +122,12 @@ const PortfolioDeposit: FC = () => {
       amount: {
         rules: {
           required: true,
-          min: 0.01,
+          min: minDeposit,
           max: bondBalance?.toNumber(),
         },
         messages: {
           required: 'Value is required.',
-          min: 'min top up amount must be >= 0.01',
+          min: (minDeposit > 0.01) ? 'Node stake amount must be >= 175000' : 'min top up amount must be >= 0.01',
           max: "Balance insufficent",
         },
       },
