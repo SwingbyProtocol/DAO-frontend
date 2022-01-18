@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Spin } from 'antd';
 import cn from 'classnames';
 import Erc20Contract from 'web3/erc20Contract';
-import { formatBigValue, formatToken } from 'web3/utils';
+import { formatBigValue, formatToken, formatUSD } from 'web3/utils';
 
 import Button from 'components/antd/button';
 import Divider from 'components/antd/divider';
@@ -17,6 +17,7 @@ import { UseLeftTime } from 'hooks/useLeftTime';
 import useMergeState from 'hooks/useMergeState';
 import { useDAO } from 'modules/governance/components/dao-provider';
 import { useWallet } from 'wallets/walletProvider';
+import { useTokens } from 'components/providers/tokensProvider';
 
 import VotingDetailedModal from '../voting-detailed-modal';
 
@@ -39,6 +40,7 @@ const InitialState: VotingHeaderState = {
 const VotingHeader: React.FC = () => {
   const daoCtx = useDAO();
   const walletCtx = useWallet();
+  const { getAmountInUSD } = useTokens();
   const { projectToken } = useKnownTokens();
   const [state, setState] = useMergeState<VotingHeaderState>(InitialState);
 
@@ -115,7 +117,7 @@ const VotingHeader: React.FC = () => {
             <Tooltip
               title={formatToken(toClaim ?? 0, {
                 decimals: projectToken.decimals,
-              })}>
+              }) + " (" + formatUSD(getAmountInUSD(toClaim, projectToken.symbol)) + ")"}>
               <Text type="h3" weight="bold" color="primary">
                 {formatToken(toClaim ?? 0, {
                   hasLess: true,
@@ -137,9 +139,9 @@ const VotingHeader: React.FC = () => {
             <Tooltip
               title={formatToken(toClaimNode ?? 0, {
                 decimals: projectToken.decimals,
-              })}>
+              }) + " (" + formatUSD(getAmountInUSD(toClaimNode, projectToken.symbol)) + ")"}>
               <Text type="h3" weight="bold" color="primary">
-                +{formatToken(toClaimNode ?? 0, {
+                {toClaimNode? "+" : "" }{formatToken(toClaimNode ?? 0, {
                   hasLess: true,
                 })}
               </Text>
