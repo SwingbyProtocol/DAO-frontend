@@ -19595,7 +19595,7 @@ span.ant-radio + * {
   font-feature-settings: 'tnum';
   position: absolute;
   display: none;
-  color: #ff4339;
+  color: #004339;
   text-align: center;
   vertical-align: middle;
   opacity: 0;
@@ -19699,7 +19699,7 @@ span.ant-radio + * {
   display: block;
   width: 9px;
   height: 9px;
-  background-color: #ff4339;
+  background-color: #4f6ae5;
   border-radius: 100%;
   transform: scale(0.75);
   transform-origin: 50% 50%;
