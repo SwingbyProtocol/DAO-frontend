@@ -88,11 +88,11 @@ const GovernanceViewInternal: React.FC = () => {
         <Tabs.Tab
           key="signal"
           tab={
-            <ExternalLink href="https://dao.swingby.network/" style={{ color: 'inherit' }}>
+            <ExternalLink href="https://snapshot.org/#/swingbydao.eth" style={{ color: 'inherit' }}>
               <Grid flow="col" gap={8} align="center">
                 <Icon name="chats-outlined" />
                 <Text type="p1" weight="semibold">
-                  Signal (Coming soon)
+                  Signal Vote
                 </Text>
                 <Icon
                   name="arrow-top-right"
@@ -110,11 +110,33 @@ const GovernanceViewInternal: React.FC = () => {
         <Tabs.Tab
           key="forum"
           tab={
-            <ExternalLink href="https://dao.swingby.network/" style={{ color: 'inherit' }}>
+            <ExternalLink href="https://github.com/SwingbyProtocol/swips/issues" style={{ color: 'inherit' }}>
               <Grid flow="col" gap={8} align="center">
                 <Icon name="forum-outlined" />
                 <Text type="p1" weight="semibold">
-                  Forum (Coming soon)
+                  Github Issues
+                </Text>
+                <Icon
+                  name="arrow-top-right"
+                  width={8}
+                  height={8}
+                  style={{
+                    alignSelf: 'start',
+                    color: 'inherit',
+                  }}
+                />
+              </Grid>
+            </ExternalLink>
+          }
+        />
+        <Tabs.Tab
+          key="forum"
+          tab={
+            <ExternalLink href="https://app.sushi.com/swap?inputCurrency=ETH&outputCurrency=0x8287c7b963b405b7b8d467db9d79eec40625b13a" style={{ color: 'inherit' }}>
+              <Grid flow="col" gap={8} align="center">
+                <Icon name="refresh" />
+                <Text type="p1" weight="semibold">
+                  Buy SWINGBY
                 </Text>
                 <Icon
                   name="arrow-top-right"

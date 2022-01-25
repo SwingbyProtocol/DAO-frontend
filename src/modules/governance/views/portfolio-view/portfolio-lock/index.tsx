@@ -19,6 +19,7 @@ import { UseLeftTime } from 'hooks/useLeftTime';
 import { useDAO } from 'modules/governance/components/dao-provider';
 
 import { getFormattedDuration } from 'utils';
+import BigNumber from 'bignumber.js';
 
 const DURATION_1_WEEK = '1 w';
 const DURATION_1_MONTH = '1 mo';
@@ -52,6 +53,18 @@ function getLockEndDate(startDate: Date, duration: string): Date | undefined {
 }
 function dateTo10Sec(date: Date | undefined): number {
   return date ? Math.floor(date.getTime() / 10000) : 0
+}
+
+function calcVotePower(amount: BigNumber | undefined, date: Date | undefined): number {
+  const diff = date ? date.getTime() - Date.now() : 0
+  const ratio = (diff / 1000) / 31536000
+  let amt = 0
+  if (ratio > 100.0) {
+    amt = amount ? amount.multipliedBy(2).toNumber() : 0
+  } else {
+    amt = amount ? amount.plus(amount.multipliedBy(ratio)).toNumber() : 0
+  }
+  return amt
 }
 
 type FormType = {
@@ -230,6 +243,10 @@ const PortfolioLock: FC = () => {
                 You are about to lock{' '}
                 <span className="primary-color">
                   {formatToken(stakedBalance)} {projectToken.symbol}
+                </span>{' '}
+                and {' '}
+                <span className='primary-color'>
+                  VotePower {formatToken(calcVotePower(stakedBalance, form.getValues('lockEndDate')))}
                 </span>{' '}
                 for{' '}
                 <span className="primary-color">{getFormattedDuration(Date.now(), form.getValues('lockEndDate')?.valueOf() ?? 0)}</span>.
