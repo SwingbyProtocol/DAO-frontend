@@ -108,7 +108,7 @@ const GovernanceViewInternal: React.FC = () => {
           }
         />
         <Tabs.Tab
-          key="forum"
+          key="github"
           tab={
             <ExternalLink href="https://github.com/SwingbyProtocol/swips/issues" style={{ color: 'inherit' }}>
               <Grid flow="col" gap={8} align="center">
@@ -130,7 +130,7 @@ const GovernanceViewInternal: React.FC = () => {
           }
         />
         <Tabs.Tab
-          key="forum"
+          key="sushiswap"
           tab={
             <ExternalLink href="https://app.sushi.com/swap?inputCurrency=ETH&outputCurrency=0x8287c7b963b405b7b8d467db9d79eec40625b13a" style={{ color: 'inherit' }}>
               <Grid flow="col" gap={8} align="center">

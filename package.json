@@ -13,7 +13,7 @@
     "start": "react-scripts start",
     "start:alpha": "node -r dotenv/config ./node_modules/.bin/react-scripts start dotenv_config_path=.env.alpha.local",
     "start:prod": "node -r dotenv/config ./node_modules/.bin/react-scripts start dotenv_config_path=.env.production.local",
-    "start:testnet": "node -r dotenv/config ./node_modules/.bin/react-scripts start dotenv_config_path=.env.testnet.local",
+    "start:testnet": "SKIP_PREFLIGHT_CHECK=true REACT_APP_ENV=production node -r dotenv/config ./node_modules/.bin/react-scripts start dotenv_config_path=.env.testnet.local",
     "lessc": "lessc src/styles/antd.less src/styles/antd.css -js",
     "lint": "eslint src/**/*.ts{,x} && tsc --noEmit && stylelint --syntax scss 'src/**/*.scss'",
     "format": "prettier --write src/**/*.ts{,x}",

@@ -117,7 +117,7 @@ const VotingHeader: React.FC = () => {
             <Tooltip
               title={formatToken(toClaim ?? 0, {
                 decimals: projectToken.decimals,
-              }) + " (" + formatUSD(getAmountInUSD(toClaim, projectToken.symbol)) + ")"}>
+              }) + " (" + (formatUSD(getAmountInUSD(toClaim, projectToken.symbol))?? "") + ")"}>
               <Text type="h3" weight="bold" color="primary">
                 {formatToken(toClaim ?? 0, {
                   hasLess: true,
@@ -125,7 +125,7 @@ const VotingHeader: React.FC = () => {
               </Text>
             </Tooltip>
             {/* <TokenIcon name={projectToken.icon} /> */}
-            <Button type="light" disabled={toClaim?.isZero()} onClick={handleClaim}>
+            <Button type="light" disabled={toClaim?.isZero() || (toClaim === undefined)} onClick={handleClaim}>
               {!state.claiming ? 'Claim' : <Spin spinning />}
             </Button>
           </Grid>
@@ -139,15 +139,15 @@ const VotingHeader: React.FC = () => {
             <Tooltip
               title={formatToken(toClaimNode ?? 0, {
                 decimals: projectToken.decimals,
-              }) + " (" + formatUSD(getAmountInUSD(toClaimNode, projectToken.symbol)) + ")"}>
+              }) + " (" + (formatUSD(getAmountInUSD(toClaimNode, projectToken.symbol))?? "") + ")"}>
               <Text type="h3" weight="bold" color="primary">
-                {toClaimNode? "+" : "" }{formatToken(toClaimNode ?? 0, {
+                {toClaimNode ? "+" : ""}{formatToken(toClaimNode ?? 0, {
                   hasLess: true,
                 })}
               </Text>
             </Tooltip>
             {/* <TokenIcon name={projectToken.icon} /> */}
-            <Button type="light" disabled={toClaim?.isZero()} onClick={handleClaimNode}>
+            <Button type="light" disabled={toClaim?.isZero() || (toClaimNode === undefined)} onClick={handleClaimNode}>
               {!state.claimingNode ? 'Claim' : <Spin spinning />}
             </Button>
           </Grid>
