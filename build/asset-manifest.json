@@ -2,12 +2,12 @@
   "files": {
     "main.css": "/static/css/main.b42e33cb.chunk.css",
     "main.js": "/static/js/main.b8a85e88.chunk.js",
-    "runtime-main.js": "/static/js/runtime-main.f76556d0.js",
+    "runtime-main.js": "/static/js/runtime-main.ab1fd4e5.js",
     "static/js/2.598f7086.chunk.js": "/static/js/2.598f7086.chunk.js",
     "static/js/3.b34ce94d.chunk.js": "/static/js/3.b34ce94d.chunk.js",
     "static/js/4.550aeaa2.chunk.js": "/static/js/4.550aeaa2.chunk.js",
     "static/css/5.40f7710b.chunk.css": "/static/css/5.40f7710b.chunk.css",
-    "static/js/5.96bdceb9.chunk.js": "/static/js/5.96bdceb9.chunk.js",
+    "static/js/5.892c23b6.chunk.js": "/static/js/5.892c23b6.chunk.js",
     "static/js/6.7f5d363a.chunk.js": "/static/js/6.7f5d363a.chunk.js",
     "index.html": "/index.html",
     "static/media/index.scss": "/static/media/Montserrat-SemiBold.fa8441f3.ttf",
@@ -23,7 +23,7 @@
     "static/media/zero-notifications.3df14b57.svg": "/static/media/zero-notifications.3df14b57.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f76556d0.js",
+    "static/js/runtime-main.ab1fd4e5.js",
     "static/js/2.598f7086.chunk.js",
     "static/css/main.b42e33cb.chunk.css",
     "static/js/main.b8a85e88.chunk.js"

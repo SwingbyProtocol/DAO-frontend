@@ -185,7 +185,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
             </Text>
             <Text type="p1" color="secondary">
               out of{' '}
-              {formatToken((projectToken.contract as Erc20Contract).totalSupply?.unscaleBy(projectToken.decimals))}
+              {formatToken(overview?.totalVbond)}
             </Text>
           </Grid>
         </Grid>
