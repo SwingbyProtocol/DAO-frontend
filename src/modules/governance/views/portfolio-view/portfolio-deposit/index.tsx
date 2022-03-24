@@ -173,7 +173,7 @@ const PortfolioDeposit: FC = () => {
             </div>
           </div>
         </div>
-        <FormItem name="amount" label="Amount">
+        <FormItem name="amount" label="Amount (top up)">
           {({ field }) => (
             <TokenAmount
               before={<TokenIcon name={projectToken.icon as TokenIconNames} />}

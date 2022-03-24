@@ -141,7 +141,7 @@ const PortfolioDeposit: FC = () => {
       },
       p2pKey: {
         rules: {
-          required: false,
+          required: true,
         },
         messages: {},
       },
@@ -310,7 +310,7 @@ const PortfolioDeposit: FC = () => {
             </div>
           </div>
         </div>
-        <FormItem name="amount" label="Amount">
+        <FormItem name="amount" label="Amount (top up)">
           {({ field }) => (
             <TokenAmount
               before={<TokenIcon name={projectToken.icon as TokenIconNames} />}
@@ -359,6 +359,7 @@ const PortfolioDeposit: FC = () => {
                   <button
                     key={item}
                     type="button"
+                    disabled={item == "BTC_BSC"}
                     className={classnames(
                       'flex justify-center ph-24 pv-16',
                       (getNetworkID(item) === field.value)
@@ -368,7 +369,7 @@ const PortfolioDeposit: FC = () => {
                     onClick={() => {
                       loadTimelock(getNetworkID(item));
                     }}>
-                    {item}
+                    {item == "BTC_BSC" ? "BTC_BSC (disabled)" : item}
                   </button>
                 ))}
               </div>
@@ -387,7 +388,7 @@ const PortfolioDeposit: FC = () => {
         </FormItem>
         <FormItem
           name="p2pKey"
-          label="Node P2Pkey (optional)"
+          label="Node P2Pkey"
           labelProps={{ hint: 'What is p2p key (32bytes hexstring) is on your node' }}
           className="flex-grow">
           {({ field }) => (
