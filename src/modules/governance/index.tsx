@@ -5,6 +5,7 @@ import Tabs from 'components/antd/tabs';
 import { ExternalLink } from 'components/button';
 import Grid from 'components/custom/grid';
 import Icon from 'components/custom/icon';
+import { TokenIcon } from 'components/token-icon'
 import { Text } from 'components/custom/typography';
 import DaoAPIProvider from 'modules/governance/api';
 import { useWallet } from 'wallets/walletProvider';
@@ -134,9 +135,31 @@ const GovernanceViewInternal: React.FC = () => {
           tab={
             <ExternalLink href="https://app.sushi.com/swap?inputCurrency=ETH&outputCurrency=0x8287c7b963b405b7b8d467db9d79eec40625b13a" style={{ color: 'inherit' }}>
               <Grid flow="col" gap={8} align="center">
-                <Icon name="refresh" />
+                <TokenIcon name="sushi" />
                 <Text type="p1" weight="semibold">
-                  Buy SWINGBY
+                  Sushiswap
+                </Text>
+                <Icon
+                  name="arrow-top-right"
+                  width={8}
+                  height={8}
+                  style={{
+                    alignSelf: 'start',
+                    color: 'inherit',
+                  }}
+                />
+              </Grid>
+            </ExternalLink>
+          }
+        />
+        <Tabs.Tab
+          key="uniswap"
+          tab={
+            <ExternalLink href="https://app.uniswap.org/#/swap?chain=mainnet&inputCurrency=ETH&outputCurrency=0x8287C7b963b405b7B8D467DB9d79eEC40625b13A" style={{ color: 'inherit' }}>
+              <Grid flow="col" gap={8} align="center">
+                <TokenIcon name="uni" />
+                <Text type="p1" weight="semibold">
+                  Uniswap
                 </Text>
                 <Icon
                   name="arrow-top-right"
@@ -152,6 +175,7 @@ const GovernanceViewInternal: React.FC = () => {
           }
         />
       </Tabs>
+
       <div className="content-container-fix content-container">
         <Switch>
           <Route path="/governance/overview" exact component={OverviewView} />
