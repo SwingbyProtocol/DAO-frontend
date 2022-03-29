@@ -61,7 +61,7 @@ export type NetworkConfig = {
   feeds: Record<'btc' | 'eth' | 'swingby' | 'univ2' | 'usdc' | 'usdt' | 'susd' | 'dai' | 'stkaave' | 'wmatic', string>;
   contracts: {
     yf?: Record<'staking' | 'stable' | 'unilp' | 'swingby', string>;
-    dao?: Record<'governance' | 'barn' | 'reward' | 'node', string>;
+    dao?: Record<'governance' | 'barn' | 'reward' | 'nodeRewards', string>;
     se?: Record<'ePoolPeriphery' | 'ePoolHelper', string>;
     sa?: Record<'loupe', string>;
     faucets?: Record<

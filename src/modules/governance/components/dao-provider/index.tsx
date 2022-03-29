@@ -64,8 +64,8 @@ const DAOProvider: React.FC = props => {
   const daoReward = useContract<DaoRewardContract>(config.contracts.dao?.reward!, () => {
     return new DaoRewardContract(config.contracts.dao?.reward!);
   });
-  const nodeReward = useContract<NodeRewardContract>(config.contracts.dao?.node!, () => {
-    return new NodeRewardContract(config.contracts.dao?.node!);
+  const nodeReward = useContract<NodeRewardContract>(config.contracts.dao?.nodeRewards!, () => {
+    return new NodeRewardContract(config.contracts.dao?.nodeRewards!);
   });
   const { projectToken } = useKnownTokens();
 

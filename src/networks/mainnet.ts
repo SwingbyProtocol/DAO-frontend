@@ -92,7 +92,7 @@ export const MainnetConfig: NetworkConfig = {
       governance: '0x6f1e586C62F7d8A1B7394F1a81a75AA68E109365',
       barn: '0xb4200c8c44b05a342a9f7fd0d27647c4bf9533e7',
       reward: '0xac01adc15878fae7d9b580d6fb695aa735738856',
-      node: '0x22F6de9B90783fA94AFB08D34FcFdA0CEB07988B',
+      nodeRewards: '0xf30424a40027E3e424a519f4964402896d004877',
     },
     se: {
       ePoolPeriphery: '0x33c8d6f8271675eda1a0e72558d4904c96c7a888',
