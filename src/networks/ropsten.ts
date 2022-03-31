@@ -31,8 +31,8 @@ export const RopstenConfig: NetworkConfig = {
     portisId: 'b0b0f776-bbf6-458c-a175-6483e0c452b7',
     walletConnectBridge: 'https://bridge.walletconnect.org',
     coinbaseAppName: 'swingbydao',
-    trezorEmail: 'bogdan@barnbridge.com',
-    trezorAppUrl: 'https://app.barnbridge.com/',
+    trezorEmail: 'contact@swingby.network',
+    trezorAppUrl: 'https://app.swingby.network/',
   },
   api: {
     baseUrl: 'https://dao-ropsten.swingby.network',
