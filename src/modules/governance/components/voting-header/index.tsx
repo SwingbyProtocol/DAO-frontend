@@ -28,12 +28,14 @@ import s from './s.module.scss';
 type VotingHeaderState = {
   claiming: boolean;
   claimingNode: boolean;
+  claimingSbBTC: boolean;
   showDetailedView: boolean;
 };
 
 const InitialState: VotingHeaderState = {
   claiming: false,
   claimingNode: false,
+  claimingSbBTC: false,
   showDetailedView: false,
 };
 
@@ -46,6 +48,7 @@ const VotingHeader: React.FC = () => {
 
   const { toClaim } = daoCtx.daoReward;
   const { toClaim: toClaimNode } = daoCtx.nodeReward;
+  const { toClaim: toClaimSbBTC } = daoCtx.sbBTCPool;
   const bondBalance = (projectToken.contract as Erc20Contract).balance?.unscaleBy(projectToken.decimals);
   const { votingPower, userLockedUntil, balance: myStakedBalance } = daoCtx.daoBarn;
   const [multiplier, setMultiplier] = useState(1);
@@ -88,9 +91,22 @@ const VotingHeader: React.FC = () => {
       });
   }
 
+  function handleClaimSbBTC() {
+    setState({ claimingSbBTC: true });
+
+    daoCtx.sbBTCPool
+      .claim()
+      .catch(Error)
+      .then(() => {
+        // daoCtx.daoReward.reload(); /// TODO: check
+        (projectToken.contract as Erc20Contract).loadBalance().catch(Error);
+        setState({ claimingSbBTC: false });
+      });
+  }
+
 
   return (
-    <div className={cn(s.component, 'pv-24 ph-64 sm-ph-16')}>
+    <div className={cn(s.component, 'pv-24 ph-64 sm-ph-32')}>
       <Text type="lb2" weight="semibold" color="blue" className="mb-16">
         My Account status
       </Text>
@@ -117,7 +133,7 @@ const VotingHeader: React.FC = () => {
             <Tooltip
               title={formatToken(toClaim ?? 0, {
                 decimals: projectToken.decimals,
-              }) + " (" + (formatUSD(getAmountInUSD(toClaim, projectToken.symbol))?? "") + ")"}>
+              }) + " (" + (formatUSD(getAmountInUSD(toClaim, projectToken.symbol)) ?? "") + ")"}>
               <Text type="h3" weight="bold" color="primary">
                 {formatToken(toClaim ?? 0, {
                   hasLess: true,
@@ -139,7 +155,7 @@ const VotingHeader: React.FC = () => {
             <Tooltip
               title={formatToken(toClaimNode ?? 0, {
                 decimals: projectToken.decimals,
-              }) + " (" + (formatUSD(getAmountInUSD(toClaimNode, projectToken.symbol))?? "") + ")"}>
+              }) + " (" + (formatUSD(getAmountInUSD(toClaimNode, projectToken.symbol)) ?? "") + ")"}>
               <Text type="h3" weight="bold" color="primary">
                 {toClaimNode ? "+" : ""}{formatToken(toClaimNode ?? 0, {
                   hasLess: true,
@@ -149,6 +165,24 @@ const VotingHeader: React.FC = () => {
             {/* <TokenIcon name={projectToken.icon} /> */}
             <Button type="light" disabled={toClaim?.isZero() || (toClaimNode === undefined)} onClick={handleClaimNode}>
               {!state.claimingNode ? 'Claim' : <Spin spinning />}
+            </Button>
+          </Grid>
+        </Grid>
+        <Divider type="vertical" />
+        <Grid flow="row" gap={4}>
+          <Text type="p2" color="secondary">
+            sbBTC Reward
+          </Text>
+          <Grid flow="col" gap={16} align="center">
+            <Tooltip
+              title={toClaimSbBTC?.toNumber()}>
+              <Text type="h3" weight="bold" color="primary">
+                {toClaimSbBTC ? toClaimSbBTC.toNumber() : 0}
+              </Text>
+            </Tooltip>
+            {/* <TokenIcon name={projectToken.icon} /> */}
+            <Button type="light" disabled={toClaimSbBTC?.isZero() || (toClaimSbBTC === undefined)} onClick={handleClaimSbBTC}>
+              {!state.claimingSbBTC ? 'Claim' : <Spin spinning />}
             </Button>
           </Grid>
         </Grid>

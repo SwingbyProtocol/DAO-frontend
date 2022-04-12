@@ -91,6 +91,7 @@ export const RopstenConfig: NetworkConfig = {
       barn: '0x9170f8d749dCF64467793325512a5e34B2B189Eb',
       reward: '0xbCED010B27DC675c46F2526D21e4f1b01EAc669F',
       nodeRewards: '0xEB6e2c63d5feb3B718CCaEbf9A14482127a63E84',
+      sbBTCPool: '0x2f927257dc6783f5ae0644Ee729242533699B2C1',
     },
     se: {
       ePoolPeriphery: '0x5fa08f7817844e38ee8f54a24b65f6dc1ae23785',

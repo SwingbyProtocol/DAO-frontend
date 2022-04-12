@@ -11,6 +11,7 @@ import DaoBarnContract from 'modules/governance/contracts/daoBarn';
 import DaoGovernanceContract from 'modules/governance/contracts/daoGovernance';
 import DaoRewardContract from 'modules/governance/contracts/daoReward';
 import NodeRewardContract from 'modules/governance/contracts/nodeReward';
+import SbBTCPoolContract from 'modules/governance/contracts/sbBTCPool';
 import { useWallet } from 'wallets/walletProvider';
 
 import { InvariantContext } from 'utils/context';
@@ -36,6 +37,7 @@ type DAOContextType = DAOProviderState & {
   daoGovernance: DaoGovernanceContract;
   daoReward: DaoRewardContract;
   nodeReward: NodeRewardContract;
+  sbBTCPool: SbBTCPoolContract;
   actions: {
     activate: () => Promise<void>;
     hasActiveProposal: () => Promise<boolean>;
@@ -67,6 +69,9 @@ const DAOProvider: React.FC = props => {
   const nodeReward = useContract<NodeRewardContract>(config.contracts.dao?.nodeRewards!, () => {
     return new NodeRewardContract(config.contracts.dao?.nodeRewards!);
   });
+  const sbBTCPool = useContract<SbBTCPoolContract>(config.contracts.dao?.sbBTCPool!, () => {
+    return new SbBTCPoolContract(config.contracts.dao?.sbBTCPool!);
+  });
   const { projectToken } = useKnownTokens();
 
   const [state, setState] = useMergeState<DAOProviderState>(InitialState);
@@ -88,6 +93,7 @@ const DAOProvider: React.FC = props => {
       daoReward.loadUserData();
       daoBarn.loadUserData();
       nodeReward.loadUserData();
+      sbBTCPool.loadUserData();
       bondContract.loadAllowance(config.contracts.dao?.barn!).catch(Error);
     }
   }, [walletCtx.account]);
@@ -164,6 +170,7 @@ const DAOProvider: React.FC = props => {
         daoReward,
         daoGovernance,
         nodeReward,
+        sbBTCPool,
         actions: {
           activate,
           hasThreshold,
