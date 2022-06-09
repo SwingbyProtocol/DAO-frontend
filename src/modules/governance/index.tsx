@@ -91,19 +91,7 @@ const GovernanceViewInternal: React.FC = () => {
           tab={
             <ExternalLink href="https://snapshot.org/#/swingbydao.eth" style={{ color: 'inherit' }}>
               <Grid flow="col" gap={8} align="center">
-                <Icon name="chats-outlined" />
-                <Text type="p1" weight="semibold">
-                  Signal Vote
-                </Text>
-                <Icon
-                  name="arrow-top-right"
-                  width={8}
-                  height={8}
-                  style={{
-                    alignSelf: 'start',
-                    color: 'inherit',
-                  }}
-                />
+                <Icon name="chats-outlined" style={{ paddingTop: "3px" }} /><p style={{ textDecoration: "underline" }}>Signal Vote</p>
               </Grid>
             </ExternalLink>
           }
@@ -113,19 +101,7 @@ const GovernanceViewInternal: React.FC = () => {
           tab={
             <ExternalLink href="https://github.com/SwingbyProtocol/swips/issues" style={{ color: 'inherit' }}>
               <Grid flow="col" gap={8} align="center">
-                <Icon name="forum-outlined" />
-                <Text type="p1" weight="semibold">
-                  Github Issues
-                </Text>
-                <Icon
-                  name="arrow-top-right"
-                  width={8}
-                  height={8}
-                  style={{
-                    alignSelf: 'start',
-                    color: 'inherit',
-                  }}
-                />
+                <Icon name="forum-outlined" style={{ paddingTop: "3px" }} /><p style={{ textDecoration: "underline" }}>Github Issues</p>
               </Grid>
             </ExternalLink>
           }
@@ -135,19 +111,7 @@ const GovernanceViewInternal: React.FC = () => {
           tab={
             <ExternalLink href="https://app.sushi.com/swap?inputCurrency=ETH&outputCurrency=0x8287c7b963b405b7b8d467db9d79eec40625b13a" style={{ color: 'inherit' }}>
               <Grid flow="col" gap={8} align="center">
-                <TokenIcon name="sushi" />
-                <Text type="p1" weight="semibold">
-                  Sushiswap
-                </Text>
-                <Icon
-                  name="arrow-top-right"
-                  width={8}
-                  height={8}
-                  style={{
-                    alignSelf: 'start',
-                    color: 'inherit',
-                  }}
-                />
+                <TokenIcon name="sushi" style={{ paddingTop: "3px" }} /><p style={{ textDecoration: "underline" }}>Sushiswap</p>
               </Grid>
             </ExternalLink>
           }
@@ -157,19 +121,7 @@ const GovernanceViewInternal: React.FC = () => {
           tab={
             <ExternalLink href="https://app.uniswap.org/#/swap?chain=mainnet&inputCurrency=ETH&outputCurrency=0x8287C7b963b405b7B8D467DB9d79eEC40625b13A" style={{ color: 'inherit' }}>
               <Grid flow="col" gap={8} align="center">
-                <TokenIcon name="uni" />
-                <Text type="p1" weight="semibold">
-                  Uniswap
-                </Text>
-                <Icon
-                  name="arrow-top-right"
-                  width={8}
-                  height={8}
-                  style={{
-                    alignSelf: 'start',
-                    color: 'inherit',
-                  }}
-                />
+                <TokenIcon name="uni" style={{ paddingTop: "3px" }} /><p style={{ textDecoration: "underline" }}>Uniswap</p>
               </Grid>
             </ExternalLink>
           }
@@ -189,7 +141,7 @@ const GovernanceViewInternal: React.FC = () => {
           <Redirect from="/governance" to="/governance/overview" />
         </Switch>
       </div>
-    </Grid>
+    </Grid >
   );
 };
 
