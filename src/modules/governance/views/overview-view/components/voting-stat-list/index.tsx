@@ -89,7 +89,8 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
             <UseLeftTime end={(daoCtx.daoReward.pullFeature?.endTs ?? 0) * 1000} delay={5_000}>
               {() => (
                 <Text type="h2" weight="bold" color="primary">
-                  {formatToken(daoCtx.daoReward.apr)} % ( +{formatToken(daoCtx.nodeReward.apr)} % )
+                  {/* {formatToken(daoCtx.daoReward.apr)} % ( +{formatToken(daoCtx.nodeReward.apr)} % ) */}
+                  {formatToken(15)} % ( +{formatToken(daoCtx.nodeReward.apr)} % )
                 </Text>
               )}
             </UseLeftTime>
