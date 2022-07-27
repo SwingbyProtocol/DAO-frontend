@@ -30,7 +30,9 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
   const { getAmountInUSD } = useTokens();
   const { projectToken } = useKnownTokens();
   const [overview, setOverview] = React.useState<APIOverviewData | undefined>();
-  const totalAPR = (daoCtx.daoReward.apr && daoCtx.nodeReward.apr) ? daoCtx.daoReward.apr + daoCtx.nodeReward.apr : 0;
+  const totalAPR = 30;
+  //const totalAPR = (daoCtx.daoReward.apr && daoCtx.nodeReward.apr) ? daoCtx.daoReward.apr + daoCtx.nodeReward.apr : 0;
+
   React.useEffect(() => {
     daoAPI.fetchOverviewData().then(setOverview);
   }, []);
