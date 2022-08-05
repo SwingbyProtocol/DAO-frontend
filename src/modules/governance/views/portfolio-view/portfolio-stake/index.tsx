@@ -389,7 +389,7 @@ const PortfolioDeposit: FC = () => {
         <FormItem
           name="p2pKey"
           label="Node P2Pkey"
-          labelProps={{ hint: 'What is p2p key (32bytes hexstring) is on your node' }}
+          labelProps={{ hint: 'Node p2p key (32bytes hexstring) is on your node' }}
           className="flex-grow">
           {({ field }) => (
             <Input
@@ -418,7 +418,7 @@ const PortfolioDeposit: FC = () => {
           )}
           <button type="submit" className="button-primary align-self-start" disabled={!canSubmit}>
             {isSubmitting && <Spinner className="mr-4" />}
-            Timelock
+            Stake
           </button>
         </div>
       </Form>
@@ -439,11 +439,11 @@ const PortfolioDeposit: FC = () => {
               </Text>
               <Text type="p2" weight="bold" color="primary">
                 The multiplier you get for locking tokens only applies to your voting power, it does not earn more
-                rewards.
+                rewards. (pre-staking)
               </Text>
             </div>
           }
-          submitText="Lock balance"
+          submitText="Confirm"
           onCancel={handleCancel}
           onConfirm={({ gasPrice }) => handleConfirm(gasPrice)}
         />
