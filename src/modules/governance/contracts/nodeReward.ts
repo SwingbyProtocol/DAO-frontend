@@ -19,51 +19,15 @@ class NodeRewardContract extends Web3Contract {
     });
   }
 
-  // common data
-  pullFeature?: {
-    source: string;
-    startTs: number;
-    endTs: number;
-    totalDuration: number;
-    totalAmount: BigNumber;
-  };
   // apr
   apr?: number;
   // user data
   toClaim?: BigNumber;
 
-  // computed data
-  get bondRewards(): BigNumber | undefined {
-    if (!this.pullFeature) {
-      return undefined;
-    }
-
-    const { startTs, endTs, totalDuration } = this.pullFeature;
-    const now = Date.now() / 1_000;
-
-    if (startTs > now) {
-      return BigNumber.ZERO;
-    }
-
-    if (endTs <= now) {
-      return BigNumber.ZERO;
-    }
-
-    return BigNumber.ZERO
-  }
-
   async loadCommonData(): Promise<void> {
-    const [pullFeature, apr] = await this.batch([
-      { method: 'pullFeature' },
+    const [apr] = await this.batch([
       { method: 'apr' }]);
 
-    this.pullFeature = {
-      source: pullFeature[0],
-      startTs: Number(pullFeature[1]),
-      endTs: Number(pullFeature[2]),
-      totalDuration: Number(pullFeature[3]),
-      totalAmount: new BigNumber(pullFeature[4]).unscaleBy(18)!, /// TODO: re-check
-    };
     this.apr = Number(apr);
     this.emit(Web3Contract.UPDATE_DATA);
   }

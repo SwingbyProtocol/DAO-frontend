@@ -92,7 +92,7 @@ export const MainnetConfig: NetworkConfig = {
       governance: '0x6f1e586C62F7d8A1B7394F1a81a75AA68E109365',
       barn: '0xb4200c8c44b05a342a9f7fd0d27647c4bf9533e7',
       reward: '0xac01adc15878fae7d9b580d6fb695aa735738856',
-      nodeRewards: '0xf30424a40027E3e424a519f4964402896d004877',
+      nodeRewards: '0xBF06C8B1C71634F07De19524fe5C00EBd2c4ba09',
       sbBTCPool: '0x2f927257dc6783f5ae0644Ee729242533699B2C1',
     },
     se: {
