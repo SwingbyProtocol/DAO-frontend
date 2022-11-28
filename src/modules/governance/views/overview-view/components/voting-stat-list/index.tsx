@@ -30,7 +30,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
   const { getAmountInUSD } = useTokens();
   const { projectToken } = useKnownTokens();
   const [overview, setOverview] = React.useState<APIOverviewData | undefined>();
-  const totalAPR = 30;
+  const totalAPR = 20;
   //const totalAPR = (daoCtx.daoReward.apr && daoCtx.nodeReward.apr) ? daoCtx.daoReward.apr + daoCtx.nodeReward.apr : 0;
 
   React.useEffect(() => {
@@ -92,7 +92,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
               {() => (
                 <Text type="h2" weight="bold" color="primary">
                   {/* {formatToken(daoCtx.daoReward.apr)} % ( +{formatToken(daoCtx.nodeReward.apr)} % ) */}
-                  {formatToken(15)} % ( +{formatToken(daoCtx.nodeReward.apr)} % )
+                  {formatToken(5)} % ( +{formatToken(daoCtx.nodeReward.apr)} % )
                 </Text>
               )}
             </UseLeftTime>
