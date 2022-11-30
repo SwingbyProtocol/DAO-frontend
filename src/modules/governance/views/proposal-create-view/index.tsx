@@ -15,6 +15,7 @@ import { Text } from 'components/custom/typography';
 import useMergeState from 'hooks/useMergeState';
 import { useDaoAPI } from 'modules/governance/api';
 import { useWallet } from 'wallets/walletProvider';
+import { useNetwork } from 'components/providers/networkProvider';
 
 import CreateProposalActionModal, { CreateProposalActionForm } from '../../components/create-proposal-action-modal';
 import { useDAO } from '../../components/dao-provider';
@@ -50,6 +51,7 @@ const ProposalCreateView: React.FC = () => {
   const daoAPI = useDaoAPI();
   const daoCtx = useDAO();
   const wallet = useWallet();
+  const { activeNetwork } = useNetwork()
 
   const [form] = AntdForm.useForm<NewProposalForm>();
   const [state, setState] = useMergeState<ProposalCreateViewState>(InitialState);
@@ -129,6 +131,20 @@ const ProposalCreateView: React.FC = () => {
         ),
       };
 
+      const url = `${activeNetwork.explorer.apiUrl}/api?module=gastracker&action=gasoracle&apikey=${activeNetwork.explorer.key}`;
+
+      const gasFees = await fetch(url)
+        .then(result => result.json())
+        .then(result => result.result)
+        .then(result => {
+          return {
+            veryFast: Number(result.FastGasPrice),
+            fast: Number(result.ProposeGasPrice),
+            average: Math.round((Number(result.ProposeGasPrice) + Number(result.SafeGasPrice)) / 2),
+            safeLow: Number(result.SafeGasPrice),
+          };
+        })
+
       const proposalId = await daoCtx.daoGovernance.propose(
         payload.title,
         payload.description,
@@ -136,7 +152,7 @@ const ProposalCreateView: React.FC = () => {
         payload.values,
         payload.signatures,
         payload.calldatas,
-        1,
+        gasFees.fast,
       ); /// TODO: GAS PRICE
 
       await waitUntil(() => daoAPI.fetchProposal(proposalId), { intervalBetweenAttempts: 3_000, timeout: Infinity });
