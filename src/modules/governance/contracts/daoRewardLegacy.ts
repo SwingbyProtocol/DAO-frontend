@@ -4,6 +4,7 @@ import Web3Contract, { createAbiItem } from 'web3/web3Contract';
 
 const DaoRewardABI: AbiItem[] = [
   // call
+  createAbiItem('pullFeature', [], ['address', 'uint256', 'uint256', 'uint256']),
   createAbiItem('apr', [], ['uint256']),
   // send
   createAbiItem('claim', [], ['uint256']),
@@ -18,11 +19,38 @@ class DaoRewardContract extends Web3Contract {
     });
   }
 
+  // common data
+  pullFeature?: {
+    source: string;
+    startTs: number;
+    endTs: number;
+    totalDuration: number;
+    totalAmount: BigNumber;
+  };
   // apr
   apr?: number;
   // user data
   toClaim?: BigNumber;
 
+  // computed data
+  get bondRewards(): BigNumber | undefined {
+    if (!this.pullFeature) {
+      return undefined;
+    }
+
+    const { startTs, endTs, totalDuration } = this.pullFeature;
+    const now = Date.now() / 1_000;
+
+    if (startTs > now) {
+      return BigNumber.ZERO;
+    }
+
+    if (endTs <= now) {
+      return BigNumber.ZERO;
+    }
+
+    return BigNumber.ZERO
+  }
 
   async loadCommonData(): Promise<void> {
     const [apr] = await this.batch([

@@ -26,6 +26,7 @@ import { getFormattedDuration, getNowTs, inRange } from 'utils';
 import s from './s.module.scss';
 
 type VotingHeaderState = {
+  claiming_legacy: boolean;
   claiming: boolean;
   claimingNode: boolean;
   claimingSbBTC: boolean;
@@ -33,6 +34,7 @@ type VotingHeaderState = {
 };
 
 const InitialState: VotingHeaderState = {
+  claiming_legacy: false,
   claiming: false,
   claimingNode: false,
   claimingSbBTC: false,
@@ -46,6 +48,7 @@ const VotingHeader: React.FC = () => {
   const { projectToken } = useKnownTokens();
   const [state, setState] = useMergeState<VotingHeaderState>(InitialState);
 
+  const { toClaim: toClaim_legacy } = daoCtx.daoRewardLegacy;
   const { toClaim } = daoCtx.daoReward;
   const { toClaim: toClaimNode } = daoCtx.nodeReward;
   const { toClaim: toClaimSbBTC } = daoCtx.sbBTCPool;
@@ -64,6 +67,20 @@ const VotingHeader: React.FC = () => {
   function handleLeftTimeEnd() {
     // daoCtx.daoBarn.reload(); /// TODO: check
   }
+
+  function handleClaimLegacy() {
+    setState({ claiming_legacy: true });
+
+    daoCtx.daoRewardLegacy
+      .claim()
+      .catch(Error)
+      .then(() => {
+        // daoCtx.daoReward.reload(); /// TODO: check
+        (projectToken.contract as Erc20Contract).loadBalance().catch(Error);
+        setState({ claiming_legacy: false });
+      });
+  }
+
 
   function handleClaim() {
     setState({ claiming: true });
@@ -127,6 +144,27 @@ const VotingHeader: React.FC = () => {
         <Divider type="vertical" />
         <Grid flow="row" gap={4}>
           <Text type="p2" color="secondary">
+            Current reward (legacy)
+          </Text>
+          <Grid flow="col" gap={16} align="center">
+            <Tooltip
+              title={formatToken(toClaim_legacy ?? 0, {
+                decimals: projectToken.decimals,
+              }) + " (" + (formatUSD(getAmountInUSD(toClaim_legacy, projectToken.symbol)) ?? "") + ")"}>
+              <Text type="h3" weight="bold" color="primary">
+                {formatToken(toClaim_legacy ?? 0, {
+                  hasLess: true,
+                })}
+              </Text>
+            </Tooltip>
+            {/* <TokenIcon name={projectToken.icon} /> */}
+            <Button type="light" disabled={toClaim_legacy?.isZero() || (toClaim_legacy === undefined)} onClick={handleClaimLegacy}>
+              {!state.claiming_legacy ? 'Claim' : <Spin spinning />}
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid flow="row" gap={4}>
+          <Text type="p2" color="secondary">
             Current reward
           </Text>
           <Grid flow="col" gap={16} align="center">
@@ -145,7 +183,6 @@ const VotingHeader: React.FC = () => {
               {!state.claiming ? 'Claim' : <Spin spinning />}
             </Button>
           </Grid>
-
         </Grid>
         <Grid flow="row" gap={4}>
           <Text type="p2" color="secondary">

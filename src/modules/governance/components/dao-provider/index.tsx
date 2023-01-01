@@ -9,6 +9,7 @@ import useMergeState from 'hooks/useMergeState';
 import { APIProposalStateId } from 'modules/governance/api';
 import DaoBarnContract from 'modules/governance/contracts/daoBarn';
 import DaoGovernanceContract from 'modules/governance/contracts/daoGovernance';
+import DaoRewardContractLegacy from 'modules/governance/contracts/daoRewardLegacy';
 import DaoRewardContract from 'modules/governance/contracts/daoReward';
 import NodeRewardContract from 'modules/governance/contracts/nodeReward';
 import SbBTCPoolContract from 'modules/governance/contracts/sbBTCPool';
@@ -35,6 +36,7 @@ const InitialState: DAOProviderState = {
 type DAOContextType = DAOProviderState & {
   daoBarn: DaoBarnContract;
   daoGovernance: DaoGovernanceContract;
+  daoRewardLegacy: DaoRewardContractLegacy;
   daoReward: DaoRewardContract;
   nodeReward: NodeRewardContract;
   sbBTCPool: SbBTCPoolContract;
@@ -63,6 +65,9 @@ const DAOProvider: React.FC = props => {
   const daoGovernance = useContract<DaoGovernanceContract>(config.contracts.dao?.governance!, () => {
     return new DaoGovernanceContract(config.contracts.dao?.governance!);
   });
+  const daoRewardLegacy = useContract<DaoRewardContractLegacy>(config.contracts.dao?.reward_legacy!, () => {
+    return new DaoRewardContractLegacy(config.contracts.dao?.reward_legacy!);
+  });
   const daoReward = useContract<DaoRewardContract>(config.contracts.dao?.reward!, () => {
     return new DaoRewardContract(config.contracts.dao?.reward!);
   });
@@ -78,6 +83,7 @@ const DAOProvider: React.FC = props => {
 
   React.useEffect(() => {
     daoGovernance.loadCommonData();
+    daoRewardLegacy.loadCommonData()
     daoReward.loadCommonData();
     daoBarn.loadCommonData();
     nodeReward.loadCommonData();
@@ -90,6 +96,7 @@ const DAOProvider: React.FC = props => {
 
     if (walletCtx.account) {
       daoGovernance.loadUserData();
+      daoRewardLegacy.loadUserData()
       daoReward.loadUserData();
       daoBarn.loadUserData();
       nodeReward.loadUserData();
@@ -167,6 +174,7 @@ const DAOProvider: React.FC = props => {
       value={{
         ...state,
         daoBarn,
+        daoRewardLegacy,
         daoReward,
         daoGovernance,
         nodeReward,

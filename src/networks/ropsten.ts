@@ -5,14 +5,14 @@ import { MetamaskAddEthereumChain } from 'wallets/connectors/metamask';
 import { DEFAULT_RPC_POOLING_INTERVAL, NetworkConfig, Web3Network } from 'networks/types';
 
 const RPC_KEY = 'f35c2a4f3d0941a38a3edb62ed10c847';
-const RPC_HTTPS_URL = `https://ropsten.infura.io/v3/${RPC_KEY}`;
+const RPC_HTTPS_URL = `https://goerli.infura.io/v3/${RPC_KEY}`;
 const RPC_WSS_URL = `wss://ropsten.infura.io/ws/v3/${RPC_KEY}`;
 
 const EXPLORER_KEY = '4RSJUUZQFMXUAUUJP5FI5UR5U59N7UIA32';
-const EXPLORER_URL = 'https://ropsten.etherscan.io';
+const EXPLORER_URL = 'https://goerli.etherscan.io';
 const EXPLORER_API_URL = 'https://api-ropsten.etherscan.io';
 
-export const ROPSTEN_CHAIN_ID = 3;
+export const ROPSTEN_CHAIN_ID = 5;
 
 export const RopstenConfig: NetworkConfig = {
   title: 'Swingby DAO',
@@ -43,7 +43,7 @@ export const RopstenConfig: NetworkConfig = {
   tokens: {
     wbtc: '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599',
     weth: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
-    swingby: '0x02ce048c863b76ed7397f18da654475e123503ac',
+    swingby: '0xFCd51B56e65605C33024A9E98a7aaDfF2e1A15b9',
     univ2: '0xe594D2B3BeA4454D841e5b616627dCA6A5D7aCF1',
     usdc: '0x4A69d0F05c8667B993eFC2b500014AE1bC8fD958',
     usdt: '0xdac17f958d2ee523a2206206994597c13d831ec7',
@@ -84,12 +84,13 @@ export const RopstenConfig: NetworkConfig = {
       staking: '0x618bB8f9e76f2982B8783e6AA09bC930c65f0AC8',
       stable: '0xf865D61e3791ef6C202c62b79f42de3f9e9AC8b3',
       unilp: '0x4e600bd65AE29d12ab22EE0384bD472F24d7aEa6',
-      swingby: '0x82B568C2E5159ba20358aF425E92ac96345c9C9a',
+      swingby: '0xFCd51B56e65605C33024A9E98a7aaDfF2e1A15b9',
     },
     dao: {
       governance: '0xb7EAB16427009dae4e063cb723c6a1450C874996',
-      barn: '0x9170f8d749dCF64467793325512a5e34B2B189Eb',
-      reward: '0xbCED010B27DC675c46F2526D21e4f1b01EAc669F',
+      barn: '0x009cc14ce70b2E667984C2276490d56ae3234c43',
+      reward_legacy: '0x313c379eC483678f0ae9F612e56eA983636dd627',
+      reward: "",
       nodeRewards: '0xEB6e2c63d5feb3B718CCaEbf9A14482127a63E84',
       sbBTCPool: '0x2f927257dc6783f5ae0644Ee729242533699B2C1',
     },
@@ -111,7 +112,7 @@ export const RopstenMetamaskChain: MetamaskAddEthereumChain = {
     symbol: 'ETH',
     decimals: 18,
   },
-  rpcUrls: ['https://ropsten.infura.io'],
+  rpcUrls: ['https://goerli.infura.io'],
   blockExplorerUrls: [EXPLORER_URL],
 };
 
