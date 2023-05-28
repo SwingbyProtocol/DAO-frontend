@@ -170,7 +170,9 @@ const NetworkAction: React.FC = () => {
     <button type="button" onClick={() => showNetworkSelect()} className={s.actionButton}>
       <IconOld name={activeNetwork.meta.logo} width={24} height={24} className="mr-8" />
       <Text type="p2" weight="semibold" color="secondary">
-        {activeNetwork.meta.name}
+        {!isMobile && (
+          <>{activeNetwork.meta.name}</>
+        )}
       </Text>
     </button>
   );

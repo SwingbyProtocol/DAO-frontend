@@ -4,15 +4,15 @@ import { MetamaskAddEthereumChain } from 'wallets/connectors/metamask';
 
 import { DEFAULT_RPC_POOLING_INTERVAL, NetworkConfig, Web3Network } from 'networks/types';
 
-const RPC_KEY = 'f35c2a4f3d0941a38a3edb62ed10c847';
+const RPC_KEY = '13e762f7c1d0498c8f57c6f149261a8b';
 const RPC_HTTPS_URL = `https://goerli.infura.io/v3/${RPC_KEY}`;
-const RPC_WSS_URL = `wss://ropsten.infura.io/ws/v3/${RPC_KEY}`;
+const RPC_WSS_URL = `wss://goerli.infura.io/ws/v3/${RPC_KEY}`;
 
 const EXPLORER_KEY = '4RSJUUZQFMXUAUUJP5FI5UR5U59N7UIA32';
 const EXPLORER_URL = 'https://goerli.etherscan.io';
-const EXPLORER_API_URL = 'https://api-ropsten.etherscan.io';
+const EXPLORER_API_URL = 'https://api-goerli.etherscan.io';
 
-export const ROPSTEN_CHAIN_ID = 5;
+export const GOERLI_CHAIN_ID = 5;
 
 export const RopstenConfig: NetworkConfig = {
   title: 'Swingby DAO',
@@ -90,7 +90,7 @@ export const RopstenConfig: NetworkConfig = {
       governance: '0xb7EAB16427009dae4e063cb723c6a1450C874996',
       barn: '0x009cc14ce70b2E667984C2276490d56ae3234c43',
       reward_legacy: '0x313c379eC483678f0ae9F612e56eA983636dd627',
-      reward: "",
+      reward: "0x313c379eC483678f0ae9F612e56eA983636dd627",
       nodeRewards: '0xEB6e2c63d5feb3B718CCaEbf9A14482127a63E84',
       sbBTCPool: '0x2f927257dc6783f5ae0644Ee729242533699B2C1',
     },
@@ -105,8 +105,8 @@ export const RopstenConfig: NetworkConfig = {
 };
 
 export const RopstenMetamaskChain: MetamaskAddEthereumChain = {
-  chainId: toHex(ROPSTEN_CHAIN_ID),
-  chainName: 'Ropsten Testnet',
+  chainId: toHex(GOERLI_CHAIN_ID),
+  chainName: 'Goerli Testnet',
   nativeCurrency: {
     name: 'Ethereum',
     symbol: 'ETH',
@@ -117,11 +117,11 @@ export const RopstenMetamaskChain: MetamaskAddEthereumChain = {
 };
 
 export const RopstenNetwork: Web3Network = {
-  id: 'ropsten',
+  id: 'Goerli',
   type: 'Ethereum',
   meta: {
-    chainId: ROPSTEN_CHAIN_ID,
-    name: 'Ropsten',
+    chainId: GOERLI_CHAIN_ID,
+    name: 'Goerli',
     logo: 'testnet-logo',
   },
   rpc: {

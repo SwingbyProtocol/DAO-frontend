@@ -8,6 +8,9 @@ const DaoRewardABI: AbiItem[] = [
   createAbiItem('apr', [], ['uint256']),
   // send
   createAbiItem('claim', [], ['uint256']),
+
+  createAbiItem('userMultiplier', ['address'], ['uint256'])
+
 ];
 
 class DaoRewardContract extends Web3Contract {
@@ -31,6 +34,7 @@ class DaoRewardContract extends Web3Contract {
   apr?: number;
   // user data
   toClaim?: BigNumber;
+  multiP?: BigNumber;
 
   // computed data
   get bondRewards(): BigNumber | undefined {
@@ -71,9 +75,17 @@ class DaoRewardContract extends Web3Contract {
     const account = this.account;
     this.assertAccount();
 
-    const [toClaim] = await this.batch([{ method: 'claim', callArgs: { from: account } }]);
+    const [toClaim, multiP] = await this.batch([
+      { method: 'claim', callArgs: { from: account } },
+      { method: 'userMultiplier', methodArgs: [account], callArgs: { from: account } }
+    ]);
 
     this.toClaim = BigNumber.from(toClaim)?.unscaleBy(18); /// TODO: re-check
+    this.multiP = BigNumber.from(multiP)
+
+    if (this.multiP?.isZero() === true) {
+      this.toClaim = new BigNumber(0)
+    }
     this.emit(Web3Contract.UPDATE_DATA);
   }
 
