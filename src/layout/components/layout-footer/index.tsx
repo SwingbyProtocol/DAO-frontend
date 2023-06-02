@@ -36,7 +36,7 @@ const LayoutFooter: React.FC = () => {
             <ul>
               <li>
                 <ExternalLink variation="text-alt" href={links.website}>
-                  Website
+                  swingby.network
                 </ExternalLink>
               </li>
               <li>
@@ -53,18 +53,18 @@ const LayoutFooter: React.FC = () => {
                   skybridge.info
                 </ExternalLink>
               </li>
-              <li>
+              {/* <li>
                 <ExternalLink variation="text-alt" href="https://bridge.swingby.network/">
                   ERC20 - BEP20 Token bridge
                 </ExternalLink>
-              </li>
+              </li> */}
             </ul>
           </section>
         </div>
       </div>
       <div className={s.footerBottom}>
         <Text type="small" weight="semibold" className={s.copyright}>
-          Swingby DAO © 2022
+          Swingby DAO © 2022-2023
         </Text>
         {/* <div className={s.footerBottomLinks}>
           <ExternalLink variation="text-alt" href={links.uniswapSwap}>

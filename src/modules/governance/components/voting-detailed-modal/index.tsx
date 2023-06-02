@@ -89,10 +89,10 @@ const VotingDetailedModal: React.FC<VotingDetailedModalProps> = props => {
         <div className={s.row}>
           <dt className={s.term}>
             <Icon name="rate-outlined" width={20} height={20} className={s.termIcon} />
-            Locked balance bonus
+            Locked bonus
           </dt>
           <dd className={s.data}>
-            {state.leftBonus?.gt(BigNumber.ZERO) ? '> ' : ''}
+            {/* {state.leftBonus?.gt(BigNumber.ZERO) ? '> ' : ''} */}
             {formatToken(state.leftBonus)}
             <Icon name="circle-plus-outlined" width={18} height={18} color="green" className={s.dataIcon} />
           </dd>
@@ -111,7 +111,7 @@ const VotingDetailedModal: React.FC<VotingDetailedModalProps> = props => {
         <div className={s.row}>
           <dt className={s.term}>
             <Icon name="stamp-outlined" width={20} height={20} className={s.termIcon} />
-            My total voting power
+            Vote power
           </dt>
           <Text type="h3" weight="bold" tag="dd" className={s.data}>
             {formatToken(state.leftTotalVotingPower)}

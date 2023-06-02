@@ -116,10 +116,10 @@ const PortfolioWithdraw: FC = () => {
   return (
     <>
       <Form form={form} className="flex flow-row row-gap-32 p-24" disabled={isSubmitting}>
-        <div className="container-box flex flow-col col-gap-44">
-          <div className="flex flow-row row-gap-4">
+        <div className="container-box wrap flex flow-col col-gap-64">
+          <div className="flex flow-row row-gap-8">
             <Text type="small" weight="semibold" color="secondary">
-              Portfolio balance
+              Staked balance
             </Text>
             <div className="flex flow-col col-gap-8 align-center">
               <Text type="p1" weight="bold" color="primary">
@@ -128,7 +128,7 @@ const PortfolioWithdraw: FC = () => {
               <TokenIcon name={projectToken.icon as TokenIconNames} />
             </div>
           </div>
-          <div className="flex flow-row row-gap-4">
+          <div className="flex flow-row row-gap-8">
             <Text type="small" weight="semibold" color="secondary">
               Wallet balance
             </Text>
@@ -139,7 +139,7 @@ const PortfolioWithdraw: FC = () => {
               <TokenIcon name={projectToken.icon as TokenIconNames} />
             </div>
           </div>
-          <div className="flex flow-row row-gap-4">
+          <div className="flex flow-row row-gap-8">
             <Text type="small" weight="semibold" color="secondary">
               Lock duration
             </Text>

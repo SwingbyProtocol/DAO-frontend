@@ -91,7 +91,7 @@ const GovernanceViewInternal: React.FC = () => {
           tab={
             <ExternalLink href="https://snapshot.org/#/swingbydao.eth" style={{ color: 'inherit' }}>
               <Grid flow="col" gap={8} align="center">
-                <Icon name="chats-outlined" style={{ paddingTop: "3px" }} /><p style={{ textDecoration: "underline" }}>Signal Vote</p>
+                <Icon name="chats-outlined" style={{ paddingTop: "3px" }} /><p style={{ textDecoration: "underline" }}>Snapshot.org</p>
               </Grid>
             </ExternalLink>
           }

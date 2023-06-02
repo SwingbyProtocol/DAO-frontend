@@ -125,12 +125,12 @@ const VotingHeader: React.FC = () => {
   return (
     <div className={cn(s.component, 'pv-24 ph-64 sm-ph-32')}>
       <Text type="lb2" weight="semibold" color="blue" className="mb-16">
-        My Account status
+        My Account
       </Text>
-      <Grid flow="col" gap={24} className={s.items}>
+      <Grid flow="col" gap={16} className={s.items}>
         <Grid flow="row" gap={4}>
           <Text type="p2" color="secondary">
-            Current staked
+            Staked
           </Text>
           <Grid flow="col" gap={16} align="center">
             <Skeleton loading={myStakedBalance === undefined}>
@@ -138,17 +138,18 @@ const VotingHeader: React.FC = () => {
                 {formatToken(myStakedBalance)}
               </Text>
             </Skeleton>
-            <TokenIcon name={projectToken.icon} />
+            {/* <TokenIcon name={projectToken.icon} /> */}
           </Grid>
         </Grid>
         <Divider type="vertical" />
         <Grid flow="row" gap={4}>
           <Text type="p2" color="secondary">
-            Current reward (legacy)
+            Reward (legacy)
           </Text>
-          <Grid flow="col" gap={16} align="center">
+          <Grid flow="col" gap={4} align="center">
             <Tooltip
               title={formatToken(toClaim_legacy ?? 0, {
+                compact: true,
                 decimals: projectToken.decimals,
               }) + " (" + (formatUSD(getAmountInUSD(toClaim_legacy, projectToken.symbol)) ?? "") + ")"}>
               <Text type="h3" weight="bold" color="primary">
@@ -165,11 +166,12 @@ const VotingHeader: React.FC = () => {
         </Grid>
         <Grid flow="row" gap={4}>
           <Text type="p2" color="secondary">
-            Current reward
+            Reward
           </Text>
-          <Grid flow="col" gap={16} align="center">
+          <Grid flow="col" gap={4} align="center">
             <Tooltip
               title={formatToken(toClaim ?? 0, {
+                compact: true,
                 decimals: projectToken.decimals,
               }) + " (" + (formatUSD(getAmountInUSD(toClaim, projectToken.symbol)) ?? "") + ")"}>
               <Text type="h3" weight="bold" color="primary">
@@ -178,7 +180,6 @@ const VotingHeader: React.FC = () => {
                 })}
               </Text>
             </Tooltip>
-            {/* <TokenIcon name={projectToken.icon} /> */}
             <Button type="light" disabled={toClaim?.isZero() || (toClaim === undefined)} onClick={handleClaim}>
               {!state.claiming ? 'Claim' : <Spin spinning />}
             </Button>
@@ -188,9 +189,10 @@ const VotingHeader: React.FC = () => {
           <Text type="p2" color="secondary">
             Node bonus
           </Text>
-          <Grid flow="col" gap={16} align="center">
+          <Grid flow="col" gap={4} align="center" >
             <Tooltip
               title={formatToken(toClaimNode ?? 0, {
+                compact: true,
                 decimals: projectToken.decimals,
               }) + " (" + (formatUSD(getAmountInUSD(toClaimNode, projectToken.symbol)) ?? "") + ")"}>
               <Text type="h3" weight="bold" color="primary">
@@ -199,20 +201,20 @@ const VotingHeader: React.FC = () => {
                 })}
               </Text>
             </Tooltip>
-            {/* <TokenIcon name={projectToken.icon} /> */}
             <Button type="light" disabled={toClaim?.isZero() || (toClaimNode === undefined)} onClick={handleClaimNode}>
               {!state.claimingNode ? 'Claim' : <Spin spinning />}
             </Button>
           </Grid>
+
         </Grid>
         <Divider type="vertical" />
         <Grid flow="row" gap={4}>
           <Text type="p2" color="secondary">
             sbBTC Reward
           </Text>
-          <Grid flow="col" gap={16} align="center">
+          <Grid flow="col" gap={4} align="center">
             <Tooltip
-              title={toClaimSbBTC?.toNumber()}>
+              title={toClaimSbBTC?.toNumber() + " (" + (formatUSD(getAmountInUSD(toClaimSbBTC, "WBTC")) ?? "") + ")"}>
               <Text type="h3" weight="bold" color="primary">
                 {toClaimSbBTC ? toClaimSbBTC.toNumber() : 0}
               </Text>
@@ -228,7 +230,7 @@ const VotingHeader: React.FC = () => {
           <Text type="p2" color="secondary">
             Total voting power
           </Text>
-          <Grid flow="col" gap={16} align="center">
+          <Grid flow="col" gap={4} align="center">
             <Skeleton loading={votingPower === undefined}>
               <Text type="h3" weight="bold" color="primary">
                 {formatToken(votingPower)}
@@ -296,7 +298,7 @@ const VotingHeader: React.FC = () => {
           }}
         </UseLeftTime>
       </Grid>
-    </div>
+    </div >
   );
 };
 

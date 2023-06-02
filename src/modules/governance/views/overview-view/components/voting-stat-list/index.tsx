@@ -8,6 +8,7 @@ import { ExternalLink } from 'components/button';
 import Grid from 'components/custom/grid';
 import { Hint, Text } from 'components/custom/typography';
 import { Icon } from 'components/icon';
+import { TokenIcon } from 'components/token-icon';
 import { useKnownTokens } from 'components/providers/knownTokensProvider';
 import { UseLeftTime } from 'hooks/useLeftTime';
 import { APIOverviewData, useDaoAPI } from 'modules/governance/api';
@@ -56,9 +57,12 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
               <Text type="h2" weight="bold" color="primary">
                 {formatToken(daoCtx.daoBarn.bondStaked)}
               </Text>
-              <Text type="p1" color="secondary">
-                {projectToken.symbol}
-              </Text>
+              <ExternalLink variation="text-alt" href="https://coinmarketcap.com/currencies/swingby/">
+                <Text type="p1" color="secondary">
+                  {"$" + projectToken.symbol + " "}
+                  <TokenIcon size="18px" name={projectToken.icon} />
+                </Text>
+              </ExternalLink>
               {/* <Tooltip
                 title={
                   <>
@@ -78,9 +82,9 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
             <Text type="p1" color="secondary">
               {formatUSD(getAmountInUSD(daoCtx.bondStaked, projectToken.symbol))}
             </Text>
-          </Grid>
-        </Grid>
-      </div>
+          </Grid >
+        </Grid >
+      </div >
 
       <div className="card p-24">
         <Grid flow="row" gap={48}>
@@ -91,7 +95,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
             <UseLeftTime end={(daoCtx.daoRewardLegacy.pullFeature?.endTs ?? 0) * 1000} delay={5_000}>
               {() => (
                 <Text type="h2" weight="bold" color="primary">
-                  {formatToken(daoCtx.daoReward.apr)} % ( +{formatToken(daoCtx.nodeReward.apr)} % )
+                  {formatToken(daoCtx.daoReward.apr)}% ( +{formatToken(daoCtx.nodeReward.apr)}% )
                   {/* {formatToken(5)} % ( +{formatToken(daoCtx.nodeReward.apr)} % ) */}
                 </Text>
               )}
@@ -232,7 +236,7 @@ const VotingStatList: React.FC<VotingStatListProps> = props => {
           </Grid>
         </Grid>
       </div>
-    </div>
+    </div >
   );
 };
 
