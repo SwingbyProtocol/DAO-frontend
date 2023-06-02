@@ -17,7 +17,7 @@ const EXPLORER_API_URL = 'https://api.etherscan.io';
 export const MAINNET_CHAIN_ID = 1;
 
 export const MainnetConfig: NetworkConfig = {
-  title: isDevelopmentMode ? 'Swingby DAO' : 'Swingby DAO',
+  title: "Swingby DAO | The governance portal of Swingby Network",
   features: {
     yieldFarming: false,
     dao: true,
