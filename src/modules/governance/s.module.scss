@@ -3,11 +3,12 @@
     border-left: 0;
     border-right: 0;
     height: 74px;
-    padding: 0 64px;
+    padding: 0px 0px 0px 64px;
 
     @media (max-width: 480px) {
       padding-left: 8px;
       padding-right: 8px;
+      padding: 0px 0px 0px 24px;
     }
   }
 }

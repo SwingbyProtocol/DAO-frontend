@@ -117,6 +117,7 @@ const VotersTable: React.FC<VotersTableProps> = props => {
         dataSource={voters}
         rowKey="address"
         loading={loading}
+        bordered={false}
         pagination={{
           total: totalVoters,
           pageSize,

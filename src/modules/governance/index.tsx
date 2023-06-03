@@ -127,7 +127,6 @@ const GovernanceViewInternal: React.FC = () => {
           }
         />
       </Tabs>
-
       <div className="content-container-fix content-container">
         <Switch>
           <Route path="/governance/overview" exact component={OverviewView} />
