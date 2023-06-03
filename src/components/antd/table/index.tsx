@@ -3,6 +3,7 @@ import AntdTable, { TableProps as AntdTableProps } from 'antd/lib/table';
 import cn from 'classnames';
 
 import s from './s.module.scss';
+import { filter } from 'lodash';
 
 const Table = <T extends Record<string, any>>(
   props: React.PropsWithChildren<AntdTableProps<T>>,
@@ -17,9 +18,9 @@ const Table = <T extends Record<string, any>>(
       pagination={
         pagination
           ? {
-              showSizeChanger: false,
-              ...pagination,
-            }
+            showSizeChanger: false,
+            ...pagination,
+          }
           : false
       }
       {...tableProps}

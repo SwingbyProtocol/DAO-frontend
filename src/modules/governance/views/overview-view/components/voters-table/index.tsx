@@ -109,7 +109,7 @@ const VotersTable: React.FC<VotersTableProps> = props => {
     <div className={cn('card', className)}>
       <div className="card-header">
         <Text type="p1" weight="semibold" color="primary">
-          Voter weights
+          Stakers
         </Text>
       </div>
       <Table<APIVoterEntity>
@@ -120,15 +120,17 @@ const VotersTable: React.FC<VotersTableProps> = props => {
         pagination={{
           total: totalVoters,
           pageSize,
+          showTitle: false,
+          responsive: true,
           current: page,
-          position: ['bottomRight'],
+          position: ['topLeft', 'bottomLeft'],
           showTotal: (total: number, [from, to]: [number, number]) => (
             <>
-              <Text type="p2" weight="semibold" color="secondary" className="hidden-mobile">
+              {/* <Text type="p2" weight="semibold" color="secondary" className="hidden-mobsile">
                 Showing {from} to {to} out of {total} stakers
-              </Text>
-              <Text type="p2" weight="semibold" color="secondary" className="hidden-tablet hidden-desktop">
-                {from}..{to} of {total}
+              </Text> */}
+              <Text type="p2" weight="semibold" color="secondary" className="">
+                Rank {from}..{to} of {total}
               </Text>
             </>
           ),
