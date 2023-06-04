@@ -81,7 +81,7 @@ const PortfolioLock: FC = () => {
 
   const { balance: stakedBalance, userLockedUntil } = daoCtx.daoBarn;
   const isLocked = (userLockedUntil ?? 0) * 1_000 > Date.now();
-  const minLockDate = (isLocked && userLockedUntil) ? new Date(userLockedUntil * 1_000 + 60_000) : addMonths(Date.now(), 1);
+  const minLockDate = (isLocked && userLockedUntil) ? new Date(userLockedUntil * 1_000 + 60_000) : addMinutes(Date.now(), 1);
 
   const form = useForm<FormType>({
     validationScheme: {

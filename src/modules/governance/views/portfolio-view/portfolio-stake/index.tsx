@@ -98,7 +98,7 @@ const PortfolioDeposit: FC = () => {
   const bondBalance = projectTokenContract.balance?.unscaleBy(projectToken.decimals);
   const barnAllowance = projectTokenContract.getAllowanceOf(config.contracts.dao?.barn!);
   const isLocked = (userLockedUntil ?? 0) * 1_000 > Date.now();
-  const minLockDate = (isLocked && userLockedUntil) ? new Date(userLockedUntil * 1_000 + 60_000) : addMonths(Date.now(), 1);
+  const minLockDate = (isLocked && userLockedUntil) ? new Date(userLockedUntil * 1_000 + 60_000) : addMinutes(Date.now(), 1);
   const isFullDeposit = (stakedBalance && stakedBalance.isLessThan(175000))
   const minDeposit = (stakedBalance && isFullDeposit) ? 175000 - stakedBalance.toNumber() : 0.01
   const form = useForm<FormType>({
