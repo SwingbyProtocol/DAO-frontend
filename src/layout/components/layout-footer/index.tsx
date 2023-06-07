@@ -36,7 +36,7 @@ const LayoutFooter: React.FC = () => {
             <ul>
               <li>
                 <ExternalLink variation="text-alt" href={links.website}>
-                  swingby.network
+                  Home
                 </ExternalLink>
               </li>
               <li>
@@ -50,7 +50,12 @@ const LayoutFooter: React.FC = () => {
             <ul>
               <li>
                 <ExternalLink variation="text-alt" href="https://skybridge.info">
-                  skybridge.info
+                  Explorer
+                </ExternalLink>
+              </li>
+              <li>
+                <ExternalLink variation="text-alt" href="https://skybridge-docs.swingby.network">
+                  Documentation
                 </ExternalLink>
               </li>
               {/* <li>
