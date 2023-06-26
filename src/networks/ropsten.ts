@@ -105,7 +105,7 @@ export const RopstenConfig: NetworkConfig = {
 };
 
 export const RopstenMetamaskChain: MetamaskAddEthereumChain = {
-  chainId: toHex(GOERLI_CHAIN_ID),
+  chainId: GOERLI_CHAIN_ID,
   chainName: 'Goerli Testnet',
   nativeCurrency: {
     name: 'Ethereum',

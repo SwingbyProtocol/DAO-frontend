@@ -1,4 +1,6 @@
 import { FC, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+// import { PolygonNetwork } from 'networks/polygon';
+import { MetaMask } from '@web3-react/metamask';
 import Web3 from 'web3';
 import { HttpProvider } from 'web3-core';
 import { AbiItem } from 'web3-utils';
@@ -14,8 +16,6 @@ import { useNetwork } from 'components/providers/networkProvider';
 // import { BinanceNetwork } from 'networks/binance';
 import { MainnetNetwork } from 'networks/mainnet';
 import { RopstenNetwork } from 'networks/ropsten';
-// import { PolygonNetwork } from 'networks/polygon';
-import { MetamaskConnector } from 'wallets/connectors/metamask';
 import { useWallet } from 'wallets/walletProvider';
 
 import { InvariantContext } from 'utils/context';
@@ -115,15 +115,13 @@ const Web3Provider: FC = props => {
   );
 
   useEffect(() => {
-    if (wallet.connector instanceof MetamaskConnector) {
-      wallet.connector.getProvider().then(provider => {
-        provider.on('chainChanged', (chainId: number) => {
-          const network = findNetworkByChainId(Number(chainId)) ?? defaultNetwork;
-          changeNetwork(network.id);
-        });
-      });
+    if (wallet.chainId && wallet.connector instanceof MetaMask) {
+      const network = findNetworkByChainId(Number(wallet.chainId)) ?? defaultNetwork;
+      if (activeNetwork.id !== network.id) {
+        changeNetwork(network.id);
+      }
     }
-  }, [wallet.connector]);
+  }, [wallet.chainId]);
 
   const switchNetwork = useCallback(
     async (networkId: string) => {
@@ -135,22 +133,11 @@ const Web3Provider: FC = props => {
 
       let canSetNetwork = true;
 
-      if (wallet.connector instanceof MetamaskConnector && network.metamaskChain) {
+      if (wallet.connector instanceof MetaMask && network.metamaskChain) {
         try {
-          const error = await wallet.connector.switchChain({
-            chainId: network.metamaskChain.chainId,
-          });
-
-          if (error) {
-            canSetNetwork = false;
-          }
+          await wallet.connector.activate(network.metamaskChain.chainId);
         } catch (e) {
           canSetNetwork = false;
-
-          // @ts-ignore
-          if (e.code === 4902) {
-            await wallet.connector.addChain(network.metamaskChain);
-          }
         }
       }
 
