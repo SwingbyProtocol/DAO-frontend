@@ -13,6 +13,7 @@ import Identicon from 'components/custom/identicon';
 import { Text } from 'components/custom/typography';
 import { Icon } from 'components/icon';
 import { useGeneral } from 'components/providers/generalProvider';
+import { useKnownTokens } from 'components/providers/knownTokensProvider';
 import { useNetwork } from 'components/providers/networkProvider';
 import { useNotifications } from 'components/providers/notificationsProvider';
 import { useTokens } from 'components/providers/tokensProvider';
@@ -22,11 +23,13 @@ import { useFetchQueuePositions } from 'modules/smart-alpha/api';
 import Notifications from 'wallets/components/notifications';
 // import GnosisSafeConfig from 'wallets/connectors/gnosis-safe';
 import { getMeta, useWallet } from 'wallets/walletProvider';
+import { MetaMask } from '@web3-react/metamask';
 
 import s from './s.module.scss';
 
 const LayoutHeader: React.FC = () => {
   const { navOpen, setNavOpen } = useGeneral();
+  const { activeNetwork } = useNetwork();
   let title = !isMobile ? 'Governance' : '';
   return (
     <header className={s.component}>
@@ -46,7 +49,7 @@ const LayoutHeader: React.FC = () => {
       </Text>
       {!isMobile ? (
         <div className="flex align-center col-gap-16 ml-auto">
-          {/* {activeNetwork.config.features.addBondToken && <AddTokenAction />} */}
+          {activeNetwork.config.features.addBondToken && <AddTokenAction />}
           <NetworkAction />
           <NotificationsAction />
           <WalletAction />
@@ -129,34 +132,31 @@ const PositionsAction: React.FC = () => {
   );
 };
 
-// const AddTokenAction: React.FC = () => {
-//   const wallet = useWallet();
-//   const { projectToken } = useKnownTokens();
+const AddTokenAction: React.FC = () => {
+  const wallet = useWallet();
+  const { projectToken } = useKnownTokens();
 
-//   async function handleAddProjectToken() {
-//     if (wallet.connector instanceof MetaMask) {
-//       try {
-//         await wallet.connector.addToken({
-//           type: 'ERC20',
-//           options: {
-//             address: projectToken.address,
-//             symbol: projectToken.symbol,
-//             decimals: projectToken.decimals,
-//             image: `${window.location.origin}/android-chrome-192x192.png`,
-//           },
-//         });
-//       } catch (e) {
-//         console.error(e);
-//       }
-//     }
-//   }
+  async function handleAddProjectToken() {
+    if (wallet.connector instanceof MetaMask) {
+      try {
+        await wallet.connector.watchAsset({
+          address: projectToken.address,
+          symbol: projectToken.symbol,
+          decimals: projectToken.decimals,
+          image: `${window.location.origin}/android-chrome-192x192.png`,
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }
 
-//   return wallet.meta === MetamaskWalletConfig ? (
-//     <button type="button" onClick={handleAddProjectToken} className={s.actionButton}>
-//       <IconOld name="bond-add-token" />
-//     </button>
-//   ) : null;
-// };
+  return wallet.meta instanceof MetaMask ? (
+    <button type="button" onClick={handleAddProjectToken} className={s.actionButton}>
+      <IconOld name="bond-add-token" />
+    </button>
+  ) : null;
+};
 
 const NetworkAction: React.FC = () => {
   const { activeNetwork } = useNetwork();
