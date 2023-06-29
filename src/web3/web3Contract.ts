@@ -322,7 +322,9 @@ class Web3Contract {
         return result;
       })
       .catch((error: Error) => {
-        (this._sendContract.currentProvider as any)?.emit('send::error', error);
+        (this._sendContract.currentProvider as any).isWalletConnect
+          ? (this._sendContract.currentProvider as any)?.events.emit('send::error', error)
+          : (this._sendContract.currentProvider as any)?.emit('send::error', error);
 
         this.emit('tx:fail', error, {
           ...meta,

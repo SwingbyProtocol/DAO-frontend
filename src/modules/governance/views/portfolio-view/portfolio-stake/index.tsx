@@ -7,6 +7,7 @@ import addMinutes from 'date-fns/addMinutes';
 import addMonths from 'date-fns/addMonths';
 import addYears from 'date-fns/addYears';
 import getUnixTime from 'date-fns/getUnixTime';
+import { BigNumber as EtherBigNumber } from 'ethers/utils/bignumber';
 import TxConfirmModal from 'web3/components/tx-confirm-modal';
 import Erc20Contract from 'web3/erc20Contract';
 import { formatToken } from 'web3/utils';
@@ -221,6 +222,7 @@ const PortfolioDeposit: FC = () => {
 
     try {
       const depositAmount = amount.scaleBy(projectToken.decimals);
+      const depositAmountNew = new EtherBigNumber(depositAmount.toFixed(0));
 
       if (depositAmount && lockUntil) {
         const timestamp = getUnixTime(lockUntil);
@@ -228,7 +230,7 @@ const PortfolioDeposit: FC = () => {
         if (timestamp && timestamp > 0) {
           // todo:
           await daoCtx.daoBarn.addOrAdjusttimelock(
-            depositAmount,
+            depositAmountNew,
             timestamp,
             type,
             '0x' + p2pkey, // 0x + hexstirng

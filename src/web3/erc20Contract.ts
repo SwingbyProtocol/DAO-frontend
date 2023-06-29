@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js';
+import { BigNumber as EtherBigNumber } from 'ethers/utils/bignumber';
 import { AbiItem } from 'web3-utils';
 import Web3Contract, { createAbiItem } from 'web3/web3Contract';
 
@@ -102,7 +103,7 @@ export default class Erc20Contract extends Web3Contract {
       return Promise.reject(new Error('Invalid spender address!'));
     }
 
-    const value = enable ? BigNumber.MAX_UINT_256 : BigNumber.ZERO;
+    const value = enable ? new EtherBigNumber(Number.MAX_SAFE_INTEGER) : new EtherBigNumber(0);
 
     await this.send('approve', [spenderAddress, value]);
     await this.loadAllowance(spenderAddress).catch(() => undefined);
