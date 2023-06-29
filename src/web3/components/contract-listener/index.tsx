@@ -52,7 +52,8 @@ const ContractListener: FC<Props> = props => {
     }
 
     function onFail(error: any, meta: Web3SendMeta) {
-      if (error.code === 4001) {
+      // 4001 for Metamask, -32000 for WalletConnect
+      if ([4001, -32000].includes(error.code)) {
         setUserRejected(true);
       } else {
         setTxStatus(prevState =>

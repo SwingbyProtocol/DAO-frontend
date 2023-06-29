@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import BigNumber from 'bignumber.js';
+import { BigNumber as EtherBigNumber } from 'ethers/utils/bignumber';
 import TxConfirmModal from 'web3/components/tx-confirm-modal';
 import Erc20Contract from 'web3/erc20Contract';
 import { formatToken } from 'web3/utils';
@@ -80,9 +81,10 @@ const PortfolioWithdraw: FC = () => {
 
     try {
       const withdrawAmount = amount.scaleBy(projectToken.decimals);
+      const withdrawAmountNew = new EtherBigNumber(withdrawAmount.toFixed(0));
 
       if (withdrawAmount) {
-        await daoCtx.daoBarn.withdraw(withdrawAmount, gasPrice);
+        await daoCtx.daoBarn.withdraw(withdrawAmountNew, gasPrice);
         await loadData();
       }
     } catch (e) {

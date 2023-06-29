@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BigNumber from 'bignumber.js';
+import { BigNumber as EtherBigNumber } from 'ethers/utils/bignumber';
 import TxConfirmModal from 'web3/components/tx-confirm-modal';
 import Erc20Contract from 'web3/erc20Contract';
 import { formatToken } from 'web3/utils';
@@ -107,10 +108,11 @@ const PortfolioDeposit: FC = () => {
     setSubmitting(true);
 
     try {
-      const depositAmount = amount.scaleBy(projectToken.decimals);
+      const depositAmount = amount.scaleBy(projectToken.decimals)!;
+      const depositAmountNew = new EtherBigNumber(depositAmount.toFixed(0));
 
       if (depositAmount) {
-        await daoCtx.daoBarn.deposit(depositAmount, gasPrice);
+        await daoCtx.daoBarn.deposit(depositAmountNew, gasPrice);
         await loadData();
       }
     } catch (e) {

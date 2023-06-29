@@ -1,31 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.0f3378cb.chunk.css",
-    "main.js": "/static/js/main.2a2533d9.chunk.js",
-    "runtime-main.js": "/static/js/runtime-main.0fbb9a73.js",
-    "static/js/2.5de2e1c7.chunk.js": "/static/js/2.5de2e1c7.chunk.js",
-    "static/js/3.3d4968e2.chunk.js": "/static/js/3.3d4968e2.chunk.js",
-    "static/js/4.033644fe.chunk.js": "/static/js/4.033644fe.chunk.js",
-    "static/css/5.4dd6d294.chunk.css": "/static/css/5.4dd6d294.chunk.css",
-    "static/js/5.5f19989f.chunk.js": "/static/js/5.5f19989f.chunk.js",
-    "static/js/6.ae10d079.chunk.js": "/static/js/6.ae10d079.chunk.js",
-    "index.html": "/index.html",
-    "static/media/index.scss": "/static/media/Montserrat-SemiBold.fa8441f3.ttf",
-    "static/media/icons-sprite.4262df7a.svg": "/static/media/icons-sprite.4262df7a.svg",
-    "static/media/ledger-logo-dark.702f73f1.svg": "/static/media/ledger-logo-dark.702f73f1.svg",
-    "static/media/ledger-logo.5d3ead06.svg": "/static/media/ledger-logo.5d3ead06.svg",
-    "static/media/metamask-logo-dark.54270af6.svg": "/static/media/metamask-logo-dark.54270af6.svg",
-    "static/media/metamask-logo.bfd66b2a.svg": "/static/media/metamask-logo.bfd66b2a.svg",
-    "static/media/static-sprite.4d68f277.svg": "/static/media/static-sprite.4d68f277.svg",
-    "static/media/token-icons-sprite-static.2a52c8f8.svg": "/static/media/token-icons-sprite-static.2a52c8f8.svg",
-    "static/media/walletconnect-logo.af2f1a97.svg": "/static/media/walletconnect-logo.af2f1a97.svg",
-    "static/media/zero-notifications-dark.dcc42aed.svg": "/static/media/zero-notifications-dark.dcc42aed.svg",
-    "static/media/zero-notifications.3df14b57.svg": "/static/media/zero-notifications.3df14b57.svg"
+    "main.css": "/static/css/main.589c43cb.css",
+    "main.js": "/static/js/main.9efa7ccb.js",
+    "static/js/199.47933d51.chunk.js": "/static/js/199.47933d51.chunk.js",
+    "static/css/585.7cdcdb61.chunk.css": "/static/css/585.7cdcdb61.chunk.css",
+    "static/js/585.22b7a0ee.chunk.js": "/static/js/585.22b7a0ee.chunk.js",
+    "static/js/100.c43ef1ca.chunk.js": "/static/js/100.c43ef1ca.chunk.js",
+    "static/js/119.b28bcb44.chunk.js": "/static/js/119.b28bcb44.chunk.js",
+    "static/media/Montserrat-Regular.ttf": "/static/media/Montserrat-Regular.3cd786652b8a2e9d41f2.ttf",
+    "static/media/Montserrat-Bold.ttf": "/static/media/Montserrat-Bold.079ca05d3ded9bc107ab.ttf",
+    "static/media/Montserrat-SemiBold.ttf": "/static/media/Montserrat-SemiBold.fa8441f345d83a0bc4ec.ttf",
+    "static/media/icons-sprite.svg": "/static/media/icons-sprite.4262df7ac3a4297535e82c833e1860ec.svg",
+    "static/media/static-sprite.svg": "/static/media/static-sprite.4d68f2774e52bcbb7f39c14f19f7dfc2.svg",
+    "static/media/zero-notifications.svg": "/static/media/zero-notifications.3df14b57d4dc84dff3975519719c249b.svg",
+    "static/media/walletconnect-logo.svg": "/static/media/walletconnect-logo.af2f1a97e96c0f4c1de1688bbe4462fb.svg",
+    "static/media/metamask-logo.svg": "/static/media/metamask-logo.bfd66b2ad70da8b7391d79ada7804af7.svg",
+    "static/media/metamask-logo-dark.svg": "/static/media/metamask-logo-dark.54270af6d289bdc09142950909a88bc6.svg",
+    "static/media/token-icons-sprite-static.svg": "/static/media/token-icons-sprite-static.2a52c8f89379e5641b3d7e831d15d6fc.svg",
+    "static/media/zero-notifications-dark.svg": "/static/media/zero-notifications-dark.dcc42aedc3f497b2f8c3f17a4e4aca69.svg",
+    "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/js/runtime-main.0fbb9a73.js",
-    "static/js/2.5de2e1c7.chunk.js",
-    "static/css/main.0f3378cb.chunk.css",
-    "static/js/main.2a2533d9.chunk.js"
+    "static/css/main.589c43cb.css",
+    "static/js/main.9efa7ccb.js"
   ]
 }

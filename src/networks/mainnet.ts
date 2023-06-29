@@ -107,7 +107,7 @@ export const MainnetConfig: NetworkConfig = {
 };
 
 export const MainnetMetamaskChain: MetamaskAddEthereumChain = {
-  chainId: toHex(MAINNET_CHAIN_ID),
+  chainId: MAINNET_CHAIN_ID,
   chainName: 'Ethereum',
   nativeCurrency: {
     name: 'Ethereum',

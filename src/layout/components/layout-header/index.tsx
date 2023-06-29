@@ -21,18 +21,16 @@ import { useWeb3 } from 'components/providers/web3Provider';
 import { TokenIcon } from 'components/token-icon';
 import { useFetchQueuePositions } from 'modules/smart-alpha/api';
 import Notifications from 'wallets/components/notifications';
-import GnosisSafeConfig from 'wallets/connectors/gnosis-safe';
-import MetamaskWalletConfig, { MetamaskConnector } from 'wallets/connectors/metamask';
-import { useWallet } from 'wallets/walletProvider';
-
-import { isProductionMode } from 'utils';
+// import GnosisSafeConfig from 'wallets/connectors/gnosis-safe';
+import { getMeta, useWallet } from 'wallets/walletProvider';
+import { MetaMask } from '@web3-react/metamask';
 
 import s from './s.module.scss';
 
 const LayoutHeader: React.FC = () => {
   const { navOpen, setNavOpen } = useGeneral();
   const { activeNetwork } = useNetwork();
-  let title = !isMobile ? "Governance" : ""
+  let title = !isMobile ? 'Governance' : '';
   return (
     <header className={s.component}>
       <button type="button" className={s.burger} onClick={() => setNavOpen(!navOpen)}>
@@ -110,8 +108,9 @@ const PositionsAction: React.FC = () => {
                   </div>
                   <Link
                     variation="text"
-                    to={`/smart-alpha/portfolio/${item.tranche === 'SENIOR' ? 'senior' : 'junior'}?poolAddress=${item.poolAddress
-                      }`}
+                    to={`/smart-alpha/portfolio/${item.tranche === 'SENIOR' ? 'senior' : 'junior'}?poolAddress=${
+                      item.poolAddress
+                    }`}
                     onClick={() => setVisible(false)}>
                     View position
                   </Link>
@@ -138,16 +137,13 @@ const AddTokenAction: React.FC = () => {
   const { projectToken } = useKnownTokens();
 
   async function handleAddProjectToken() {
-    if (wallet.connector instanceof MetamaskConnector) {
+    if (wallet.connector instanceof MetaMask) {
       try {
-        await wallet.connector.addToken({
-          type: 'ERC20',
-          options: {
-            address: projectToken.address,
-            symbol: projectToken.symbol,
-            decimals: projectToken.decimals,
-            image: `${window.location.origin}/android-chrome-192x192.png`,
-          },
+        await wallet.connector.watchAsset({
+          address: projectToken.address,
+          symbol: projectToken.symbol,
+          decimals: projectToken.decimals,
+          image: `${window.location.origin}/android-chrome-192x192.png`,
         });
       } catch (e) {
         console.error(e);
@@ -155,7 +151,7 @@ const AddTokenAction: React.FC = () => {
     }
   }
 
-  return wallet.meta === MetamaskWalletConfig ? (
+  return wallet.meta instanceof MetaMask ? (
     <button type="button" onClick={handleAddProjectToken} className={s.actionButton}>
       <IconOld name="bond-add-token" />
     </button>
@@ -170,9 +166,7 @@ const NetworkAction: React.FC = () => {
     <button type="button" onClick={() => showNetworkSelect()} className={s.actionButton}>
       <IconOld name={activeNetwork.meta.logo} width={24} height={24} className="mr-8" />
       <Text type="p2" weight="semibold" color="secondary">
-        {!isMobile && (
-          <>{activeNetwork.meta.name}</>
-        )}
+        {!isMobile && <>{activeNetwork.meta.name}</>}
       </Text>
     </button>
   );
@@ -252,21 +246,23 @@ const WalletAction: React.FC = () => {
                   Wallet
                 </Text>
                 <Text type="p1" weight="semibold" color="primary" className="ml-auto">
-                  {wallet.connecting?.name}
+                  {getMeta(wallet.connecting)?.name}
                 </Text>
               </div>
             </div>
-            {wallet.meta !== GnosisSafeConfig && (
-              <div className="card-footer grid">
-                <Button type="button" variation="ghost" onClick={() => wallet.disconnect()}>
-                  Disconnect
-                </Button>
-              </div>
-            )}
+            {/* {wallet.meta !== GnosisSafeConfig && ( */}
+            <div className="card-footer grid">
+              <Button type="button" variation="ghost" onClick={() => wallet.disconnect()}>
+                Disconnect
+              </Button>
+            </div>
+            {/* )} */}
           </div>
         }
         trigger="click">
-        <Button size="small" variation="primary">Connecting...</Button>
+        <Button size="small" variation="primary">
+          Connecting...
+        </Button>
       </Popover>
     );
   }
@@ -311,7 +307,7 @@ const WalletAction: React.FC = () => {
                 Wallet
               </Text>
               <Text type="p1" weight="semibold" color="primary" className="ml-auto">
-                {wallet.meta?.name}
+                {getMeta(wallet.meta).name}
               </Text>
             </div>
             <div className="flex align-center">
@@ -324,13 +320,13 @@ const WalletAction: React.FC = () => {
               </Text>
             </div>
           </div>
-          {wallet.meta !== GnosisSafeConfig && (
-            <div className="card-footer grid">
-              <Button type="button" variation="ghost" onClick={() => wallet.disconnect()}>
-                Disconnect
-              </Button>
-            </div>
-          )}
+          {/* {wallet.meta !== GnosisSafeConfig && ( */}
+          <div className="card-footer grid">
+            <Button type="button" variation="ghost" onClick={() => wallet.disconnect()}>
+              Disconnect
+            </Button>
+          </div>
+          {/* )} */}
         </div>
       }>
       <button type="button" className={s.actionButton}>

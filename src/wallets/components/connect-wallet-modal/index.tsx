@@ -6,10 +6,8 @@ import Grid from 'components/custom/grid';
 import { Text } from 'components/custom/typography';
 import { useGeneral } from 'components/providers/generalProvider';
 import useMergeState from 'hooks/useMergeState';
-import LedgerDerivationPathModal from 'wallets/components/ledger-deriviation-path-modal';
-import { WalletConnectors, useWallet } from 'wallets/walletProvider';
-
-import { BaseWalletConfig } from 'wallets/types';
+// import LedgerDerivationPathModal from 'wallets/components/ledger-deriviation-path-modal';
+import { WalletConnector, WalletConnectors, getMeta, useWallet } from 'wallets/walletProvider';
 
 export type ConnectWalletModalProps = ModalProps;
 
@@ -28,15 +26,8 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = props => {
   const wallet = useWallet();
   const [state, setState] = useMergeState<ConnectWalletModalState>(InitialState);
 
-  function handleConnectorSelect(connector: BaseWalletConfig) {
+  function handleConnectorSelect(connector: WalletConnector) {
     if (wallet.isActive) {
-      return;
-    }
-
-    if (connector.id === 'ledger') {
-      setState({
-        showLedgerModal: true,
-      });
       return;
     }
 
@@ -56,15 +47,15 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = props => {
         </Grid>
 
         <Grid gap={24} colsTemplate="repeat(auto-fit, minmax(120px, 240px))">
-          {WalletConnectors.map(connector => (
-            <Button
-              key={connector.id}
-              type="select"
-              style={{ height: '96px' }}
-              onClick={() => handleConnectorSelect(connector)}>
+          {WalletConnectors.map(([connector], idx) => (
+            <Button key={idx} type="select" style={{ height: '96px' }} onClick={() => handleConnectorSelect(connector)}>
               <img
-                src={Array.isArray(connector.logo) ? connector.logo[theme === 'dark' ? 1 : 0] : connector.logo}
-                alt={connector.name}
+                src={
+                  Array.isArray(getMeta(connector).logo)
+                    ? getMeta(connector).logo[theme === 'dark' ? 1 : 0]
+                    : getMeta(connector).logo
+                }
+                alt={getMeta(connector).name}
                 height={32}
               />
             </Button>
@@ -72,13 +63,13 @@ const ConnectWalletModal: React.FC<ConnectWalletModalProps> = props => {
         </Grid>
       </Grid>
 
-      {state.showLedgerModal && (
-        <LedgerDerivationPathModal
-          onCancel={() => {
-            setState({ showLedgerModal: false });
-          }}
-        />
-      )}
+      {/* {state.showLedgerModal && ( */}
+      {/*   <LedgerDerivationPathModal */}
+      {/*     onCancel={() => { */}
+      {/*       setState({ showLedgerModal: false }); */}
+      {/*     }} */}
+      {/*   /> */}
+      {/* )} */}
     </Modal>
   );
 };
