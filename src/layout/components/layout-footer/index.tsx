@@ -49,7 +49,7 @@ const LayoutFooter: React.FC = () => {
           <section className={s.navSection}>
             <ul>
               <li>
-                <ExternalLink variation="text-alt" href="https://skybridge.info">
+                <ExternalLink variation="text-alt" href="https://app.swingby.network">
                   Explorer
                 </ExternalLink>
               </li>
