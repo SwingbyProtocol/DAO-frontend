@@ -50,7 +50,7 @@ const LayoutFooter: React.FC = () => {
             <ul>
               <li>
                 <ExternalLink variation="text-alt" href="https://app.swingby.network">
-                  Explorer
+                  App
                 </ExternalLink>
               </li>
               <li>
