@@ -50,7 +50,7 @@ const LayoutSideNav: React.FC = () => {
           </Link>
         </div>
         <nav className={s.top}>
-          {features.faucets && (
+          {/* {features.faucets && (
             <NavLink to="/faucets" className={s.button} activeClassName={s.active}>
               <Tooltip title={displayTooltip && 'Faucets'} placement="right">
                 <Icon name="menu-faucet" size={40} />
@@ -79,7 +79,7 @@ const LayoutSideNav: React.FC = () => {
                 </Text>
               </div>
             </NavLink>
-          )}
+          )} */}
           {features.dao && (
             <NavLink to="/governance" className={s.button} activeClassName={s.active}>
               <Tooltip title={displayTooltip && 'Governance'} placement="right">
@@ -96,7 +96,7 @@ const LayoutSideNav: React.FC = () => {
             </NavLink>
           )}
 
-          {features.dao && (
+          {/* {features.dao && (
             <a rel="noopener noreferrer" target="_blank" href="https://farm.swingby.network" className={s.button}>
               <Tooltip title={displayTooltip && 'Yield Farming'} placement="right">
                 <Icon name="menu-sy" size={40} />
@@ -107,9 +107,9 @@ const LayoutSideNav: React.FC = () => {
                 </Text>
               </div>
             </a>
-          )}
+          )} */}
 
-          {features.smartAlpha && (
+          {/* {features.smartAlpha && (
             <NavLink to="/smart-alpha" className={s.button} activeClassName={s.active}>
               <Tooltip title={displayTooltip && 'SMART Alpha'} placement="right">
                 <Icon name="menu-sa" size={40} />
@@ -138,7 +138,7 @@ const LayoutSideNav: React.FC = () => {
                 </Text>
               </div>
             </NavLink>
-          )}
+          )} */}
 
         </nav>
 
