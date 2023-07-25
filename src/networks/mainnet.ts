@@ -94,7 +94,7 @@ export const MainnetConfig: NetworkConfig = {
       reward_legacy: '0xac01adc15878fae7d9b580d6fb695aa735738856',
       reward: '0x4A25F3815E159582E1E2E7805b78Db8e4cB12768',
       nodeRewards: '0xBF06C8B1C71634F07De19524fe5C00EBd2c4ba09',
-      sbBTCPool: '0xC441425E3e8F8b94EafA76f6bF90d97597ccEE2E',
+      sbBTCPool: '0xD81a368A9606E09ad7877116536706D256fe7665',
     },
     se: {
       ePoolPeriphery: '0x33c8d6f8271675eda1a0e72558d4904c96c7a888',
