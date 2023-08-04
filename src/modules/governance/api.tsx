@@ -420,7 +420,6 @@ const DaoAPIProvider: FC = props => {
         if (status !== 200) {
           return Promise.reject(status);
         }
-
         return data;
       })
       .then((result: PaginatedResult<APITreasuryHistory>) => ({

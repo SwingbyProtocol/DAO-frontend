@@ -46,6 +46,7 @@ export enum Tokens {
   CAKE = 'CAKE',
   AAVE = 'AAVE',
   DPI = 'DPI',
+  sbBTC = 'sbBTC',
 }
 
 export type BaseTokenType = {
@@ -60,6 +61,14 @@ const WBTC: BaseTokenType = {
   // address: '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599',
   symbol: Tokens.WBTC,
   name: 'Wrapped BTC',
+  decimals: 8,
+  icon: 'wbtc',
+};
+
+const sbBTC: BaseTokenType = {
+  // address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+  symbol: Tokens.sbBTC,
+  name: 'sbBTC Token',
   decimals: 8,
   icon: 'wbtc',
 };
@@ -372,6 +381,8 @@ async function getPriceFor(symbol: string, network: Web3Network = MainnetNetwork
       case 'WBTC':
         // Chainlink: BTC/USD
         return getChainlinkFeedPrice('0xf4030086522a5beea4988f8ca5b36dbc97bee88c', MainnetHttpsWeb3Provider);
+      case 'SBBTC':
+        return getChainlinkFeedPrice('0xf4030086522a5beea4988f8ca5b36dbc97bee88c', MainnetHttpsWeb3Provider);
       case 'ETH':
       case 'WETH':
       case 'SWINGBY':
@@ -469,6 +480,7 @@ const ALL_TOKENS: BaseTokenType[] = [
   CAKE,
   FEI,
   DPI,
+  sbBTC,
 ];
 
 const ALL_ASSETS: BaseAssetType[] = [BTC, ETH, USD];

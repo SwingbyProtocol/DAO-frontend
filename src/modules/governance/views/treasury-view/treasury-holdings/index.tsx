@@ -289,7 +289,7 @@ const TreasuryHoldings: FC = () => {
                 {item.token?.name ?? '-'}
               </Text>
             </div>
-            <div className="flex flow-row row-gap-4 align-end ml-auto">
+            <div className="flex flow-row row-gap-6 align-end ml-auto">
               <Text type="p1" weight="semibold" color="primary">
                 {formatToken(item.balanceAmount) ?? '-'}
               </Text>
@@ -301,7 +301,7 @@ const TreasuryHoldings: FC = () => {
         ))}
       </div>
       <div className="card">
-        <div className="card-header flex flow-col align-center justify-space-between pv-12">
+        <div className="card-header flex flow-col align-center justify-space-between pv-14">
           <Text type="p1" weight="semibold" color="primary">
             Transaction history
           </Text>
@@ -310,11 +310,12 @@ const TreasuryHoldings: FC = () => {
         <Table<ExtendedAPITreasuryHistory>
           columns={Columns}
           data={historySource}
-          rowKey={row => `${row.transactionHash}_${row.tokenSymbol}`}
+          rowKey={row => `${row.transactionHash}_${row.tokenSymbol}_${row.counterpartyAddress}_${row.amount}`}
           loading={historyLoading}
-          // locale={{
-          //   emptyText: 'No entries', // TODO: Add support of empty result to Table component
-          // }}
+          variation='separated'
+        // locale={{
+        //   emptyText: 'No entries', // TODO: Add support of empty result to Table component
+        // }}
         />
         <TableFooter
           total={historyItemsCount}
