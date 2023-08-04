@@ -277,7 +277,7 @@ const TreasuryHoldings: FC = () => {
       <Text type="p2" weight="semibold" color="secondary" className="mb-32">
         Total holdings balance
       </Text>
-      <div className="grid gap-16 mb-32" style={{ gridTemplateColumns: 'repeat(3, 1fr)' } as CSSProperties}>
+      <div className="grid gap-16 mb-32" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))' } as CSSProperties}>
         {tokensSource.map(item => (
           <div key={item.address} className="card flex flow-col col-gap-12 align-center p-24">
             <TokenIcon name={item.token?.icon} className="mr-8" size={32} />
