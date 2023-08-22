@@ -70,7 +70,7 @@ const sbBTC: BaseTokenType = {
   symbol: Tokens.sbBTC,
   name: 'sbBTC Token',
   decimals: 8,
-  icon: 'wbtc',
+  icon: 'sbbtc',
 };
 
 const WETH: BaseTokenType = {
