@@ -41,6 +41,7 @@ export type TokenIconNames =
   | 'uma'
   | 'dpi'
   | 'all'
+  | 'sbbtc'
   | 'warn-circle';
 
 type TokenIconProps = {
