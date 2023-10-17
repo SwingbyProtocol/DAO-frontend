@@ -8,7 +8,7 @@ import Spin from 'components/antd/spin';
 import { PeriodChartTabs, PeriodTabsKey } from 'components/custom/tabs';
 import { Text } from 'components/custom/typography';
 import { PortfolioValueType, useSeAPI } from 'modules/smart-exposure/api';
-import { ReactComponent as EmptyChartSvg } from 'resources/svg/empty-chart.svg';
+import EmptyChartSvg from 'resources/svg/empty-chart.svg?react';
 import { useWallet } from 'wallets/walletProvider';
 
 import { numberFormat } from 'utils';

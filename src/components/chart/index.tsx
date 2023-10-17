@@ -8,7 +8,7 @@ import { AxisDomain, AxisDomainItem } from 'recharts/types/util/types';
 
 import Spin from 'components/antd/spin';
 import { Text } from 'components/custom/typography';
-import { ReactComponent as EmptyChartSvg } from 'resources/svg/empty-chart.svg';
+import EmptyChartSvg from 'resources/svg/empty-chart.svg?react';
 
 import s from './s.module.scss';
 

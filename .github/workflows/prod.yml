@@ -26,7 +26,7 @@ jobs:
       - name: Setup Nodejs
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '18.x'
 
       - name: Cache dependencies
         id: node-cache
@@ -44,8 +44,7 @@ jobs:
         run: npm run build
         env:
           CI: false
-          SKIP_PREFLIGHT_CHECK: true
-          REACT_APP_ENV: 'production'
+          VITE_ENV: 'production'
 
       - name: Save artifacts
         uses: actions/upload-artifact@v2

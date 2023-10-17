@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { TokenIcon as TokenIconComponent, TokenIconNames } from 'components/token-icon';
-import { ReactComponent as TokenIconsStaticSprite } from 'resources/svg/token-icons-sprite-static.svg';
+import TokenIconsStaticSprite from 'resources/svg/token-icons-sprite-static.svg?react';
 
 export default {
   title: 'Components/TokenIcons',

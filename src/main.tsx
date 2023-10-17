@@ -17,8 +17,8 @@ import NetworkProvider from 'components/providers/networkProvider';
 import NotificationsProvider from 'components/providers/notificationsProvider';
 import Web3Provider from 'components/providers/web3Provider';
 import LayoutView from 'layout';
-import { ReactComponent as StaticSprite } from 'resources/svg/static-sprite.svg';
-import { ReactComponent as TokenIconsStaticSprite } from 'resources/svg/token-icons-sprite-static.svg';
+import StaticSprite from 'resources/svg/static-sprite.svg?react';
+import TokenIconsStaticSprite from 'resources/svg/token-icons-sprite-static.svg?react';
 import WalletProvider from 'wallets/walletProvider';
 
 import { checkFlexGapSupport } from './checkFlexGap';

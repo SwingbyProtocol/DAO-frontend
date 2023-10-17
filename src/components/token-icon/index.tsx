@@ -56,7 +56,7 @@ type TokenIconProps = {
 
 const staticNames: TokenIconNames[] = ['aave', 'stkaave', 'cream', 'bond', 'uniswap', 'rai', 'xsushi', 'sushi'];
 
-const svgPath = `${process.env.PUBLIC_URL}/token-icons-sprite.svg`;
+const svgPath = `/token-icons-sprite.svg`;
 
 export const TokenIcon: React.FC<TokenIconProps> = props => {
   const { name = 'unknown', size = 24, className, style, bubble1Name, bubble2Name, outline, ...rest } = props;
