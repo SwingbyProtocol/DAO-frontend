@@ -13,7 +13,7 @@ import EmptyChartSvg from 'resources/svg/empty-chart.svg?react';
 import s from './s.module.scss';
 
 interface PropsType {
-  data: Object[];
+  data: object[];
   x: {
     key: string;
     format?: (item: any) => string;

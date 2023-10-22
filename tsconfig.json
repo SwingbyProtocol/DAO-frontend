@@ -22,7 +22,7 @@
 
     "paths": {
       "*": ["./src/*"],
-      "web3_node_modules": ["./node_modules/web3"]
+      "web3_modules": ["./node_modules/web3"]
     },
     "types": ["vite-plugin-svgr/client", "node"]
   },

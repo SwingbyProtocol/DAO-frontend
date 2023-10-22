@@ -20,6 +20,7 @@ export type GridProps = {
   wrap?: boolean;
   padding?: number | number[];
   width?: string | number;
+  children: React.ReactNode;
 };
 
 const Grid: React.FC<GridProps> = props => {
