@@ -61,8 +61,10 @@ const svgPath = `/token-icons-sprite.svg`;
 export const TokenIcon: React.FC<TokenIconProps> = props => {
   const { name = 'unknown', size = 24, className, style, bubble1Name, bubble2Name, outline, ...rest } = props;
 
+  /* eslint-disable no-prototype-builtins */
   const bubble1NameDefined = props.hasOwnProperty('bubble1Name') ? bubble1Name ?? 'unknown' : undefined;
   const bubble2NameDefined = props.hasOwnProperty('bubble2Name') ? bubble2Name ?? 'unknown' : undefined;
+  /* eslint-enable no-prototype-builtins */
 
   const id = useMemo(nanoid, []);
 

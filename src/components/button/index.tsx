@@ -12,7 +12,7 @@ interface ButtonContentProps {
   icon?: IconNames;
   iconPosition?: 'right' | 'left' | 'only';
   iconRotate?: IconProps['rotate'];
-  loading?: boolean;
+  loading?: boolean; // eslint-disable-line
 }
 
 const ButtonContent: React.FC<ButtonContentProps> = ({ size, icon, iconPosition, iconRotate, loading, children }) => {

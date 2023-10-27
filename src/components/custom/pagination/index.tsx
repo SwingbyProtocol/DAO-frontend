@@ -10,7 +10,7 @@ import s from './s.module.scss';
  * @param {number} last
  * @param {number} [delta=2]
  */
-function pagination(current: number, last: number, delta: number = 2) {
+function pagination(current: number, last: number, delta: number) {
   const left = current - delta;
   const right = current + delta + 1;
   const range: number[] = [];
@@ -54,7 +54,7 @@ type Props = {
 
 export const Pagination: React.FC<Props> = ({ className, total, current, pageSize, onChange }) => {
   const pages = Math.ceil(total / pageSize);
-  const paginationList = useMemo(() => pagination(current, pages), [current, pages]);
+  const paginationList = useMemo(() => pagination(current, pages, 2), [current, pages]);
 
   if (pages < 2) {
     return null;

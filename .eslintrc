@@ -1,0 +1,49 @@
+{
+  "env": {
+    "es2020": true,
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "standard",
+    "standard-jsx",
+    "standard-react",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/jsx-runtime",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "root": true,
+  "rules": {
+    "prettier/prettier": "off",
+    "comma-dangle": ["error", "always-multiline"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "linebreak-style": ["error", "unix"],
+    "no-console": ["error", { "allow": ["info", "warn", "error"] }],
+    "no-use-before-define": "off",
+    "sort-imports": ["error", { "ignoreDeclarationSort": true }],
+    "import/no-unresolved": ["error", { "commonjs": true }],
+    "react-hooks/rules-of-hooks": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "react/prop-types": "warn",
+    "react/jsx-no-bind": "warn",
+    "react/no-unknown-property": "warn",
+    "@typescript-eslint/no-use-before-define": "warn",
+    "import/no-duplicates": "warn"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "./tsconfig.json"
+      }
+    },
+    "import/ignore": "node_modules",
+    "react": {
+      "version": "detect"
+    }
+  }
+}

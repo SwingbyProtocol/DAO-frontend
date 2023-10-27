@@ -1,10 +1,5 @@
 import React, { FormEvent, ReactElement, ReactNode, createContext, useCallback, useContext } from 'react';
-import { Controller, FieldValues, useForm as rhUseForm, UseFormReturn as rhUseFormReturn } from 'react-hook-form';
-import { UseFormStateReturn } from 'react-hook-form/dist/types';
-import { ControllerFieldState, ControllerRenderProps } from 'react-hook-form/dist/types/controller';
-import { DefaultValues, UnpackNestedValue } from 'react-hook-form/dist/types/form';
-import { Resolver, ResolverResult } from 'react-hook-form/dist/types/resolvers';
-import { FieldPath, FieldPathValue } from 'react-hook-form/dist/types/utils';
+import { Controller, ControllerFieldState, ControllerRenderProps, DefaultValues, FieldPath, FieldPathValue, FieldValues, Resolver, ResolverResult, UnpackNestedValue, UseFormStateReturn, useForm as rhUseForm, UseFormReturn as rhUseFormReturn } from 'react-hook-form';
 import classnames from 'classnames';
 import { validate } from 'valirator';
 
@@ -67,7 +62,7 @@ export async function VFormValidationResolver(values: FieldValues, context?: For
 type useFormProps<V extends FieldValues = FieldValues> = {
   validationScheme?: SchemeType;
   defaultValues?: DefaultValues<V>;
-  onSubmit: (values: UnpackNestedValue<V>) => any | Promise<any>;
+  onSubmit: (values: V) => any | Promise<any>;
 };
 
 export function useForm<V extends FieldValues = FieldValues>(props: useFormProps<V>): UseFormReturn<V> {
@@ -88,12 +83,14 @@ export function useForm<V extends FieldValues = FieldValues>(props: useFormProps
   const submit = rhForm.handleSubmit(onSubmit);
 
   const updateValue = (fieldName: FieldPath<V>, value: UnpackNestedValue<FieldPathValue<V, FieldPath<V>>>) => {
+    // @ts-expect-error too hard to fix
     rhForm.setValue(fieldName, value, {
       shouldDirty: true,
       shouldValidate: true,
     });
   };
 
+  // @ts-expect-error too hard to fix
   return Object.assign(rhForm, {
     updateValue,
     submit,

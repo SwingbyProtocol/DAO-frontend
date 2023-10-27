@@ -9,7 +9,7 @@ const DaoRewardABI: AbiItem[] = [
   // send
   createAbiItem('claim', [], ['uint256']),
 
-  createAbiItem('userMultiplier', ['address'], ['uint256'])
+  createAbiItem('userMultiplier', ['address'], ['uint256']),
 
 ];
 
@@ -30,6 +30,7 @@ class DaoRewardContract extends Web3Contract {
     totalDuration: number;
     totalAmount: BigNumber;
   };
+
   // apr
   apr?: number;
   // user data
@@ -77,7 +78,7 @@ class DaoRewardContract extends Web3Contract {
 
     const [toClaim, multiP] = await this.batch([
       { method: 'claim', callArgs: { from: account } },
-      { method: 'userMultiplier', methodArgs: [account], callArgs: { from: account } }
+      { method: 'userMultiplier', methodArgs: [account], callArgs: { from: account } },
     ]);
 
     this.toClaim = BigNumber.from(toClaim)?.unscaleBy(18); /// TODO: re-check

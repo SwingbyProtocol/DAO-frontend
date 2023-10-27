@@ -50,7 +50,7 @@ const PortfolioDeposit: FC = () => {
         messages: {
           required: 'Value is required.',
           min: 'min top up amount must be >= 0.01',
-          max: "Balance insufficent"
+          max: "Balance insufficent",
         },
       },
     },

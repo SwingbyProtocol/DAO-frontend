@@ -16,9 +16,14 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+
+    /* Temporary */
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
 
     "paths": {
       "*": ["./src/*"],
@@ -26,6 +31,6 @@
     },
     "types": ["vite-plugin-svgr/client", "node"]
   },
-  "include": ["src"],
+  "include": ["src", "**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

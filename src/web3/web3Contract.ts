@@ -133,8 +133,8 @@ class BatchRequestManager {
 
       const web3 = new Web3(provider);
 
-      let extractCount = 0;
-      let delay = 0;
+      const extractCount = 0;
+      const delay = 0;
 
       // if (provider === PolygonHttpsWeb3Provider) {
       //   extractCount = 20;

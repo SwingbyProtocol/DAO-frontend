@@ -335,8 +335,8 @@ export function useFetchPreviousEpochs({
   loaded: boolean;
   error: Error | undefined;
   load: (cursor: string) => void;
-  loadNewer: Function;
-  loadOlder: Function;
+  loadNewer: () => void;
+  loadOlder: () => void;
   hasNewer: boolean;
   hasOlder: boolean;
 } {
@@ -480,8 +480,8 @@ export function useFetchKpiOptionTransactions(
   poolAddress: string,
   page = 1,
   limit = 10,
-  userAddress: string = 'all',
-  transactionType: string = 'all',
+  userAddress = 'all',
+  transactionType = 'all',
 ): UseFetchReturn<PaginatedResult<KpiTransactionType>> {
   const config = useConfig();
   const url = new URL(`/api/smartalpha/rewards/pools/${poolAddress}/transactions`, config.api.baseUrl);

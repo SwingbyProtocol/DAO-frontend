@@ -14,10 +14,10 @@ import WalletConnectLogo from 'resources/svg/wallets/walletconnect-logo.svg';
 import ConnectWalletModal from 'wallets/components/connect-wallet-modal';
 import InstallMetaMaskModal from 'wallets/components/install-metamask-modal';
 import UnsupportedChainModal from 'wallets/components/unsupported-chain-modal';
-//import CoinbaseWalletConfig from 'wallets/connectors/coinbase';
-//import GnosisSafeConfig from 'wallets/connectors/gnosis-safe';
-//import LedgerWalletConfig from 'wallets/connectors/ledger';
-//import TrezorWalletConfig from 'wallets/connectors/trezor';
+// import CoinbaseWalletConfig from 'wallets/connectors/coinbase';
+// import GnosisSafeConfig from 'wallets/connectors/gnosis-safe';
+// import LedgerWalletConfig from 'wallets/connectors/ledger';
+// import TrezorWalletConfig from 'wallets/connectors/trezor';
 import { metaMask, hooks as metaMaskHooks } from 'wallets/connectors/metamask';
 import { walletConnectV2, hooks as walletConnectV2Hooks } from 'wallets/connectors/walletconnect-v2';
 

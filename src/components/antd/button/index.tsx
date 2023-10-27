@@ -6,6 +6,7 @@ import s from './s.module.scss';
 
 export type ButtonProps = Omit<AntdButtonProps, 'type'> & {
   type: 'default' | 'primary' | 'ghost' | 'link' | 'light' | 'select';
+  children: React.ReactNode;
 };
 
 const Button: React.FC<ButtonProps> = props => {

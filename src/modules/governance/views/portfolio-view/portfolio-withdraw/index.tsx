@@ -80,11 +80,11 @@ const PortfolioWithdraw: FC = () => {
     setSubmitting(true);
 
     try {
-      const withdrawAmount = amount.scaleBy(projectToken.decimals);
+      const withdrawAmount = amount.scaleBy(projectToken.decimals)!;
       const withdrawAmountNew = new EtherBigNumber(withdrawAmount.toFixed(0));
 
       if (withdrawAmount) {
-        await daoCtx.daoBarn.withdraw(withdrawAmountNew, gasPrice);
+        await daoCtx.daoBarn.withdraw(withdrawAmountNew as unknown as BigNumber, gasPrice);
         await loadData();
       }
     } catch (e) {

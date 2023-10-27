@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import BigNumber from 'bignumber.js';
 import cn from 'classnames';
 import { format } from 'date-fns';

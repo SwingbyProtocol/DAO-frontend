@@ -7,7 +7,6 @@ import { formatUSD } from 'web3/utils';
 import Web3Contract, { createAbiItem } from 'web3/web3Contract';
 
 import { useConfig } from 'components/providers/configProvider';
-import { useNetwork } from 'components/providers/networkProvider';
 import { MainnetHttpsWeb3Provider, useWeb3 } from 'components/providers/web3Provider';
 import { TokenIconNames } from 'components/token-icon';
 import { useReload } from 'hooks/useReload';
@@ -36,7 +35,7 @@ export enum KnownTokens {
   WMATIC = 'wMATIC',
 }
 
-/* eslint-disable @typescript-eslint/no-redeclare */
+/* eslint-disable @typescript-eslint/no-namespace */
 export namespace KnownTokens {
   // compound
   export const bbcUSDC = 'bb_cUSDC';
@@ -51,7 +50,7 @@ export namespace KnownTokens {
   export const bbcrDAI = 'bb_crDAI';
   export const bbcrUSDT = 'bb_crUSDT';
 }
-/* eslint-enable @typescript-eslint/no-redeclare */
+/* eslint-enable @typescript-eslint/no-namespace */
 
 export type TokenMeta = {
   symbol: string;
@@ -130,7 +129,7 @@ async function getUSDPrice(): Promise<BigNumber | undefined> {
   const url = new URL(`/api/v3/simple/price?${query}`, 'https://api.coingecko.com');
   const result = await fetch(String(url)).then(response => response.json());
 
-  return BigNumber.from(result['usdc'].usd);
+  return BigNumber.from(result.usdc.usd);
 }
 
 
@@ -143,13 +142,12 @@ async function getRaiPrice(): Promise<BigNumber | undefined> {
   const url = new URL(`/api/v3/simple/price?${query}`, 'https://api.coingecko.com');
   const result = await fetch(String(url)).then(response => response.json());
 
-  return BigNumber.from(result['rai'].usd);
+  return BigNumber.from(result.rai.usd);
 }
 
 const KnownTokensProvider: FC = props => {
   const { children } = props;
 
-  const network = useNetwork();
   const config = useConfig();
   const wallet = useWallet();
   const web3 = useWeb3();
@@ -449,7 +447,7 @@ const KnownTokensProvider: FC = props => {
   }, []);
 
   const getSWINGBYPrice = useCallback(async (): Promise<BigNumber> => {
-    //const usdcToken = getTokenBySymbol(KnownTokens.USDC);
+    // const usdcToken = getTokenBySymbol(KnownTokens.USDC);
     const bondToken = getTokenBySymbol(KnownTokens.SWINGBY);
 
     if (!bondToken || !bondToken.price) {
@@ -510,7 +508,7 @@ const KnownTokensProvider: FC = props => {
       const token = getTokenBySymbol(symbol);
 
       if (!token || !token.priceFeed) {
-        return Promise.reject();
+        return Promise.reject(new Error('token invalid'));
       }
 
       const priceFeedContract = new Erc20Contract(J_PRICE_FEED_ABI, token.priceFeed!);
@@ -528,7 +526,7 @@ const KnownTokensProvider: FC = props => {
       const token = getTokenBySymbol(symbol);
 
       if (!token || !token.priceFeed) {
-        return Promise.reject();
+        return Promise.reject(new Error('token invalid'));
       }
 
       const priceFeedContract = new Erc20Contract(J_PRICE_FEED_ABI, token.priceFeed!);
@@ -669,7 +667,7 @@ const KnownTokensProvider: FC = props => {
         if (token.priceFeed && token.price === undefined) {
           token.price = BigNumber.ZERO;
         } else if (token.pricePath) {
-          for (let path of token.pricePath) {
+          for (const path of token.pricePath) {
             const tk = getTokenBySymbol(path);
 
             if (!tk || !tk.price) {
@@ -681,7 +679,7 @@ const KnownTokensProvider: FC = props => {
           }
         }
 
-        console.log(`[Token Price] ${token.symbol} = ${formatUSD(token.price)}`);
+        console.info(`[Token Price] ${token.symbol} = ${formatUSD(token.price)}`);
       });
       reload();
     })();

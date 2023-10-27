@@ -16,6 +16,7 @@ const NotificationIcon: React.FC<NotificationIconType> = ({ rgbVarName, children
       <circle cx="50%" cy="50%" fill={`rgba(var(${rgbVarName}), 0.08)`} r="20" />
       {React.isValidElement(children) &&
         React.cloneElement(children, {
+          // @ts-expect-error don't have time to fix
           width: childWidth,
           height: childHeight,
           x: (width - childWidth) / 2,

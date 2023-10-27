@@ -461,7 +461,7 @@ export function useFetchTreasuryTokens(): UseFetchReturn<APITreasuryToken[]> {
 }
 
 export function useFetchTreasuryHistory(
-  page: number = 1,
+  page: number,
   tokenFilter: string,
   directionFilter: string,
 ): UseFetchReturn<PaginatedResult<APITreasuryHistory>> {

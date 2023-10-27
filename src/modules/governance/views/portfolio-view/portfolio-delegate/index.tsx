@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import BigNumber from 'bignumber.js';
 import TxConfirmModal from 'web3/components/tx-confirm-modal';
-import Erc20Contract from 'web3/erc20Contract';
 import { formatToken, shortenAddr } from 'web3/utils';
 
 import Alert from 'components/antd/alert';
@@ -38,8 +37,6 @@ const PortfolioDelegate: FC = () => {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
 
   const { balance: stakedBalance = BigNumber.ZERO, userLockedUntil = 0, userDelegatedTo } = daoCtx.daoBarn;
-  const projectTokenContract = projectToken.contract as Erc20Contract;
-  const bondBalance = projectTokenContract.balance?.unscaleBy(projectToken.decimals);
 
   const isLocked = userLockedUntil > Date.now();
   const isDelegated = isValidAddress(userDelegatedTo);
@@ -48,25 +45,25 @@ const PortfolioDelegate: FC = () => {
     validationScheme: {
       delegateAddress: {
         rules: {
-          required: (value: string | undefined, _, obj: FormType) => {
+          required: (value: string | undefined, _: any, obj: FormType) => {
             if (obj.votingType === DELEGATED_KEY) {
               return Boolean(value);
             }
             return true;
           },
-          isAddress: (value: string | undefined, _, obj: FormType) => {
+          isAddress: (value: string | undefined, _: any, obj: FormType) => {
             if (obj.votingType === DELEGATED_KEY) {
               return isValidAddress(value);
             }
             return true;
           },
-          isSelf: (value: string | undefined, _, obj: FormType) => {
+          isSelf: (value: string | undefined, _: any, obj: FormType) => {
             if (obj.votingType === DELEGATED_KEY) {
               return wallet.account?.toLowerCase() !== value?.toLowerCase();
             }
             return true;
           },
-          isSame: (value: string | undefined, _, obj: FormType) => {
+          isSame: (value: string | undefined, _: any, obj: FormType) => {
             if (obj.votingType === DELEGATED_KEY) {
               return userDelegatedTo?.toLowerCase() !== value?.toLowerCase();
             }

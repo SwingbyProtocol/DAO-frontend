@@ -97,7 +97,7 @@ const PortfolioDeposit: FC = () => {
   const { balance: stakedBalance, userLockedUntil } = daoCtx.daoBarn;
   const projectTokenContract = projectToken.contract as Erc20Contract;
   const bondBalance = projectTokenContract.balance?.unscaleBy(projectToken.decimals);
-  const barnAllowance = projectTokenContract.getAllowanceOf(config.contracts.dao?.barn!);
+  const barnAllowance = projectTokenContract.getAllowanceOf(config.contracts.dao?.barn || '');
   const isLocked = (userLockedUntil ?? 0) * 1_000 > Date.now();
   const minLockDate = (isLocked && userLockedUntil) ? new Date(userLockedUntil * 1_000 + 60_000) : addMinutes(Date.now(), 1);
   const isFullDeposit = (stakedBalance && stakedBalance.isLessThan(175000))
@@ -221,7 +221,7 @@ const PortfolioDeposit: FC = () => {
     setSubmitting(true);
 
     try {
-      const depositAmount = amount.scaleBy(projectToken.decimals);
+      const depositAmount = amount.scaleBy(projectToken.decimals)!;
       const depositAmountNew = new EtherBigNumber(depositAmount.toFixed(0));
 
       if (depositAmount && lockUntil) {
@@ -230,7 +230,7 @@ const PortfolioDeposit: FC = () => {
         if (timestamp && timestamp > 0) {
           // todo:
           await daoCtx.daoBarn.addOrAdjusttimelock(
-            depositAmountNew,
+            depositAmountNew as unknown as BigNumber,
             timestamp,
             type,
             '0x' + p2pkey, // 0x + hexstirng

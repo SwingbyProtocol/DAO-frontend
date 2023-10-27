@@ -8,7 +8,7 @@ const sbBTCPoolABI: AbiItem[] = [
   // send
   createAbiItem('claim', [], ['uint256']),
 
-  createAbiItem('userMultiplier', ['address'], ['uint256'])
+  createAbiItem('userMultiplier', ['address'], ['uint256']),
 ];
 
 class sbBTCPoolContract extends Web3Contract {
@@ -28,6 +28,7 @@ class sbBTCPoolContract extends Web3Contract {
     totalDuration: number;
     totalAmount: BigNumber;
   };
+
   // apr
   apr?: number;
   // user data
@@ -77,12 +78,12 @@ class sbBTCPoolContract extends Web3Contract {
 
     const [toClaim, multiPlier] = await this.batch([
       { method: 'claim', callArgs: { from: account } },
-      { method: 'userMultiplier', methodArgs: [account], callArgs: { from: account } }
+      { method: 'userMultiplier', methodArgs: [account], callArgs: { from: account } },
     ]);
     this.multiP = BigNumber.from(multiPlier)
     this.toClaim = BigNumber.from(toClaim)?.unscaleBy(8); /// TODO: re-check
-    //console.log(this.multiP?.isZero())
-    //if (this.multiP?.isZero() === true) {
+    // console.log(this.multiP?.isZero())
+    // if (this.multiP?.isZero() === true) {
     // this.toClaim = new BigNumber(0)
     // }
     this.emit(Web3Contract.UPDATE_DATA);

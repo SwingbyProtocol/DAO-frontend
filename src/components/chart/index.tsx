@@ -102,8 +102,8 @@ export const Chart: React.FC<PropsType> = ({ data, x, y, className, loading = fa
     const { domain = [] } = yAxisMap.left;
 
     return [
-      dataMin => min(dataMin, domain ?? [dataMin, dataMin]),
-      dataMax => max(dataMax, domain ?? [dataMax, dataMax]),
+      dataMin => (min as CallableFunction)(dataMin, domain ?? [dataMin, dataMin]),
+      dataMax => (max as CallableFunction)(dataMax, domain ?? [dataMax, dataMax]),
     ] as [AxisDomainItem, AxisDomainItem];
   }, [chartRef.current, y.domain]);
 

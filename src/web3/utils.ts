@@ -53,7 +53,7 @@ export function formatNumber(value: number | BigNumber | undefined, options?: Fo
   }).format(val);
 }
 
-export function formatPercent(value: number | BigNumber | undefined, decimals: number = 2): string | undefined {
+export function formatPercent(value: number | BigNumber | undefined, decimals = 2): string | undefined {
   if (value === undefined || Number.isNaN(value)) {
     return undefined;
   }
@@ -157,7 +157,7 @@ export function formatUSD(
 
   const { decimals = 2, compact = false } = options ?? {};
 
-  if (0 > decimals || decimals > 20) {
+  if (decimals < 0 || decimals > 20) {
     console.trace(`Decimals value is out of range 0..20 (value: ${decimals})`);
     return undefined;
   }

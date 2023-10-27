@@ -14,9 +14,7 @@ export const TransactionSummary: React.FC<PropsType> = ({ items, heading, classN
   return (
     <section className={classNames(s.section, className)}>
       <header className={s.header}>
-        {heading ? (
-          heading
-        ) : (
+        {heading || (
           <Text type="p2" weight="semibold" color="secondary">
             Transaction summary
           </Text>
