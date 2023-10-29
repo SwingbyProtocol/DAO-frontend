@@ -17,6 +17,7 @@ const alias = folders
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/',
   plugins: [nodePolyfills(), react(), svgr()],
   resolve: {
     alias: {
