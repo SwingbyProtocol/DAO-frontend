@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 export type IconBubbleProps = {
   bubble: boolean;
   className?: string;
-  style?: Object;
+  style?: object;
   width: number;
   height: number;
   notificationSize?: number;

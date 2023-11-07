@@ -1,3 +1,6 @@
+// eslint-disable-next-line
+// @ts-nocheck
+
 import React, { CSSProperties, FC, HTMLProps, ReactNode } from 'react';
 import { NavLink, NavLinkProps } from 'react-router-dom';
 import cn from 'classnames';
@@ -29,10 +32,8 @@ export const NavTabs: FC<NavTabsProps> = ({ className, tabs, shadows = false }) 
         } as CSSProperties
       }>
       {tabs.map(({ className, children, ...restTab }, idx) => {
-        // @ts-ignore
         if (restTab.to) {
           return (
-            // @ts-ignore
             <NavLink key={idx} className={cn(s.tab, className)} activeClassName={s.active} {...restTab}>
               {children}
             </NavLink>

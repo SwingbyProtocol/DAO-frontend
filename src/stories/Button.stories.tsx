@@ -87,7 +87,7 @@ export const All = () => (
   <table>
     <thead>
       <tr>
-        <th></th>
+        <th />
         <th>Primary</th>
         <th>Secondary</th>
         <th>Ghost</th>

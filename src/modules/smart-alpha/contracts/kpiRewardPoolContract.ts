@@ -125,7 +125,7 @@ const MULTI_ABI: AbiItem[] = [
 class KpiRewardPoolContract extends Web3Contract {
   private readonly _isMulti: boolean;
 
-  constructor(address: string, isMulti: boolean = false) {
+  constructor(address: string, isMulti = false) {
     super(isMulti ? MULTI_ABI : ABI, address, '');
 
     this._isMulti = isMulti;

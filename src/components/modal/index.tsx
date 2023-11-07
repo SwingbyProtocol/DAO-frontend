@@ -11,7 +11,7 @@ const modalsNode = document.querySelector('#modal-root');
 
 type Props = {
   heading?: React.ReactNode;
-  closeHandler: Function;
+  closeHandler: () => void;
   fullscreen?: boolean;
 };
 

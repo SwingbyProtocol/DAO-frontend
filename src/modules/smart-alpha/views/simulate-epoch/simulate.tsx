@@ -326,7 +326,7 @@ export const Simulate: FC<Props> = ({ pool }: Props) => {
           </header>
           <div className="p-24">
             <Spin spinning={loading}>
-              <ResponsiveContainer width={'99%'} height={300}>
+              <ResponsiveContainer width="99%" height={300}>
                 <BarChart
                   data={[
                     {

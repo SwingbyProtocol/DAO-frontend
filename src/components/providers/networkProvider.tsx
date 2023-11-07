@@ -28,7 +28,7 @@ const networks: Web3Network[] = (() => {
   if (isDevelopmentMode) {
     return [
       MainnetNetwork,
-      RopstenNetwork
+      RopstenNetwork,
     ]
   }
 
@@ -52,7 +52,9 @@ const NetworkProvider: FC = props => {
         const networkId = lastNetwork?.toLowerCase();
         network = networks.find(n => n.id.toLowerCase() === networkId);
       }
-    } catch { }
+    } catch {
+      //
+    }
 
     return network ?? networks[0];
   }, [lastNetwork]);

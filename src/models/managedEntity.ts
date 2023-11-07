@@ -11,7 +11,7 @@ export default class ManagedEntity {
     return this._event;
   }
 
-  onDataUpdate = (listener: Function): Function => {
+  onDataUpdate = (listener: () => void): () => void => {
     this._event.on('data:update', listener);
 
     return () => {

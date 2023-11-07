@@ -1,7 +1,7 @@
 import { FC, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 // import { PolygonNetwork } from 'networks/polygon';
 import { MetaMask } from '@web3-react/metamask';
-import Web3 from 'web3';
+import Web3 from 'web3_modules';
 import { HttpProvider } from 'web3-core';
 import { AbiItem } from 'web3-utils';
 import EventEmitter from 'wolfy87-eventemitter';

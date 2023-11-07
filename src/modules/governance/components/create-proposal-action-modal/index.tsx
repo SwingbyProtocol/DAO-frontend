@@ -256,7 +256,7 @@ const CreateProposalActionModal: React.FC<CreateProposalActionModalProps> = prop
         try {
           await web3.tryCall(
             values.targetAddress,
-            config.contracts.dao?.governance!,
+            config.contracts.dao?.governance || '',
             encodedFunction!,
             values.actionValue,
           );
@@ -276,9 +276,9 @@ const CreateProposalActionModal: React.FC<CreateProposalActionModalProps> = prop
       form.resetFields();
       cancel = true;
     } catch (e) {
-      if (e?.message) {
+      if ((e as Error).message) {
         AntdNotification.error({
-          message: e?.message,
+          message: (e as Error).message,
         });
       }
     }

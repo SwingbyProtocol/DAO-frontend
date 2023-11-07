@@ -17,6 +17,7 @@ export type TextProps = {
   className?: string;
   style?: Partial<CSSStyleDeclaration>;
   tooltip?: ReactNode;
+  children?: React.ReactNode;
 };
 
 export const Text: React.FC<TextProps> = React.memo(props => {

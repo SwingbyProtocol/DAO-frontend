@@ -13,7 +13,6 @@ import { RopstenNetwork } from 'networks/ropsten';
 
 import {
   MainnetHttpsWeb3Provider,
-  RopstenHttpsWeb3Provider,
 } from './web3Provider';
 
 import { InvariantContext } from 'utils/context';
@@ -323,7 +322,7 @@ async function getChainlinkFeedPrice(
   return latestAnswer?.unscaleBy(decimals);
 }
 
-async function getGeckoPrice(symbol): Promise<BigNumber | undefined> {
+async function getGeckoPrice(symbol: string): Promise<BigNumber | undefined> {
   const query = queryfy({
     ids: [symbol],
     vs_currencies: 'usd',
@@ -335,7 +334,7 @@ async function getGeckoPrice(symbol): Promise<BigNumber | undefined> {
   return BigNumber.from(result[symbol].usd);
 }
 
-async function getBondPrice(poolAddress: string): Promise<BigNumber | undefined> {
+export async function getBondPrice(poolAddress: string): Promise<BigNumber | undefined> {
   const contract = new Erc20Contract(UNISWAP_V2_BOND_USDC_ABI, poolAddress);
   contract.setCallProvider(MainnetHttpsWeb3Provider);
 
@@ -352,7 +351,7 @@ async function getBondPrice(poolAddress: string): Promise<BigNumber | undefined>
   return usdcReserve?.dividedBy(bondReserve);
 }
 
-async function getUniV2Price(poolAddress: string): Promise<BigNumber | undefined> {
+export async function getUniV2Price(poolAddress: string): Promise<BigNumber | undefined> {
   const contract = new Erc20Contract(UNISWAP_V2_BOND_USDC_ABI, poolAddress);
   contract.setCallProvider(MainnetHttpsWeb3Provider);
 
@@ -540,14 +539,15 @@ const TokensProvider: FC = props => {
         });
       }
 
-      Array.from(tokensRef.current).forEach(([k, t]) => {
-        console.log(`[New Token Price] ${t.symbol} = $${t.price?.toFixed(3) ?? '-'}`);
+      Array.from(tokensRef.current).forEach(([_, t]) => {
+        console.info(`[New Token Price] ${t.symbol} = $${t.price?.toFixed(3) ?? '-'}`);
       });
     })();
   }, []);
 
   const getToken = useCallback(
     (symbol: string | undefined, network: Web3Network = activeNetwork): TokenType | undefined => {
+      network; // eslint-disable-line
       return symbol ? tokensRef.current.get(symbol.toUpperCase()) : undefined;
     },
     [],

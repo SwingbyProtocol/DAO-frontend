@@ -1,14 +1,14 @@
 import { CSSProperties, FC, ReactNode } from 'react';
 
-export type SCP<P = {}> = P & {
+export type SCP<P = Record<string, unknown>> = P & {
   className?: string;
   style?: CSSProperties;
 };
 
-export type CP<P = {}> = P & {
+export type CP<P = Record<string, unknown>> = P & {
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
 };
 
-export type FCx<P = {}> = FC<CP<P>>;
+export type FCx<P = Record<string, unknown>> = FC<CP<P>>;

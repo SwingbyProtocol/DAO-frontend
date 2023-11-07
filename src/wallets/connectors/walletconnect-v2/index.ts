@@ -7,7 +7,7 @@ export const [walletConnectV2, hooks] = initializeConnector<WalletConnectV2>(act
   return new WalletConnectV2({
     actions,
     options: {
-      projectId: process.env.REACT_APP_WALLETCONNECT_PROJECT_ID!,
+      projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID!,
       chains: [MAINNET_CHAIN_ID],
       optionalChains: [],
       showQrModal: true,

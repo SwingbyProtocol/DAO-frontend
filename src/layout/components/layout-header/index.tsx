@@ -30,7 +30,7 @@ import s from './s.module.scss';
 const LayoutHeader: React.FC = () => {
   const { navOpen, setNavOpen } = useGeneral();
   const { activeNetwork } = useNetwork();
-  let title = !isMobile ? 'Governance' : '';
+  const title = !isMobile ? 'Governance' : '';
   return (
     <header className={s.component}>
       <button type="button" className={s.burger} onClick={() => setNavOpen(!navOpen)}>

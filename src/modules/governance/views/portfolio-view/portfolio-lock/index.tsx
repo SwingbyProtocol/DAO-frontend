@@ -245,7 +245,7 @@ const PortfolioLock: FC = () => {
                   {formatToken(stakedBalance)} {projectToken.symbol}
                 </span>{' '}
                 and {' '}
-                <span className='primary-color'>
+                <span className="primary-color">
                   VotePower {formatToken(calcVotePower(stakedBalance, form.getValues('lockEndDate')))}
                 </span>{' '}
                 for{' '}

@@ -1,4 +1,4 @@
-import BN from 'bignumber.js/bignumber';
+import BN from 'bignumber.js';
 
 declare module 'bignumber.js' {
   export default class BigNumber extends BN {
@@ -31,6 +31,6 @@ declare module 'outy' {
   export default function outy(
     nodes: HTMLElement[],
     types: (Event | MouseEvent | TouchEvent)[],
-    eventHandler: Function,
+    eventHandler: () => void,
   ): { remove: () => void };
 }

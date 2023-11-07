@@ -5,8 +5,8 @@ import { Notification } from 'components/custom/notification';
 import { Text } from 'components/custom/typography';
 import { useGeneral } from 'components/providers/generalProvider';
 import { useNotifications } from 'components/providers/notificationsProvider';
-import { ReactComponent as ZeroNotificationsDarkSvg } from 'resources/svg/zero-notifications-dark.svg';
-import { ReactComponent as ZeroNotificationsSvg } from 'resources/svg/zero-notifications.svg';
+import ZeroNotificationsDarkSvg from 'resources/svg/zero-notifications-dark.svg?react';
+import ZeroNotificationsSvg from 'resources/svg/zero-notifications.svg?react';
 
 import s from './s.module.scss';
 

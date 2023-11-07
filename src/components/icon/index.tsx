@@ -139,7 +139,7 @@ export const Icon: React.FC<IconProps> = props => {
       {staticNamesList.includes(name as StaticNames) ? (
         <use href={`#icon__${name}`} />
       ) : (
-        <use href={`${process.env.PUBLIC_URL}/icons-sprite.svg#icon__${name}`} />
+        <use href={`/icons-sprite.svg#icon__${name}`} />
       )}
     </svg>
   );

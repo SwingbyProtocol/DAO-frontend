@@ -7,6 +7,7 @@ import s from './s.module.scss';
 
 type Props = AntdSpinProps & {
   type?: 'default' | 'circle';
+  children: React.ReactNode;
 };
 
 const Spin: React.FC<Props> = props => {

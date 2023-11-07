@@ -312,7 +312,7 @@ const TreasuryHoldings: FC = () => {
           data={historySource}
           rowKey={row => `${row.transactionHash}_${row.tokenSymbol}_${row.counterpartyAddress}_${row.amount}`}
           loading={historyLoading}
-          variation='separated'
+          variation="separated"
         // locale={{
         //   emptyText: 'No entries', // TODO: Add support of empty result to Table component
         // }}

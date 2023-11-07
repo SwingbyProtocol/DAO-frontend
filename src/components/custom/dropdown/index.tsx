@@ -1,3 +1,6 @@
+// eslint-disable-next-line
+// @ts-nocheck
+
 import React, { HTMLProps } from 'react';
 import ReactDOM from 'react-dom';
 import { Modifier, usePopper } from 'react-popper';
@@ -22,7 +25,6 @@ const modifiers: readonly Partial<Modifier<string, object>>[] = [
       state.styles.popper.minWidth = `${state.rects.reference.width}px`;
     },
     effect({ state }) {
-      // @ts-ignore
       state.elements.popper.style.minWidth = `${state.elements.reference.offsetWidth}px`;
     },
   },
@@ -124,8 +126,6 @@ export const DropdownList: React.FC<DropdownListProps> = ({ items, children, opt
             if (rest.href) {
               return (
                 <li key={idx}>
-                  {/**
-                   @ts-ignore */}
                   <a
                     href={rest.href}
                     {...rest}
@@ -140,12 +140,9 @@ export const DropdownList: React.FC<DropdownListProps> = ({ items, children, opt
               );
             }
 
-            // @ts-ignore
             if (rest.to) {
               return (
                 <li key={idx}>
-                  {/**
-                   @ts-ignore */}
                   <Link
                     {...rest}
                     className={s.tokenSelectListButton}
@@ -160,13 +157,10 @@ export const DropdownList: React.FC<DropdownListProps> = ({ items, children, opt
 
             return (
               <li key={idx}>
-                {/**
-                 @ts-ignore */}
                 <button
                   {...rest}
                   className={s.tokenSelectListButton}
                   onClick={e => {
-                    // @ts-ignore
                     if (onClick) onClick(e);
                     setOpen(false);
                   }}

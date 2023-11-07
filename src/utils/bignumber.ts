@@ -24,7 +24,7 @@ BigNumber.parse = (value: BigNumber.Value) => {
 BigNumber.sumEach = <T = any>(items: T[], predicate: (item: T) => BigNumber | undefined): BigNumber | undefined => {
   let sum = BigNumber.ZERO;
 
-  for (let item of items) {
+  for (const item of items) {
     const val = predicate?.(item);
 
     if (!val || val.isNaN()) {

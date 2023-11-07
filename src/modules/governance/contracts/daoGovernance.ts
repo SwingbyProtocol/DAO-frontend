@@ -1,4 +1,3 @@
-import { method } from 'lodash/fp';
 import { AbiItem } from 'web3-utils';
 import Web3Contract, { AbiTuple, createAbiItem } from 'web3/web3Contract';
 
@@ -48,7 +47,9 @@ class DaoGovernanceContract extends Web3Contract {
   constructor(address: string) {
     super(DaoGovernanceABI, address, 'DAO Governance');
 
-    this.on(Web3Contract.UPDATE_ACCOUNT, () => { });
+    this.on(Web3Contract.UPDATE_ACCOUNT, () => {
+      //
+    });
   }
 
   // common data

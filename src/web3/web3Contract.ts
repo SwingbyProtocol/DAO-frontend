@@ -1,6 +1,6 @@
 import debounce from 'lodash/debounce';
 import uniqueId from 'lodash/uniqueId';
-import Web3 from 'web3';
+import Web3 from 'web3_modules';
 import { Method } from 'web3-core-method';
 import { Eth } from 'web3-eth';
 import { Contract } from 'web3-eth-contract';
@@ -133,8 +133,8 @@ class BatchRequestManager {
 
       const web3 = new Web3(provider);
 
-      let extractCount = 0;
-      let delay = 0;
+      const extractCount = 0;
+      const delay = 0;
 
       // if (provider === PolygonHttpsWeb3Provider) {
       //   extractCount = 20;
