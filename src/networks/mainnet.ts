@@ -7,9 +7,10 @@ import { isDevelopmentMode } from 'utils';
 import { DEFAULT_RPC_POOLING_INTERVAL, NetworkConfig, Web3Network } from 'networks/types';
 
 const RPC_KEY = '1dcde8fbc3214edb932c2eca009b117e';
-const RPC_HTTPS_URL = `https://mainnet.infura.io/v3/${RPC_KEY}`;
-const RPC_WSS_URL = `wss://mainnet.infura.io/ws/v3/${RPC_KEY}`;
-
+//const RPC_HTTPS_URL = `https://mainnet.infura.io/v3/${RPC_KEY}`;
+const RPC_HTTPS_URL = `https://ethereum.publicnode.com`;
+//const RPC_WSS_URL = `wss://mainnet.infura.io/ws/v3/${RPC_KEY}`;
+const RPC_WSS_URL = `wss://ethereum.publicnode.com`
 const EXPLORER_KEY = '4RSJUUZQFMXUAUUJP5FI5UR5U59N7UIA32';
 const EXPLORER_URL = 'https://etherscan.io';
 const EXPLORER_API_URL = 'https://api.etherscan.io';
